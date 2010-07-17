@@ -1,0 +1,428 @@
+# Translation of the WordPress plugin   by .
+# Copyright (C) 2010
+# This file is distributed under the same license as the  package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/bp-album\n"
+"POT-Creation-Date: 2010-03-13 11:36+0000\n"
+"PO-Revision-Date: 2010-03-13 13:20+0100\n"
+"Last-Translator: Francesco Laffi <francesco.laffi@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/bp-album-admin.php:33
+#: includes/bp-album-core.php:201
+msgid "Example Admin"
+msgstr "Voorbeeld Admin"
+
+#: includes/bp-album-admin.php:36
+msgid "Settings Updated."
+msgstr "Instellingen geupdate."
+
+#: includes/bp-album-admin.php:42
+msgid "Option One"
+msgstr "Optie een"
+
+#: includes/bp-album-admin.php:47
+msgid "Option Two"
+msgstr "Optie twee"
+
+#: includes/bp-album-admin.php:54
+msgid "Save Settings"
+msgstr "Sla Instellingen Op"
+
+#: includes/bp-album-ajax.php:40
+msgid "Friendship could not be canceled."
+msgstr "Vriendschap kon niet worden geannuleerd."
+
+#: includes/bp-album-ajax.php:42
+msgid "Add Friend"
+msgstr "Voeg Vriend Toe"
+
+#: includes/bp-album-ajax.php:48
+msgid "Friendship could not be requested."
+msgstr "Vriendschap kon niet worden aangevraagd."
+
+#: includes/bp-album-ajax.php:50
+msgid "Friendship Requested"
+msgstr "Vriendschap Aangevraagd"
+
+#: includes/bp-album-ajax.php:54
+msgid "Request Pending"
+msgstr "Aanvraag in overweging"
+
+#: includes/bp-album-core.php:217
+msgid "Album"
+msgstr "Album"
+
+#: includes/bp-album-core.php:225
+msgid "My pictures"
+msgstr "Mijn foto's"
+
+#: includes/bp-album-core.php:225
+#, php-format
+msgid "%s's pictures"
+msgstr "%s's foto's"
+
+#: includes/bp-album-core.php:239
+msgid "Picture"
+msgstr "Foto"
+
+#: includes/bp-album-core.php:249
+#: includes/bp-album-screens.php:188
+msgid "Upload picture"
+msgstr "Upload foto"
+
+#: includes/bp-album-core.php:547
+#, php-format
+msgid "%s uploaded a new picture: %s"
+msgstr "%s heeft een nieuwe foto geupload: %s"
+
+#: includes/bp-album-notifications.php:33
+#, php-format
+msgid "%s high-fived you!"
+msgstr "%s heeft je een high-five gegeven!"
+
+#: includes/bp-album-notifications.php:36
+#, php-format
+msgid ""
+"%s sent you a high-five! Why not send one back?\n"
+"\n"
+"To see %s's profile: %s\n"
+"\n"
+"To send %s a high five: %s\n"
+"\n"
+"---------------------\n"
+msgstr ""
+"%s heeft je een high-five gestuurd! Waarom niet gelijk een terug sturen?\n"
+"\n"
+"Om %s's profiel te bekijken: %s\n"
+"\n"
+"Om %s een high-five te sturen: %s\n"
+"\n"
+"---------------------\n"
+
+#: includes/bp-album-notifications.php:45
+#, php-format
+msgid "To disable these notifications please log in and go to: %s"
+msgstr "Om deze meldingen uit te schakelen, login en ga naar: %s"
+
+#: includes/bp-album-screens.php:38
+#: includes/bp-album-screens.php:54
+msgid "Edit Picture"
+msgstr "Pas Foto Aan"
+
+#: includes/bp-album-screens.php:47
+#: includes/bp-album-screens.php:150
+msgid "Public"
+msgstr "Publiekelijk"
+
+#: includes/bp-album-screens.php:48
+#: includes/bp-album-screens.php:151
+msgid "Registered members"
+msgstr "Geregistreerde leden"
+
+#: includes/bp-album-screens.php:49
+#: includes/bp-album-screens.php:152
+msgid "Only friends"
+msgstr "Alleen vrienden"
+
+#: includes/bp-album-screens.php:50
+#: includes/bp-album-screens.php:153
+msgid "Private"
+msgstr "Prive"
+
+#: includes/bp-album-screens.php:51
+msgid "Hidden (admin only)"
+msgstr "Verborgen (alleen admin)"
+
+#: includes/bp-album-screens.php:59
+msgid "Picture Title *"
+msgstr "Foto Titel *"
+
+#: includes/bp-album-screens.php:65
+msgid "Picture Description"
+msgstr "Foto Beschrijving"
+
+#: includes/bp-album-screens.php:71
+#: includes/bp-album-screens.php:169
+msgid "Visibility"
+msgstr "Zichtbaarheid"
+
+#: includes/bp-album-screens.php:79
+#: includes/bp-album-screens.php:181
+msgid "(limit reached)"
+msgstr "(limiet bereikt)"
+
+#: includes/bp-album-screens.php:88
+msgid "Picture activity and comments"
+msgstr "Foto activiteiten en reacties"
+
+#: includes/bp-album-screens.php:89
+msgid "Enable"
+msgstr "Zet aan"
+
+#: includes/bp-album-screens.php:90
+msgid "Disable"
+msgstr "Zet uit"
+
+#: includes/bp-album-screens.php:91
+msgid "If picture already has comments this will delete them"
+msgstr "Als foto al reacties heeft, zal dit ze verwijderen"
+
+#: includes/bp-album-screens.php:94
+#: includes/bp-album-templatetags.php:220
+msgid "Edit picture"
+msgstr "Pas foto aan"
+
+#: includes/bp-album-screens.php:102
+msgid "Either this url is not valid or you can't edit this picture."
+msgstr "Deze url is ongeldig of je kunt deze foto niet bewerken."
+
+#: includes/bp-album-screens.php:142
+#: includes/bp-album-screens.php:157
+msgid "Upload new picture"
+msgstr "Upload nieuwe foto"
+
+#: includes/bp-album-screens.php:165
+msgid "Select Picture to Upload *"
+msgstr "Selecteer Foto om te Uploaden *"
+
+#: includes/bp-album-screens.php:196
+msgid "You have reached the upload limit, delete some picture if you want to upload more"
+msgstr "Je hebt het limiet van uploadbare foto's bereikt, verwijder een aantal van je bestaande om weer te uploaden"
+
+#: includes/bp-album-screens.php:281
+#: includes/bp-album-screens.php:466
+msgid "Please select a privacy option."
+msgstr "Selecteer een prive optie."
+
+#: includes/bp-album-screens.php:289
+#: includes/bp-album-screens.php:474
+msgid "Privacy option is not correct."
+msgstr "Prive optie is incorrect."
+
+#: includes/bp-album-screens.php:294
+#: includes/bp-album-screens.php:479
+msgid "You reached the limit for public pictures."
+msgstr "Je hebt het limiet bereikt van publiekelijke foto's."
+
+#: includes/bp-album-screens.php:294
+#: includes/bp-album-screens.php:297
+#: includes/bp-album-screens.php:300
+#: includes/bp-album-screens.php:303
+#: includes/bp-album-screens.php:479
+#: includes/bp-album-screens.php:482
+#: includes/bp-album-screens.php:485
+#: includes/bp-album-screens.php:488
+msgid "Please select another privacy option."
+msgstr "Selecteer een andere prive optie."
+
+#: includes/bp-album-screens.php:297
+#: includes/bp-album-screens.php:482
+msgid "You reached the limit for pictures visible to community members."
+msgstr "Je hebt het limiet bereikt van foto's zichtbaar voor geregistreerde leden."
+
+#: includes/bp-album-screens.php:300
+#: includes/bp-album-screens.php:485
+msgid "You reached the limit for pictures visible to friends."
+msgstr "Je hebt het limiet bereikt van foto's zichtbaar voor vrienden."
+
+#: includes/bp-album-screens.php:303
+#: includes/bp-album-screens.php:488
+msgid "You reached the limit for private pictures."
+msgstr "Je hebt het limiet bereikt van prive foto's."
+
+#: includes/bp-album-screens.php:311
+msgid "There is no error, the file uploaded with success"
+msgstr "Er waren geen problemen, het bestand is succesvol geupload"
+
+#: includes/bp-album-screens.php:312
+#: includes/bp-album-screens.php:313
+msgid "Your image was bigger than the maximum allowed file size of: "
+msgstr "Je foto was groter dan het maximum toegestane bestand grote van:"
+
+#: includes/bp-album-screens.php:314
+msgid "The uploaded file was only partially uploaded"
+msgstr "Het geuploade bestand was alleen gedeeltelijk geupload"
+
+#: includes/bp-album-screens.php:315
+msgid "No file was uploaded"
+msgstr "Er was geen bestand geupload"
+
+#: includes/bp-album-screens.php:316
+msgid "Missing a temporary folder"
+msgstr "Mist een tijdelijke folder"
+
+#: includes/bp-album-screens.php:321
+#: includes/bp-album-screens.php:335
+#: includes/bp-album-screens.php:347
+#, php-format
+msgid "Your upload failed, please try again. Error was: %s"
+msgstr "Je upload heeft gefaald, probeer het nogmaals. Error was: %s"
+
+#: includes/bp-album-screens.php:326
+#, php-format
+msgid "The file you uploaded is too big. Please upload a file under %s"
+msgstr "Het bestand wat je hebt geupload is te groot. Upload alleen bestanden kleiner dan %s"
+
+#: includes/bp-album-screens.php:331
+msgid "Please upload only JPG, GIF or PNG photos."
+msgstr "Upload alleen foto's van de bestands formaten JPG, GIF of PNG."
+
+#: includes/bp-album-screens.php:392
+msgid "Picture uploaded. Now you can change picture details."
+msgstr "Foto geupload. Je kan nu de foto details aanpassen."
+
+#: includes/bp-album-screens.php:395
+#: includes/bp-album-screens.php:509
+msgid "There were problems saving picture details."
+msgstr "Er waren problemen bij het opslaan van je foto details."
+
+#: includes/bp-album-screens.php:454
+msgid "Picture Title can not be blank."
+msgstr "Foto Titel mag niet blanko zijn."
+
+#: includes/bp-album-screens.php:460
+msgid "Picture Description can not be blank."
+msgstr "Foto Beschrijving mag niet blanko zijn."
+
+#: includes/bp-album-screens.php:498
+msgid "Comments option is not correct."
+msgstr "Reactie optie is niet correct."
+
+#: includes/bp-album-screens.php:506
+msgid "Picture details saved."
+msgstr "Foto details opgeslagen."
+
+#: includes/bp-album-screens.php:533
+#: includes/templates/album/single.php:49
+msgid "This url is not valid."
+msgstr "De url is niet geldig."
+
+#: includes/bp-album-screens.php:538
+msgid "You don't have permission to delete this picture"
+msgstr "Je hebt geen toestemming om deze foto te verwijderen."
+
+#: includes/bp-album-screens.php:540
+msgid "Picture deleted."
+msgstr "Foto verwijderd."
+
+#: includes/bp-album-screens.php:544
+msgid "There were problems deleting the picture."
+msgstr "Er waren problemen bij het verwijderen van de foto."
+
+#: includes/bp-album-templatetags.php:233
+msgid "Delete picture"
+msgstr "Verwijder foto"
+
+#: includes/bp-album-templatetags.php:294
+#: includes/bp-album-templatetags.php:320
+#: includes/bp-album-templatetags.php:367
+msgid "Return to your album"
+msgstr "Ga terug naar je album"
+
+#: includes/bp-album-templatetags.php:294
+#: includes/bp-album-templatetags.php:320
+#: includes/bp-album-templatetags.php:367
+#, php-format
+msgid "Return to %s album"
+msgstr "Ga terug naar de %s album"
+
+#: includes/bp-album-widgets.php:23
+msgid "Example Widget"
+msgstr "Voorbeeld Widget"
+
+#: includes/bp-album-widgets.php:65
+msgid "Number of Items Per Page:"
+msgstr "Nummer van Items Per Pagina:"
+
+#: includes/bp-album-widgets.php:66
+msgid "Max items to show:"
+msgstr "Maximum items om te tonen:"
+
+#: includes/templates/album/comments.php:12
+msgid "Reply"
+msgstr "Reageer"
+
+#: includes/templates/album/comments.php:17
+msgid "Mark as Favorite"
+msgstr "Markeer als Favoriet"
+
+#: includes/templates/album/comments.php:17
+msgid "Favorite"
+msgstr "Favoriet"
+
+#: includes/templates/album/comments.php:19
+msgid "Remove Favorite"
+msgstr "Verwijder als Favoriet"
+
+#: includes/templates/album/comments.php:27
+msgid "In reply to"
+msgstr "In reactie op"
+
+#: includes/templates/album/comments.php:28
+msgid "View Thread / Permalink"
+msgstr "Bekijk Discussie/Permalink"
+
+#: includes/templates/album/comments.php:28
+msgid "View"
+msgstr "Bekijk"
+
+#: includes/templates/album/comments.php:43
+msgid "Post"
+msgstr "Post"
+
+#: includes/templates/album/comments.php:43
+msgid "or press esc to cancel."
+msgstr "of druk op esc om te annuleren."
+
+#: includes/templates/album/comments.php:59
+#, php-format
+msgid "Comments are disabled for this picture. %sEdit picture%s to enable them."
+msgstr "Reacties staan uit voor deze foto. %sPas Foto Aan%s om ze aan te zetten."
+
+#: includes/templates/album/pictures.php:46
+msgid "No pics here, show something to the community!"
+msgstr "Geen foto's hier, laat wat zien aan je medemens!"
+
+#: includes/templates/album/pictures.php:46
+#, php-format
+msgid "Either %s hasn't uploaded any picture yet or they have restricted access"
+msgstr "%s heeft nog geen foto's geupload of ze hebben alleen foto's die jij niet mag zien"
+
+#: includes/templates/album/single.php:49
+msgid "Either this url is not valid or picture has restricted access."
+msgstr "Deze url is ongeldig of deze foto mag jij niet zien."
+
+#~ msgid "Public pictures"
+#~ msgstr "Publiekelijke foto's"
+
+#~ msgid "You have already uploaded %s public pictures."
+#~ msgstr "Je hebt al %s publieke foto's geupload."
+
+#~ msgid "You can upload other %s pictures."
+#~ msgstr "Je kan nog %s foto's uploaden."
+
+#~ msgid "You have reached the upload limit for public pictures."
+#~ msgstr "Je hebt het upload limiet bereikt voor publiekelijke foto's."
+
+#~ msgid "Private pictures"
+#~ msgstr "Prive foto's"
+
+#~ msgid "You have already uploaded %s private pictures."
+#~ msgstr "Je hebt al %s prive foto's geupload."
+
+#~ msgid "Why don't you show to your friends some pic of you?"
+#~ msgstr "Waarom niet een aantal foto's laten zien aan je vrienden?"
+
+#~ msgid "You have reached the upload limit for private pictures."
+#~ msgstr "Je hebt het upload limiet bereikt voor prive foto's."
+
+#~ msgid "No pics!"
+#~ msgstr "Geen foto's!"
