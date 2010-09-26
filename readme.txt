@@ -1,42 +1,47 @@
 === BuddyPress Album+ ===
 Contributors: francescolaffi, foxly
-Donate link: http://flweb.it/
-Tags: Buddypress, BP, album, albums, picture, pictures, photos, privacy
+Donate link: http://code.google.com/p/buddypress-media/
+Tags: BuddyPress, BP, album, albums, picture, pictures, photos, gallery, galleries, media, privacy
 Requires at least: WP 2.9, BP 1.2
-Tested up to: WP 2.9.2, BP 1.2.3
-Stable tag: 0.1.7
+Tested up to: WP 3.0.1, BP 1.2.5.2
+Stable tag: 0.1.8
 
-Adds User Photo Albums to BuddyPress! Includes Photo Posts to Wire, Member Comments on Photos, and Privacy Controls. Works with the current BuddyPress theme and includes Easy To Skin Templates.
+Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 
 == Description ==
 
-This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app!
+This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app! The current BETA version also supports audio files, embedded videos from YouTube, Revver, Vimeo, and
+dozens of other sites, as well as embedded images from Flickr, Imgur, and many others.
 
-A user can upload pictures to their album, add a title, description, and choose privacy options (public, visible to members, visible to friends, and private). Users can also enable and disable comments on a per-image basis.
+=IMPORTANT=
+We only use wordpress.org to distribute the current STABLE version of the plugin. We do not support, answer questions, or accept bug reports through wordpress.org.
 
-Using the plugin's administration interface in the WordPress backend, administrators can set how many pictures users are allowed to upload for each visibility level.
+=Latest Version=
+For the latest beta version, which is often 6 MONTHS+ ahead of the version posted on wordpress.org, please visit our [Google Code](http://code.google.com/p/buddypress-media/) project page.
 
-Administrators can globally enable and disable comments on photos, and can control whether or not thumbnails of uploaded pictures are posted on a user's wire. Administrators can also set whether an image's description can be empty, number of images per page in the default query.
+=User Support=
+We handle all user support through our buddypress.org [Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
 
-For each uploaded picture, the plugin will generate a thumbnail image and a gallery size image. The admin can set thumbnail size, gallery image size and if original file should be kept.
+=Bug Reports=
+We accept bug reports through our [Google Code Bug Tracker](http://code.google.com/p/buddypress-media/issues/list). Bug reports posted on wordpress.org will be ignored.
 
-Site administrators can edit or delete any picture. They can also hide members' pictures without deleting them.
 
-At the user level, image comments are connected to the image's activity. Enabling comments for an image also enables wire post activity for that image. Disabling comments deletes previously posted wire activity for that image.
+= About This Release =
 
-Templating this plugin is very easy, because the template class works in a way similar to the wp posts template.
+This version of the plugin fixes the 'Incorrect Image File URL' problem that some users with badly configured shared / virtual servers were experiencing. A typical example would be where the URL to an image file is "www.example.com/wp-content/album/01/image.jpg" but BP-Album returns the URL
+"www.example.com/virtual/~customer_name/site_name/wp-content/album/01/image.jpg". 
 
-= Configuration =
+The plugin now includes an admin option that lets users to set the base URL that BP-Album uses for images, so the correct URL can be sent to a web browser no matter how screwed-up your server is.
 
-This version of the plugin fixes the 'There were problems saving picture details' that some users experienced with previous versions. It also includes an admin panel, allowing all plugin admin options to be set from the WP back end.
-
-To override the plugin's template files, simply create an `album/` folder in your theme's folder and put your custom template files in it, making sure to name them the same as the plugin's template files.
 
 = Disclaimer =
 
-This is an early release version and should NOT be used in a production environment. You can test this plugin in [my BP test site](http://bptest.flweb.it/)
+This is an early release version of the plugin that should NOT be used in a production environment. It's provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
-It is provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
+= Resources =
+
+For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/aUn5dZ),
+[Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 
 = Translations =
@@ -51,37 +56,8 @@ It is provided on an “as is” basis without any warranty. We are not liable f
 * ru_RU by Chimit
 * fi_FI by Jyri Väätäinen
 * he_IL by Raffi Vitis
-* send translations at francesco (dot) laffi (at) gmail (dot) com
 
-= Future release will include (in no specific order): =
-
-* multiple albums per user
-* albums for groups
-* shortcode embeddable photos
-* cache integration
-* clean uninstall command
-
-Other good ideas we are considering, subject to community feedback:
-
-* sidebar photo widget
-* audio and video capability
-* flash-based content uploader
-* member photo rating
-* top photos page
-* watermarks on photos
-* EXIF photo data import
-* Gallery stats (popularity, views, etc)
-
-
-= Known issues: =
-
-* If a public pic that have comments changed to private, then the pic activity will be hidden from sitewide stream, but the comments will not (i think this is a bp issue, but i need to look more into it)
-* Picture thumbnails might not be immediately posted to a user's wire. The user might have to perform an edit action on a photo or other site activity to get the wire to update.
-* Admin menu numeric values are not type-checked. If you enter text in a box that should have a number in it, unpredictible things could happen.
-
-= Contact =
-
-For issues/bugs/suggestions use the wordpress.org support forum with tag 'bp-album'. After [browsing existing topics](http://wordpress.org/tags/bp-album?forum_id=10), you can [open a new one](http://wordpress.org/tags/bp-album?forum_id=10#postform). No duplicates please.
+* Please submit new/updated translations via our [Issue Tracker](http://code.google.com/p/buddypress-media/issues/list)
 
 
 == Installation ==
@@ -91,15 +67,19 @@ For issues/bugs/suggestions use the wordpress.org support forum with tag 'bp-alb
 
 == Frequently Asked Questions ==
 
-= no faq here? =
+We handle all user support through our [BuddyPress Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
 
-still no faq
 
 == Screenshots ==
 
-1. screenshot-1.(png|jpg|jpeg|gif)
+For screen shots, our development roadmap, and a live project calendar, please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+
 
 == Changelog ==
+
+= 0.1.8 =
+* Added URL re-mapping functionality to fix 'Incorrect Image File URL Problem' that some users with badly configured shared / virtual servers were experiencing. A typical example would be where the URL to an image file is "www.example.com/wp-content/album/01/image.jpg" but BP-Album returns the URL
+"www.example.com/virtual/~customer_name/site_name/wp-content/album/01/image.jpg".
 
 = 0.1.7 =
 * Fix the loader so it don't give error when updating/deactivating bp or when it is not installed.
@@ -145,10 +125,3 @@ admin menu added,  es_ES, ru_RU
 = 0.1.3=
 bug fixes,css fixes, tr_TR,de_DE translations
 
-= 0.1.2 =
-
-i forgot to include fr_FR in last release
-
-= 0.1.1 =
-
-all known bug are fixed

@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: BuddyPress Album+
-Plugin URI: http://flweb.it/buddypress-album-plus/
-Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Photo Privacy Controls. Works with current BuddyPress theme and includes Easy To Skin Templates.
-Version: 0.1.7
-Revision Date: March 28, 2010
+Plugin Name: BP-Album+
+Plugin URI: http://code.google.com/p/buddypress-media/
+Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with current BuddyPress theme and includes Easy To Skin Templates.
+Version: 0.1.8
+Revision Date: September 25, 2010
 Requires at least: WP 2.9.2, BP 1.2.1
-Tested up to: WP 2.9.2, BP 1.2.3
+Tested up to: WP 3.0.1, BP 1.2.5.2
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
-Author: Francesco Laffi & Carl Roett
-Author URI: http://flweb.it/
+Author: The BP-Media Team
+Author URI: http://buddypress.org/community/groups/bp-album/forum/
 */
 
 /* Only load the component if BuddyPress is loaded and initialized. */
@@ -102,6 +102,14 @@ function bp_album_install(){
         
         if(!get_site_option( 'bp_album_per_page' ))
             update_site_option( 'bp_album_per_page', 20 );
+
+        if(!get_site_option( 'bp_album_url_remap' ))
+	    update_site_option( 'bp_album_url_remap', false);
+
+        if(true) {
+		$path = bp_get_root_domain() . '/wp-content/uploads/album';
+		update_site_option( 'bp_album_base_url', $path );
+	}
 
 }
 

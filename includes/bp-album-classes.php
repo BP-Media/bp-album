@@ -11,20 +11,21 @@
  */
 
 class BP_Album_Picture {
+    
 	var $id;
 	var $owner_type;
 	var $owner_id;
-    var $date_uploaded;
-    var $title;
-    var $description;
-    var $privacy;
+	var $date_uploaded;
+	var $title;
+	var $description;
+	var $privacy;
 	var $pic_org_url;
-    var $pic_org_path;
+	var $pic_org_path;
 	var $pic_mid_url;
-    var $pic_mid_path;
+	var $pic_mid_path;
 	var $pic_thumb_url;
-    var $pic_thumb_path;
-	
+	var $pic_thumb_path;
+
 	/**
 	 * bp_album_picture()
 	 *

@@ -225,7 +225,7 @@ function bp_album_picture_edit_url() {
 	function bp_album_get_picture_edit_url() {
 		global $bp,$pictures_template;
 		if (bp_is_my_profile() || is_site_admin())
-			return apply_filters( 'bp_album_get_picture_edit_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->edit_slug);
+			return wp_nonce_url(apply_filters( 'bp_album_get_picture_edit_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->edit_slug),'bp-album-edit-pic');
 	}
 
 function bp_album_picture_delete_link() {
@@ -241,28 +241,68 @@ function bp_album_picture_delete_url() {
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_delete_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->delete_slug ),'bp-album-delete-pic');
 	}
 
+
 function bp_album_picture_original_url() {
 	echo bp_album_get_picture_original_url();
 }
 	function bp_album_get_picture_original_url() {
-		global $pictures_template;
-		return apply_filters( 'bp_album_get_picture_original_url', bp_get_root_domain().$pictures_template->picture->pic_org_url );
+
+		global $bp, $pictures_template;
+
+		if($bp->album->bp_album_url_remap == true){
+
+		    $filename = substr( $pictures_template->picture->pic_org_url, strrpos($pictures_template->picture->pic_org_url, '/') + 1 );
+		    $owner_id = $pictures_template->picture->owner_id;
+		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
+
+		    return $result;
+		}
+		else {
+		    return apply_filters( 'bp_album_get_picture_original_url', bp_get_root_domain().$pictures_template->picture->pic_org_url );
+		}
+		
 	}
+
 
 function bp_album_picture_middle_url() {
 	echo bp_album_get_picture_middle_url();
 }
 	function bp_album_get_picture_middle_url() {
-		global $pictures_template;
-		return apply_filters( 'bp_album_get_picture_middle_url', bp_get_root_domain().$pictures_template->picture->pic_mid_url );
+
+		global $bp, $pictures_template;
+
+		if($bp->album->bp_album_url_remap == true){
+
+		    $filename = substr( $pictures_template->picture->pic_mid_url, strrpos($pictures_template->picture->pic_mid_url, '/') + 1 );
+		    $owner_id = $pictures_template->picture->owner_id;
+		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
+
+		    return $result;
+		}
+		else {
+		    return apply_filters( 'bp_album_get_picture_middle_url', bp_get_root_domain().$pictures_template->picture->pic_mid_url );
+		}
 	}
+
 
 function bp_album_picture_thumb_url() {
 	echo bp_album_get_picture_thumb_url();
 }
 	function bp_album_get_picture_thumb_url() {
-		global $pictures_template;
-		return apply_filters( 'bp_album_get_picture_thumb_url', bp_get_root_domain().$pictures_template->picture->pic_thumb_url );
+
+		global $bp, $pictures_template;
+
+		if($bp->album->bp_album_url_remap == true){
+
+		    $filename = substr( $pictures_template->picture->pic_thumb_url, strrpos($pictures_template->picture->pic_thumb_url, '/') + 1 );
+		    $owner_id = $pictures_template->picture->owner_id;
+		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
+
+		    return $result;
+		}
+		else {
+		    return apply_filters( 'bp_album_get_picture_thumb_url', bp_get_root_domain().$pictures_template->picture->pic_thumb_url );
+		}
 	}
 
 function bp_album_total_picture_count() {

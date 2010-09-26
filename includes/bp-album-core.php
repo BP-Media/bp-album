@@ -87,6 +87,8 @@ function bp_album_setup_globals() {
         $bp->album->bp_album_middle_size = get_site_option( 'bp_album_middle_size' );
         $bp->album->bp_album_thumb_size = get_site_option( 'bp_album_thumb_size' );
         $bp->album->bp_album_per_page = get_site_option( 'bp_album_per_page' );
+	$bp->album->bp_album_url_remap = get_site_option( 'bp_album_url_remap' );
+	$bp->album->bp_album_base_url = get_site_option( 'bp_album_base_url' );
 
 	/* Register this in the active components array */
 	$bp->active_components[$bp->album->slug] = $bp->album->id;
@@ -245,7 +247,7 @@ function bp_album_upload_path(){
 	else {
 		$upload_path = get_option( 'upload_path' );
 		$upload_path = trim($upload_path);
-		if ( empty($upload_path) || 'wp-content/uploads' == $upload_path) {
+		if ( empty($upload_path) || '/wp-content/uploads' == $upload_path) {
 			$path = WP_CONTENT_DIR . '/uploads';
 		} else {
 			$path = $upload_path;
@@ -498,45 +500,7 @@ function bp_album_delete_activity( $id ) {
 	return bp_activity_delete(array('component' => $bp->album->id,'item_id' => $id));
 }
 
-/**
- * bp_album_format_notifications()
- *
- * The format notification function will take DB entries for notifications and format them
- * so that they can be displayed and read on the screen.
- *
- * Notifications are "screen" notifications, that is, they appear on the notifications menu
- * in the site wide navigation bar. They are not for email notifications.
- *
- *
- * The recording is done by using bp_core_add_notification() which you can search for in this file for
- * examples of usage.
- *
-function bp_album_format_notifications( $action, $item_id, $secondary_item_id, $total_items ) {
-	global $bp;
 
-	switch ( $action ) {
-		case 'new_high_five':
-			/* In this case, $item_id is the user ID of the user who sent the high five. *
-
-			/***
-			 * We don't want a whole list of similar notifications in a users list, so we group them.
-			 * If the user has more than one action from the same component, they are counted and the
-			 * notification is rendered differently.
-			 *
-			if ( (int)$total_items > 1 ) {
-				return apply_filters( 'bp_album_multiple_new_high_five_notification', '<a href="' . $bp->loggedin_user->domain . $bp->album->slug . '/screen-one/" title="' . __( 'Multiple high-fives', 'bp-album' ) . '">' . sprintf( __( '%d new high-fives, multi-five!', 'bp-album' ), (int)$total_items ) . '</a>', $total_items );
-			} else {
-				$user_fullname = bp_core_get_user_displayname( $item_id, false );
-				$user_url = bp_core_get_userurl( $item_id );
-				return apply_filters( 'bp_album_single_new_high_five_notification', '<a href="' . $user_url . '?new" title="' . $user_fullname .'\'s profile">' . sprintf( __( '%s sent you a high-five!', 'bp-album' ), $user_fullname ) . '</a>', $user_fullname );
-			}
-		break;
-	}
-
-	do_action( 'bp_album_format_notifications', $action, $item_id, $secondary_item_id, $total_items );
-
-	return false;
-}*/
 
 /**
  * bp_album_remove_data()
@@ -559,41 +523,5 @@ function bp_album_delete_user_data( $user_id ) {
 add_action( 'wpmu_delete_user', 'bp_album_delete_user_data', 1 );
 add_action( 'delete_user', 'bp_album_delete_user_data', 1 );
 
-/***
- * Object Caching Support ----
- *
- * It's a good idea to implement object caching support in your component if it is fairly database
- * intensive. This is not a requirement, but it will help ensure your component works better under
- * high load environments.
- *
- * In parts of this example component you will see calls to wp_cache_get() often in template tags
- * or custom loops where database access is common. This is where cached data is being fetched instead
- * of querying the database.
- *
- * However, you will need to make sure the cache is cleared and updated when something changes. For example,
- * the groups component caches groups details (such as description, name, news, number of members etc).
- * But when those details are updated by a group admin, we need to clear the group's cache so the new
- * details are shown when users view the group or find it in search results.
- *
- * We know that there is a do_action() call when the group details are updated called 'groups_settings_updated'
- * and the group_id is passed in that action. We need to create a function that will clear the cache for the
- * group, and then add an action that calls that function when the 'groups_settings_updated' is fired.
- *
- * Example:
- *
- *   function groups_clear_group_object_cache( $group_id ) {
- *	     wp_cache_delete( 'groups_group_' . $group_id );
- *	 }
- *	 add_action( 'groups_settings_updated', 'groups_clear_group_object_cache' );
- *
- * The "'groups_group_' . $group_id" part refers to the unique identifier you gave the cached object in the
- * wp_cache_set() call in your code.
- *
- * If this has completely confused you, check the function documentation here:
- * http://codex.wordpress.org/Function_Reference/WP_Cache
- *
- * If you're still confused, check how it works in other BuddyPress components, or just don't use it,
- * but you should try to if you can (it makes a big difference). :)
- */
 
 ?>
