@@ -45,6 +45,8 @@ function bp_album_screen_single() {
 		
 		if (bp_album_has_pictures() ) :  bp_album_the_picture();
 		$limit_info = bp_album_limits_info();
+
+
 		
 		$priv_str = array(
 			0 => __('Public','bp-album'),
@@ -126,6 +128,7 @@ function bp_album_screen_pictures() {
  * Sets up and displays the screen output for the sub nav item "example/screen-two"
  */
 function bp_album_screen_upload() {
+    
 	global $bp;
 
 	/**
@@ -134,7 +137,7 @@ function bp_album_screen_upload() {
 	 */
 	do_action( 'bp_album_screen_upload' );
 
-	add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
+	//add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
 	add_action( 'bp_template_content', 'bp_album_screen_upload_content' );
 
 	/* Finally load the plugin template file. */
@@ -146,7 +149,9 @@ function bp_album_screen_upload() {
 	}
 
 	function bp_album_screen_upload_content() {
-		global $bp; 
+
+		global $bp;
+
 		$limit_info = bp_album_limits_info();
 		
 		$priv_str = array(
@@ -155,7 +160,8 @@ function bp_album_screen_upload() {
 			4 => __('Only friends','bp-album'),
 			6 => __('Private','bp-album'),
 		);
-		if($limit_info['all']['enabled']):?>
+
+		if( ($limit_info['all']['enabled'] == true) && ($limit_info['all']['remaining'] > 0) ):?>
 		
 		<h4><?php _e( 'Upload new picture', 'bp-album' ) ?></h4>
 
@@ -212,6 +218,7 @@ function bp_album_screen_upload() {
  */
 
 function bp_album_action_upload() {
+    
 	global $bp;
 	
 	if ( $bp->current_component == $bp->album->slug && $bp->album->upload_slug == $bp->current_action && isset( $_POST['submit'] )) {
@@ -224,9 +231,13 @@ function bp_album_action_upload() {
 		// check privacy
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
-			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );	
+			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );
+
 		} else {
+
 			$priv_lvl = intval($_POST['privacy']);
+
+
 
                         // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
                         switch ($priv_lvl) {
@@ -243,14 +254,22 @@ function bp_album_action_upload() {
                             default: $pic_limit = null;
                         }
 
+			$test = bp_album_get_picture_count(array('privacy'=>$priv_lvl));
+			//bp_album_dump($bp->album); die;
 
-			if($priv_lvl == 10 )
+
+			if($priv_lvl == 10 ) {
 				$pic_limit = is_site_admin() ? false : null;
+			}
+
 			if( $pic_limit === null){ //costant don't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
-			}elseif( $pic_limit !== false && ( $pic_limit === 0  || $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ){
+			}			
+			elseif( $pic_limit !== false && ( $pic_limit === 0  || $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ) {
+
 				$error_flag = true;
+				
 				switch ($priv_lvl){
 					case 0 :
 						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );

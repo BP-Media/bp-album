@@ -328,6 +328,7 @@ class BP_Album_Picture {
 	}
 
 	public static function delete_by_owner($owner_id,$owner_type ) {
+
 		global $bp, $wpdb;
 		
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM {$bp->album->table_name} WHERE owner_type = %d AND owner_id = %d ", $owner_type, $owner_id ) );

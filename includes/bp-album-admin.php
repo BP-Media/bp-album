@@ -40,6 +40,14 @@ function bp_album_admin() {
 		update_site_option( 'bp_album_base_url', $_POST['bp_album_base_url'] );
 
 		$updated = true;
+
+		if($_POST['bp_album_rebuild_activity'] && !$_POST['bp_album_undo_rebuild_activity']){
+		    bp_album_rebuild_activity();
+		}
+
+		if( !$_POST['bp_album_rebuild_activity'] && $_POST['bp_album_undo_rebuild_activity']){
+		    bp_album_undo_rebuild_activity();
+		}
 	}
 
         $bp_album_slug = get_site_option( 'bp_album_slug' );
@@ -57,6 +65,8 @@ function bp_album_admin() {
         $bp_album_per_page = get_site_option( 'bp_album_per_page' );
 	$bp_album_url_remap = get_site_option( 'bp_album_url_remap' );
 	$bp_album_base_url = get_site_option( 'bp_album_base_url' );
+	$bp_album_rebuild_activity = false;
+	$bp_album_undo_rebuild_activity = false;
 
 
 
@@ -67,10 +77,35 @@ function bp_album_admin() {
 
 		<?php if ( isset($updated) ) : ?><?php echo "<div id='message' class='updated fade'><p>" . __( 'Settings Updated.', 'bp-album' ) . "</p></div>" ?><?php endif; ?>
 
+		<h3><?php _e( 'Are you ready for BP-Media 0.1.9?', 'bp-album' ) ?></h3>
+                    <p><?php _e( "Over the past six months, we've grown from a tiny plugin to a massive project with over 25,000 users, corporate sponsors,
+			and a busy developer community. We've added multiple-album, audio, video, and embedded media support ...tagging and activity stream functionality
+			that exceeds FaceBook and Flickr ...and powerful caching and content delivery network features. The next version of the plugin, BP-Media 0.1.9,
+			is over <i>20 times bigger</i> than BP-Album 0.1.8 ...it has <i>350+ configuration options and 25 different template files</i>.", 'bp-album' ) ?></p>
+
+		<p><?php _e( "Version 0.1.9 won't be ready until 2011-01-30, but you can download the latest beta <i>right now</i> from our Google Code
+			<a href='http://code.google.com/p/buddypress-media/downloads/list'>download page</a>, and start preparing for the big upgrade.", 'bp-album' ) ?></p>
+
+		<p><?php _e( "<b>For more information, follow these links:</b>", 'bp-album' ) ?></p>
+
+                    <p><?php _e( "<a href='http://code.google.com/p/buddypress-media/'>Official Website</a> - Our base of operations on the internet and the <i>only</i> source of
+			info that's been checked by our dev team.", 'bp-album' ) ?></p>
+
+		    <p><?php _e( "<a href='http://buddypress.org/community/groups/bp-album/forum/'>Support Forum</a> - Need help with the plugin? There are <i>hundreds of other users</i>
+			that can answer your questions on our BuddyPress support forum.", 'bp-album' ) ?></p>
+
+		    <p><?php _e( "<a href='http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList'>Features List</a> - See what features we're adding to upcoming versions of the plugin.", 'bp-album' ) ?></p>
+
+		    <p><?php _e( "<a href='http://bit.ly/f5zPJ9'>Project Calendar</a> - View our development schedule in real-time using Pivotal Tracker.", 'bp-album' ) ?></p>
+
+		    <p><?php _e( "<a href='http://code.google.com/p/buddypress-media/updates/list'>Activity Feed</a> - Up-to-the-second bug reports and code updates via Google Code.", 'bp-album' ) ?></p>
+
+		    <p> <br></p>
+		    
 		<form action="<?php echo site_url() . '/wp-admin/admin.php?page=bp-album-settings' ?>" name="example-settings-form" id="example-settings-form" method="post">
 
-                    <h3><?php _e( 'General', 'bp-album' ) ?></h3>
-		    <p><?php _e( "Do not put spaces or punctuation in the slug name.", 'bp-album' ) ?></p>
+                    <h3><?php _e( 'Slug Name', 'bp-album' ) ?></h3>
+		    <p><?php _e( "Bad slug names will disable the plugin. No Spaces. No punctuation. No special characters. No accents. <br>{ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_- } ONLY.", 'bp-album' ) ?></p>
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e( 'Name of BP Album+ slug', 'bp-album' ) ?></label></th>
@@ -78,6 +113,12 @@ function bp_album_admin() {
 						<input name="bp_album_slug" type="text" id="bp_album_slug" value="<?php echo attribute_escape($bp_album_slug ); ?>" size="10" />
 					</td>
 				</tr>
+
+			</table>
+
+                    <h3><?php _e( 'General', 'bp-album' ) ?></h3>
+
+			<table class="form-table">
                                 <tr>
 					<th scope="row"><?php _e( 'Force members to enter a description for each image', 'bp-album' ) ?></th>
 					<td>
@@ -103,7 +144,7 @@ function bp_album_admin() {
 			</table>
 
                     <h3><?php _e( 'Album Size Limits', 'bp-album' ) ?></h3>
-                    <p><?php _e( "Accepted values: empty (that means no limit), an integer (0 means disabled). First option doesn't accept 0. Last option only accept a number.", 'bp-album' ) ?></p>
+                    <p><?php _e( "<b>Accepted values:</b> EMPTY (no limit), NUMBER (value you set), 0 (disabled). The first option does not accept 0. The last option only accepts a number.", 'bp-album' ) ?></p>
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e( 'Max total images allowed in a members album', 'bp-album' ) ?></label></th>
@@ -144,6 +185,8 @@ function bp_album_admin() {
 			</table>
 
 			<h3><?php _e( 'Image Size Limits', 'bp-album' ) ?></h3>
+			<p><?php _e( "Uploaded images will be re-sized to the values you set here. Values are for both X and Y size in pixels. We <i>strongly</i> suggest you keep the original
+			    image files so BP-Media 0.1.9 can re-render your images during the upgrade process.", 'bp-album' ) ?></p>
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e( 'Album Image Size', 'bp-album' ) ?></label></th>
@@ -168,8 +211,8 @@ function bp_album_admin() {
 			</table>
 
 			<h3><?php _e( 'Image URL Mapping', 'bp-album' ) ?></h3>
-			<p><?php _e( "If you're on a badly configured virtual server and don't know how to edit your .htaccess file, you can use these options to change the base URL
-			    the plugin uses for loading images", 'bp-album' ) ?></p>
+			<p><?php _e( "If you get broken links when viewing images in BP-Album+, it means your server is sending the wrong base URL to the plugin. You can use the image
+			    URL re-mapping function to fix this. See the <a href='http://code.google.com/p/buddypress-media/wiki/UsingTheURLRemapper'>DOCUMENTATION</a>", 'bp-album' ) ?></p>
 			<table class="form-table">
                                 <tr>
 					<th scope="row"><?php _e( 'Use image URL re-mapping', 'bp-album' ) ?></th>
@@ -186,6 +229,32 @@ function bp_album_admin() {
 					</td>
 				</tr>
 
+			</table>
+
+			<h3><?php _e( 'Activity Stream Rebuild', 'bp-album' ) ?></h3>
+			<p><?php _e( "A defect in plugin versions before 0.1.8.5 caused all bp-album activity posts to be deleted from the site when the administrator deleted a user. Set
+			    'Rebuild Posts' to 'yes' to add <b>EVERY PHOTO ON YOUR SITE</b> that users have marked as <b>PUBLIC</b> to the site activity stream. This will
+			    also <b>ALLOW COMMENTS</b> on the photos. The created posts will have random dates to avoid flooding the activity stream. Set 'UNDO Rebuild Posts'
+			    to 'yes' to remove the posts <i>this function</i> creates <u>it will not harm posts that users created</u>.", 'bp-album' ) ?></p>
+
+			<table class="form-table">
+                                <tr>
+					<th scope="row"><?php _e( 'Rebuild posts', 'bp-album' ) ?></th>
+					<td>
+						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ($bp_album_rebuild_activity == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ($bp_album_rebuild_activity == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+					</td>
+				</tr>
+			</table>
+
+			<table class="form-table">
+                                <tr>
+					<th scope="row"><?php _e( 'UNDO rebuild posts', 'bp-album' ) ?></th>
+					<td>
+						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ($bp_album_undo_rebuild_activity == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ($bp_album_undo_rebuild_activity == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+					</td>
+				</tr>
 			</table>
 
 			<p class="submit">
