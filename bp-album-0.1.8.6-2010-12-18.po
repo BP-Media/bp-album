@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bp-album\n"
-"POT-Creation-Date: 2010-12-18 00:05+0000\n"
+"POT-Creation-Date: 2010-12-18 16:12+0000\n"
 "PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,32 +255,32 @@ msgstr ""
 msgid "Save Settings"
 msgstr ""
 
-#: includes/bp-album-core.php:114
+#: includes/bp-album-core.php:113
 msgid "BP Album+"
 msgstr ""
 
-#: includes/bp-album-core.php:130
+#: includes/bp-album-core.php:129
 msgid "Album"
 msgstr ""
 
-#: includes/bp-album-core.php:138
+#: includes/bp-album-core.php:137
 msgid "My pictures"
 msgstr ""
 
-#: includes/bp-album-core.php:138
+#: includes/bp-album-core.php:137
 #, php-format
 msgid "%s's pictures"
 msgstr ""
 
-#: includes/bp-album-core.php:152
+#: includes/bp-album-core.php:151
 msgid "Picture"
 msgstr ""
 
-#: includes/bp-album-core.php:162 includes/bp-album-screens.php:197
+#: includes/bp-album-core.php:161 includes/bp-album-screens.php:197
 msgid "Upload picture"
 msgstr ""
 
-#: includes/bp-album-core.php:477 includes/bp-album-core.php:690
+#: includes/bp-album-core.php:490 includes/bp-album-core.php:702
 #, php-format
 msgid "%s uploaded a new picture: %s"
 msgstr ""

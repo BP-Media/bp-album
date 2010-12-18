@@ -40,7 +40,6 @@ require_once( ABSPATH . '/wp-admin/includes/image.php' );
 require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
 
-
 /**
  * bp_album_setup_globals()
  *
@@ -471,8 +470,22 @@ function bp_album_record_activity($pic_data) {
 	
 	$title = $pic_data->title;
 	$desc = $pic_data->description;
-	$title = ( strlen($title)<= 20 ) ? $title : substr($title, 0 ,20-1).'&#8230;';
-	$desc = ( strlen($desc)<= 400 ) ? $desc : substr($desc, 0 ,400-1).'&#8230;';
+
+	// Using mb_strlen adds support for unicode (asian languages). Unicode uses TWO bytes per character, and is not
+	// accurately counted in most string length functions
+	// ========================================================================================================
+
+	if ( function_exists( 'mb_strlen' ) ) {
+
+	    $title = ( mb_strlen($title)<= 20 ) ? $title : mb_substr($title, 0 ,20-1).'&#8230;';
+	    $desc = ( mb_strlen($desc)<= 400 ) ? $desc : mb_substr($desc, 0 ,400-1).'&#8230;';
+
+	} 
+	else {
+
+	    $title = ( strlen($title)<= 20 ) ? $title : substr($title, 0 ,20-1).'&#8230;';
+	    $desc = ( strlen($desc)<= 400 ) ? $desc : substr($desc, 0 ,400-1).'&#8230;';
+	}
 	
 	$action = sprintf( __( '%s uploaded a new picture: %s', 'bp-album' ), bp_core_get_userlink($pic_data->owner_id), '<a href="'. $primary_link .'">'.$title.'</a>' );
 
@@ -492,7 +505,6 @@ function bp_album_record_activity($pic_data) {
 	}
 
 	// ===========================================================================================================
-
 
 
 	$content = '<p> <a href="'. $primary_link .'" class="picture-activity-thumb" title="'.$title.'"><img src="'. $image_path .'" /></a>'.$desc.'</p>';

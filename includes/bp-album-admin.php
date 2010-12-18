@@ -256,7 +256,7 @@ function bp_album_admin() {
 					</td>
 				</tr>
                                 <tr>
-					<th scope="row"><?php _e('Keep original image files', 'buddypress' ) ?></th>
+					<th scope="row"><?php _e('Keep original image files', 'bp-album' ) ?></th>
 					<td>
 						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ( $bp_album_keep_original == true ) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
 						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ($bp_album_keep_original == false) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="0" /> <?php _e( 'No', 'bp-album' ) ?>
