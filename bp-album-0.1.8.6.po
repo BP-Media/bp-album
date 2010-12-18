@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bp-album\n"
-"POT-Creation-Date: 2010-12-17 14:36+0000\n"
+"POT-Creation-Date: 2010-12-18 00:05+0000\n"
 "PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,303 +16,273 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: includes/bp-album-admin.php:75
+#: includes/bp-album-admin.php:76
 msgid "BP Album+ Settings"
 msgstr ""
 
-#: includes/bp-album-admin.php:78
+#: includes/bp-album-admin.php:79
 msgid "Settings Updated."
 msgstr ""
 
-#: includes/bp-album-admin.php:80
+#: includes/bp-album-admin.php:81
 msgid "Are you ready for BP-Media 0.1.9?"
 msgstr ""
 
-#: includes/bp-album-admin.php:81
+#: includes/bp-album-admin.php:84
 msgid ""
 "Over the past six months, we've grown from a tiny plugin to a massive "
-"project with over 25,000 users, corporate sponsors,\n"
-"\t\t\tand a busy developer community. We've added multiple-album, audio, "
-"video, and embedded media support ...tagging and activity stream "
-"functionality\n"
-"\t\t\tthat exceeds FaceBook and Flickr ...and powerful caching and content "
-"delivery network features. The next version of the plugin, BP-Media 0.1.9,\n"
-"\t\t\tis over <i>20 times bigger</i> than BP-Album 0.1.8 ...it has <i>350+ "
-"configuration options and 25 different template files</i>."
+"project with over 25,000 users, corporate sponsors, and a busy developer "
+"community. We've added multiple-album, audio, video, and embedded media "
+"support ...tagging and activity stream functionality that exceeds FaceBook "
+"and Flickr ...and powerful caching and content delivery network features. "
+"The next version of the plugin, BP-Media 0.1.9, is over <i>20 times bigger</"
+"i> than BP-Album 0.1.8 ...it has <i>350+ configuration options and 25 "
+"different template files</i>."
 msgstr ""
 
-#: includes/bp-album-admin.php:86
+#: includes/bp-album-admin.php:88
 msgid ""
 "Version 0.1.9 won't be ready until 2011-01-30, but you can download the "
-"latest beta <i>right now</i> from our Google Code\n"
-"\t\t\t<a href='http://code.google.com/p/buddypress-media/downloads/"
-"list'>download page</a>, and start preparing for the big upgrade."
+"latest beta <i>right now</i> from our Google Code <a href='http://code."
+"google.com/p/buddypress-media/downloads/list'>download page</a>, and start "
+"preparing for the big upgrade."
 msgstr ""
 
-#: includes/bp-album-admin.php:89
+#: includes/bp-album-admin.php:92
 msgid "<b>For more information, follow these links:</b>"
 msgstr ""
 
-#: includes/bp-album-admin.php:91
-msgid ""
-"<a href='http://code.google.com/p/buddypress-media/'>Official Website</a> - "
-"Our base of operations on the internet and the <i>only</i> source of\n"
-"\t\t\tinfo that's been checked by our dev team."
+#: includes/bp-album-admin.php:98
+msgid "Official Website"
 msgstr ""
 
-#: includes/bp-album-admin.php:94
+#: includes/bp-album-admin.php:100
 msgid ""
-"<a href='http://buddypress.org/community/groups/bp-album/forum/'>Support "
-"Forum</a> - Need help with the plugin? There are <i>hundreds of other users</"
-"i>\n"
-"\t\t\tthat can answer your questions on our BuddyPress support forum."
-msgstr ""
-
-#: includes/bp-album-admin.php:97
-msgid ""
-"<a href='http://code.google.com/p/buddypress-media/wiki/"
-"BuddyPressMediaFeaturesList'>Features List</a> - See what features we're "
-"adding to upcoming versions of the plugin."
-msgstr ""
-
-#: includes/bp-album-admin.php:99
-msgid ""
-"<a href='http://bit.ly/f5zPJ9'>Project Calendar</a> - View our development "
-"schedule in real-time using Pivotal Tracker."
-msgstr ""
-
-#: includes/bp-album-admin.php:101
-msgid ""
-"<a href='http://code.google.com/p/buddypress-media/updates/list'>Activity "
-"Feed</a> - Up-to-the-second bug reports and code updates via Google Code."
+"Our base of operations on the internet and the <i>only</i> source of info "
+"that's been checked by our dev team."
 msgstr ""
 
 #: includes/bp-album-admin.php:107
-msgid "Slug Name"
+msgid "Support Forum"
 msgstr ""
 
-#: includes/bp-album-admin.php:108
+#: includes/bp-album-admin.php:109
 msgid ""
-"Bad slug names will disable the plugin. No Spaces. No punctuation. No "
-"special characters. No accents. <br>"
-"{ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_- } ONLY."
+"Need help with the plugin? There are <i>hundreds of other users</i> that can "
+"answer your questions on our BuddyPress support forum."
 msgstr ""
 
-#: includes/bp-album-admin.php:111
-msgid "Name of BP Album+ slug"
+#: includes/bp-album-admin.php:116
+msgid "Features List"
 msgstr ""
 
-#: includes/bp-album-admin.php:119
-msgid "General"
+#: includes/bp-album-admin.php:118
+msgid "See what features we're adding to upcoming versions of the plugin."
 msgstr ""
 
-#: includes/bp-album-admin.php:123
-msgid "Force members to enter a description for each image"
+#: includes/bp-album-admin.php:125
+msgid "Project Calendar"
 msgstr ""
 
-#: includes/bp-album-admin.php:125 includes/bp-album-admin.php:132
-#: includes/bp-album-admin.php:139 includes/bp-album-admin.php:206
-#: includes/bp-album-admin.php:220 includes/bp-album-admin.php:244
-#: includes/bp-album-admin.php:254
-msgid "Yes"
+#: includes/bp-album-admin.php:127
+msgid "View our development schedule in real-time using Pivotal Tracker."
 msgstr ""
 
-#: includes/bp-album-admin.php:126 includes/bp-album-admin.php:133
-#: includes/bp-album-admin.php:140 includes/bp-album-admin.php:207
-#: includes/bp-album-admin.php:221 includes/bp-album-admin.php:245
-#: includes/bp-album-admin.php:255
-msgid "No"
+#: includes/bp-album-admin.php:134
+msgid "Activity Feed"
 msgstr ""
 
-#: includes/bp-album-admin.php:130
-msgid "Allow site members to post comments on album images"
-msgstr ""
-
-#: includes/bp-album-admin.php:137
-msgid "Post image thumbnails to members activity stream"
-msgstr ""
-
-#: includes/bp-album-admin.php:146
-msgid "Album Size Limits"
+#: includes/bp-album-admin.php:136
+msgid "Up-to-the-second bug reports and code updates via Google Code."
 msgstr ""
 
 #: includes/bp-album-admin.php:147
+msgid "Slug Name"
+msgstr ""
+
+#: includes/bp-album-admin.php:151
+msgid ""
+"Bad slug names will disable the plugin. No Spaces. No punctuation. No "
+"special characters. No accents."
+msgstr ""
+
+#: includes/bp-album-admin.php:153
+msgid ""
+"{ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_- } ONLY."
+msgstr ""
+
+#: includes/bp-album-admin.php:159
+msgid "Name of BP Album+ slug"
+msgstr ""
+
+#: includes/bp-album-admin.php:167
+msgid "General"
+msgstr ""
+
+#: includes/bp-album-admin.php:171
+msgid "Force members to enter a description for each image"
+msgstr ""
+
+#: includes/bp-album-admin.php:173 includes/bp-album-admin.php:180
+#: includes/bp-album-admin.php:187 includes/bp-album-admin.php:261
+#: includes/bp-album-admin.php:283 includes/bp-album-admin.php:307
+#: includes/bp-album-admin.php:317
+msgid "Yes"
+msgstr ""
+
+#: includes/bp-album-admin.php:174 includes/bp-album-admin.php:181
+#: includes/bp-album-admin.php:188 includes/bp-album-admin.php:262
+#: includes/bp-album-admin.php:284 includes/bp-album-admin.php:308
+#: includes/bp-album-admin.php:318
+msgid "No"
+msgstr ""
+
+#: includes/bp-album-admin.php:178
+msgid "Allow site members to post comments on album images"
+msgstr ""
+
+#: includes/bp-album-admin.php:185
+msgid "Post image thumbnails to members activity stream"
+msgstr ""
+
+#: includes/bp-album-admin.php:194
+msgid "Album Size Limits"
+msgstr ""
+
+#: includes/bp-album-admin.php:197
 msgid ""
 "<b>Accepted values:</b> EMPTY (no limit), NUMBER (value you set), 0 "
 "(disabled). The first option does not accept 0. The last option only accepts "
 "a number."
 msgstr ""
 
-#: includes/bp-album-admin.php:150
+#: includes/bp-album-admin.php:202
 msgid "Max total images allowed in a members album"
 msgstr ""
 
-#: includes/bp-album-admin.php:156
+#: includes/bp-album-admin.php:208
 msgid "Max images visible to public allowed in a members album"
 msgstr ""
 
-#: includes/bp-album-admin.php:162
+#: includes/bp-album-admin.php:214
 msgid "Max images visible only to members in a members album"
 msgstr ""
 
-#: includes/bp-album-admin.php:168
+#: includes/bp-album-admin.php:220
 msgid "Max images visible only to friends in a members album"
 msgstr ""
 
-#: includes/bp-album-admin.php:174
+#: includes/bp-album-admin.php:226
 msgid "Max private images in a members album"
 msgstr ""
 
-#: includes/bp-album-admin.php:180
+#: includes/bp-album-admin.php:232
 msgid "Images per album page"
 msgstr ""
 
-#: includes/bp-album-admin.php:187
+#: includes/bp-album-admin.php:239
 msgid "Image Size Limits"
 msgstr ""
 
-#: includes/bp-album-admin.php:188
+#: includes/bp-album-admin.php:242
 msgid ""
 "Uploaded images will be re-sized to the values you set here. Values are for "
 "both X and Y size in pixels. We <i>strongly</i> suggest you keep the "
-"original\n"
-"\t\t\t    image files so BP-Media 0.1.9 can re-render your images during the "
+"original image files so BP-Media 0.1.9 can re-render your images during the "
 "upgrade process."
 msgstr ""
 
-#: includes/bp-album-admin.php:192
+#: includes/bp-album-admin.php:247
 msgid "Album Image Size"
 msgstr ""
 
-#: includes/bp-album-admin.php:198
+#: includes/bp-album-admin.php:253
 msgid "Thumbnail Image Size"
 msgstr ""
 
-#: includes/bp-album-admin.php:204
+#: includes/bp-album-admin.php:259
 msgid "Keep original image files"
 msgstr ""
 
-#: includes/bp-album-admin.php:213
+#: includes/bp-album-admin.php:268
 msgid "Image URL Mapping"
 msgstr ""
 
-#: includes/bp-album-admin.php:214
+#: includes/bp-album-admin.php:272
 msgid ""
 "If you get broken links when viewing images in BP-Album+, it means your "
-"server is sending the wrong base URL to the plugin. You can use the image\n"
-"\t\t\t    URL re-mapping function to fix this. See the <a href='http://code."
-"google.com/p/buddypress-media/wiki/UsingTheURLRemapper'>DOCUMENTATION</a>"
+"server is sending the wrong base URL to the plugin. You can use the image "
+"URL re-mapping function to fix this."
 msgstr ""
 
-#: includes/bp-album-admin.php:218
+#: includes/bp-album-admin.php:274
+msgid "DOCUMENTATION"
+msgstr ""
+
+#: includes/bp-album-admin.php:281
 msgid "Use image URL re-mapping"
 msgstr ""
 
-#: includes/bp-album-admin.php:225
+#: includes/bp-album-admin.php:288
 msgid "Base URL"
 msgstr ""
 
-#: includes/bp-album-admin.php:234
+#: includes/bp-album-admin.php:297
 msgid "Activity Stream Rebuild"
 msgstr ""
 
-#: includes/bp-album-admin.php:235
+#: includes/bp-album-admin.php:300
 msgid ""
 "A defect in plugin versions before 0.1.8.5 caused all bp-album activity "
-"posts to be deleted from the site when the administrator deleted a user. "
-"Set\n"
-"\t\t\t    'Rebuild Posts' to 'yes' to add <b>EVERY PHOTO ON YOUR SITE</b> "
-"that users have marked as <b>PUBLIC</b> to the site activity stream. This "
-"will\n"
-"\t\t\t    also <b>ALLOW COMMENTS</b> on the photos. The created posts will "
-"have random dates to avoid flooding the activity stream. Set 'UNDO Rebuild "
-"Posts'\n"
-"\t\t\t    to 'yes' to remove the posts <i>this function</i> creates <u>it "
-"will not harm posts that users created</u>."
+"posts to be deleted from the site when the administrator deleted a user. Set "
+"'Rebuild Posts' to 'yes' to add <b>EVERY PHOTO ON YOUR SITE</b> that users "
+"have marked as <b>PUBLIC</b> to the site activity stream. This will also "
+"<b>ALLOW COMMENTS</b> on the photos. The created posts will have random "
+"dates to avoid flooding the activity stream. Set 'UNDO Rebuild Posts' to "
+"'yes' to remove the posts <i>this function</i> creates <u>it will not harm "
+"posts that users created</u>."
 msgstr ""
 
-#: includes/bp-album-admin.php:242
+#: includes/bp-album-admin.php:305
 msgid "Rebuild posts"
 msgstr ""
 
-#: includes/bp-album-admin.php:252
+#: includes/bp-album-admin.php:315
 msgid "UNDO rebuild posts"
 msgstr ""
 
-#: includes/bp-album-admin.php:261
+#: includes/bp-album-admin.php:324
 msgid "Save Settings"
 msgstr ""
 
-#: includes/bp-album-ajax.php:40
-msgid "Friendship could not be canceled."
-msgstr ""
-
-#: includes/bp-album-ajax.php:42
-msgid "Add Friend"
-msgstr ""
-
-#: includes/bp-album-ajax.php:48
-msgid "Friendship could not be requested."
-msgstr ""
-
-#: includes/bp-album-ajax.php:50
-msgid "Friendship Requested"
-msgstr ""
-
-#: includes/bp-album-ajax.php:54
-msgid "Request Pending"
-msgstr ""
-
-#: includes/bp-album-core.php:122
+#: includes/bp-album-core.php:114
 msgid "BP Album+"
 msgstr ""
 
-#: includes/bp-album-core.php:138
+#: includes/bp-album-core.php:130
 msgid "Album"
 msgstr ""
 
-#: includes/bp-album-core.php:146
+#: includes/bp-album-core.php:138
 msgid "My pictures"
 msgstr ""
 
-#: includes/bp-album-core.php:146
+#: includes/bp-album-core.php:138
 #, php-format
 msgid "%s's pictures"
 msgstr ""
 
-#: includes/bp-album-core.php:160
+#: includes/bp-album-core.php:152
 msgid "Picture"
 msgstr ""
 
-#: includes/bp-album-core.php:170 includes/bp-album-screens.php:197
+#: includes/bp-album-core.php:162 includes/bp-album-screens.php:197
 msgid "Upload picture"
 msgstr ""
 
-#: includes/bp-album-core.php:485 includes/bp-album-core.php:690
+#: includes/bp-album-core.php:477 includes/bp-album-core.php:690
 #, php-format
 msgid "%s uploaded a new picture: %s"
-msgstr ""
-
-#: includes/bp-album-notifications.php:33
-#, php-format
-msgid "%s high-fived you!"
-msgstr ""
-
-#: includes/bp-album-notifications.php:36
-#, php-format
-msgid ""
-"%s sent you a high-five! Why not send one back?\n"
-"\n"
-"To see %s's profile: %s\n"
-"\n"
-"To send %s a high five: %s\n"
-"\n"
-"---------------------\n"
-msgstr ""
-
-#: includes/bp-album-notifications.php:45
-#, php-format
-msgid "To disable these notifications please log in and go to: %s"
 msgstr ""
 
 #: includes/bp-album-screens.php:39 includes/bp-album-screens.php:59
@@ -518,18 +488,6 @@ msgstr ""
 #: includes/bp-album-templatetags.php:407
 #, php-format
 msgid "Return to %s album"
-msgstr ""
-
-#: includes/bp-album-widgets.php:23
-msgid "Example Widget"
-msgstr ""
-
-#: includes/bp-album-widgets.php:65
-msgid "Number of Items Per Page:"
-msgstr ""
-
-#: includes/bp-album-widgets.php:66
-msgid "Max items to show:"
 msgstr ""
 
 #: includes/templates/album/comments.php:12

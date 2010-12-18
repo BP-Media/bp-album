@@ -438,10 +438,22 @@ function bp_album_pictures_url() {
 			return apply_filters( 'bp_album_get_pictures_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->pictures_slug . '/');
 	}
 
+
+
 function bp_album_picture_has_activity(){
+
 	global $bp,$pictures_template;
+
+	// Handle users that try to run the function when the activity stream is disabled
+	// ------------------------------------------------------------------------------
+	if ( !function_exists( 'bp_activity_add' ) || !$bp->album->bp_album_enable_wire) {
+		return false;
+	}
+
 	return bp_has_activities( array('object'=> $bp->album->id,'primary_id'=>$pictures_template->picture->id , 'show_hidden' => true) );
 }
+
+
 
 function bp_album_comments_enabled() {
         global $bp;

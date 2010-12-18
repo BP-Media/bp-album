@@ -1,39 +1,22 @@
 <?php
 
-/**
- * In this file you'll want to add filters to the template tag output of your component.
- * You can use any of the built in WordPress filters, and you can even create your
- * own filter functions in this file.
- */
 
- /**
-  * Some WP filters you may want to use:
-  *  - wp_filter_kses() VERY IMPORTANT see below.
-  *  - wptexturize()
-  *  - convert_smilies()
-  *  - convert_chars()
-  *  - wpautop()
-  *  - stripslashes_deep()
-  *  - make_clickable()
-  */
 
-/**
- * --- NOTE ----
- * It's very very important that you use the wp_filter_kses() function to filter all
- * input AND output in your plugin. This will stop users adding malicious scripts and other
- * bad things onto any page.
- */
+// This filter is a direct copy of "bp_activity_make_nofollow_filter_callback". It is pasted here and re-named because
+// if the user disables the activity stream, buddypress disables bp_activity_make_nofollow_filter_callback, causing an
+// error if we use it.
+// ===================================================================================================================
 
-/**
- * In all your template tags that output data, you should have an apply_filters() call, you can
- * then use those filters to automatically add the wp_filter_kses() call.
- * The third parameter "1" adds the highest priority to the filter call.
- */
+function bp_album_make_nofollow_filter( $text ) {
+	return preg_replace_callback( '|<a (.+?)>|i', 'bp_album_make_nofollow_filter_callback', $text );
+}
+	function bp_album_make_nofollow_filter_callback( $matches ) {
+		$text = $matches[1];
+		$text = str_replace( array( ' rel="nofollow"', " rel='nofollow'"), '', $text );
+		return "<a $text rel=\"nofollow\">";
+	}
 
-/**
- * In your save() method in 'bp-album-classes.php' you will have 'before save' filters on
- * values. You should use these filters to attach the wp_filter_kses() function to them.
- */
+
 
 add_filter( 'bp_album_title_before_save', 'wp_filter_kses', 1 );
 add_filter( 'bp_album_title_before_save', 'strip_tags', 1 );
@@ -65,6 +48,6 @@ add_filter( 'bp_album_get_picture_desc', 'wpautop' );
 
 add_filter( 'bp_album_get_picture_desc', 'make_clickable' );
 
-add_filter( 'bp_album_get_picture_desc', 'bp_activity_make_nofollow_filter' );
+add_filter( 'bp_album_get_picture_desc', 'bp_album_make_nofollow_filter' );
 
 ?>

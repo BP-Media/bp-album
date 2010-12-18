@@ -26,20 +26,12 @@ require ( dirname( __FILE__ ) . '/bp-album-classes.php' );
 /* The screens file hold the screens functions */
 require ( dirname( __FILE__ ) . '/bp-album-screens.php' );
 
-/* The ajax file should hold all functions used in AJAX queries */
-//require ( dirname( __FILE__ ) . '/bp-album-ajax.php' );
-
 /* The cssjs file should set up and enqueue all CSS and JS files used by the component */
 require ( dirname( __FILE__ ) . '/bp-album-cssjs.php' );
 
 /* The templatetags file should contain classes and functions designed for use in template files */
 require ( dirname( __FILE__ ) . '/bp-album-templatetags.php' );
 
-/* The widgets file should contain code to create and register widgets for the component */
-//require ( dirname( __FILE__ ) . '/bp-album-widgets.php' );
-
-/* The notifications file should contain functions to send email notifications on specific user actions */
-require ( dirname( __FILE__ ) . '/bp-album-notifications.php' );
 
 /* The filters file should create and apply filters to component output functions. */
 require ( dirname( __FILE__ ) . '/bp-album-filters.php' );
@@ -655,11 +647,19 @@ function bp_album_rebuild_activity() {
 
 	global $bp, $wpdb;
 
+	// Handle users that try to run the function when the activity stream is disabled
+	// ------------------------------------------------------------------------------
+	if ( !function_exists( 'bp_activity_add' ) || !$bp->album->bp_album_enable_wire) {
+		return false;
+	}
+
 	// Fetch all "public" images from the database
 	$sql =  $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE privacy = 0") ;
 	$results = $wpdb->get_results( $sql );
 
+
 	// Handle users that decide to run the function on sites with no uploaded content.
+	//--------------------------------------------------------------------------------
 	if(!$results){
 	    return;
 	}
@@ -771,6 +771,12 @@ function bp_album_rebuild_activity() {
 function bp_album_undo_rebuild_activity() {
 
 	global $bp, $wpdb;
+
+
+	// Handle users that try to run the function when the activity stream is disabled
+	if ( !function_exists( 'bp_activity_delete' ) || !$bp->album->bp_album_enable_wire) {
+		return false;
+	}
 
 	return bp_activity_delete(array('component' => $bp->album->id,'secondary_item_id' => 999));
 
