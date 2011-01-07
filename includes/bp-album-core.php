@@ -354,6 +354,18 @@ function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lv
 	$pic = new BP_Album_Picture();
 	
 	$pic->owner_type = $owner_type;
+
+	// Filters have to be applied *here*, not in the database class. Otherwise they get run on
+	// data that has already been filtered, corrupting the db. Since filtered data is stored in
+	// the db, we also have to run the filters on submitted values before comparing them against
+	// the db, to determine if the data needs to be updated.
+
+	$title = esc_attr( strip_tags($title) );
+	$description = esc_attr( strip_tags($description) );
+
+	$title = apply_filters( 'bp_album_title_before_save', $title );
+	$description = apply_filters( 'bp_album_description_before_save', $description);
+		
 	$pic->owner_id = $owner_id;
 	$pic->title = $title;
 	$pic->description = $description;
@@ -371,11 +383,26 @@ function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lv
 }
 
 function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comments){
+    
 	global $bp;
+
+	//echo "EDIT PICTURE: title->{$title} | description->{$description}"; die;
 	
 	$pic = new BP_Album_Picture($id);
 
 	if(!empty($pic->id)){
+
+		// Filters have to be applied *here*, not in the database class. Otherwise they get run on
+		// data that has already been filtered, corrupting the db. Since filtered data is stored in
+		// the db, we also have to run the filters on submitted values before comparing them against
+		// the db, to determine if the data needs to be updated.
+
+	    	$title = esc_attr( strip_tags($title) );
+		$description = esc_attr( strip_tags($description) );
+
+		$title = apply_filters( 'bp_album_title_before_save', $title );
+		$description = apply_filters( 'bp_album_description_before_save', $description);
+
 		if ( $pic->title != $title || $pic->description != $description || $pic->privacy != $priv_lvl){
 		    $pic->title = $title;
 		    $pic->description = $description;

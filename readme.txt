@@ -3,8 +3,8 @@ Contributors: francescolaffi, foxly
 Donate link: http://code.google.com/p/buddypress-media/
 Tags: BuddyPress, BP, album, albums, picture, pictures, photos, gallery, galleries, media, privacy
 Requires at least: WP 2.9, BP 1.2
-Tested up to: WP 3.0.1, BP 1.2.5.2
-Stable tag: 0.1.8
+Tested up to: WP 3.0.4, BP 1.2.7
+Stable tag: 0.1.8.7
 
 Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 
@@ -15,7 +15,10 @@ This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook
 We only use wordpress.org to distribute the current STABLE version of the plugin. We do not support, answer questions, or accept bug reports through wordpress.org.
 
 =Latest Version=
-For the latest beta version, which is often 6 MONTHS+ ahead of the version posted on wordpress.org, please visit our [Google Code](http://code.google.com/p/buddypress-media/) project page.
+For the latest beta version, which is often 6 MONTHS ahead of the version posted on wordpress.org, please visit our [Google Code](http://code.google.com/p/buddypress-media/) project page.
+
+=Development Schedule=
+For a real-time view of our development schedule, please see our [Pivotal Tracker](http://bit.ly/f5zPJ9).
 
 =User Support=
 We handle all user support through our buddypress.org [Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
@@ -24,30 +27,39 @@ We handle all user support through our buddypress.org [Support Forum](http://bud
 We accept bug reports through our [Google Code Bug Tracker](http://code.google.com/p/buddypress-media/issues/list). Bug reports posted on wordpress.org will be ignored.
 
 = About This Release =
-This version of the plugin fixes the 'Incorrect Image File URL' problem that some users with badly configured shared / virtual servers were experiencing. A typical example would be where the URL to an image file is "www.example.com/wp-content/album/01/image.jpg" but BP-Album returns the URL "www.example.com/virtual/~customer_name/site_name/wp-content/album/01/image.jpg".
+This release fixes the following defects:
 
-The plugin now includes an admin option that lets users to set the base URL that BP-Album uses for images, so the correct URL can be sent to a web browser no matter how screwed-up your server is.
+"All BP-Album activity stream posts dropped when admin deletes a user" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=60)
+"Broken activity stream images on virtual servers when using URL Re-mapping" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=56)
+"Plugin does not enforce image upload limits"
+"Error on single image page when activity stream disabled" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=48)
+"Admin cannot delete other user's images" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
+"Incorrect redirect when admin posts edit on another user's image" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
+"Incorrect translation text domain for some text strings"
+"HTML special character fragments in thumbnail view titles"
+"Escape characters in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
+"Incorrect character case in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=29)
+"Escape characters in image descriptions" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
 
-= Disclaimer =
-This is an early release version of the plugin that should NOT be used in a production environment. It's provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
+This release adds the following features:
+"Unicode support for image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=58)
+"Post all uploaded images to site activity stream, even if not submitted by users"
+"Display all uploaded images in any template file"
+
+This is an early release version of the plugin. You should test it extensively before using it on a production site. It provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
 = Resources =
-For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/aUn5dZ), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 = Translations =
 
 * it_IT by francescolaffi
 * en_US by foxly
-* nl_NL by Xevo
-* fr_FR by Chouf1, DanielH
-* tr_TR by Şerafettin Yarar, Hüseyin Cahid Doğan
-* de_DE by Micheal Berra
-* es_ES by Jorge Ocampo
-* ru_RU by Chimit
-* fi_FI by Jyri Väätäinen
-* he_IL by Raffi Vitis
+* es_ES by Jose M. Villar & Selu Vega
+* ja_JA by chestnut_jp
 
-* Please submit new/updated translations via our [Issue Tracker](http://code.google.com/p/buddypress-media/issues/list)
+
+* Please submit new/updated translations via our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
 
 == Installation ==
@@ -55,14 +67,25 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 1. Upload `bp-album` to the `/wp-content/plugins/` directory or use automatic installation from wp plugin panel
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-== Frequently Asked Questions ==
-We handle all user support through our [BuddyPress Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
-
-== Screenshots ==
-For screen shots, our development roadmap, and a live project calendar, please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 
 == Changelog ==
+
+= 0.1.8.7 =
+* "All BP-Album activity stream posts dropped when admin deletes a user" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=60)
+* "Broken activity stream images on virtual servers when using URL Re-mapping" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=56)
+* "Plugin does not enforce image upload limits"
+* "Error on single image page when activity stream disabled" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=48)
+* "Admin cannot delete other user's images" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
+* "Incorrect redirect when admin posts edit on another user's image" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
+* "Incorrect translation text domain for some text strings"
+* "HTML special character fragments in thumbnail view titles"
+* "Escape characters in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
+* "Incorrect character case in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=29)
+* "Escape characters in image descriptions" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
+* "Unicode support for image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=58)
+* "Post all uploaded images to site activity stream, even if not submitted by users"
+* "Display all uploaded images in any template file"
 
 = 0.1.8 =
 * Added URL re-mapping functionality to fix 'Incorrect Image File URL Problem' that some users with badly configured shared / virtual servers were experiencing. A typical example would be where the URL to an image file is "www.example.com/wp-content/album/01/image.jpg" but BP-Album returns the URL "www.example.com/virtual/~customer_name/site_name/wp-content/album/01/image.jpg".

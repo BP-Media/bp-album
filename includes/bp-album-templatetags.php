@@ -167,18 +167,27 @@ function bp_album_picture_title() {
 }
 	function bp_album_get_picture_title() {
 		global $pictures_template;
-		return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->title );
+		return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->title);
 	}
 	
-function bp_album_picture_title_truncate($length=11) {
+function bp_album_picture_title_truncate($length = 11) {
 	echo bp_album_get_picture_title_truncate($length);
 }	
 	function bp_album_get_picture_title_truncate($length) {
+
 		global $pictures_template;
-		$title = $pictures_template->picture->title ;
-		$r = ( strlen($title)<=$length ) ? $title : substr($title, 0 ,$length-1).'&#8230;';
+
+		$title = $pictures_template->picture->title;
+
+		$title = apply_filters( 'bp_album_get_picture_title_truncate', $title);
+
+		$r = wp_specialchars_decode($title, ENT_QUOTES);		
+		$r = substr($r, 0, $length);
+
+		$result = _wp_specialchars($r) . '&#8230;';
 		
-		return apply_filters( 'bp_album_get_picture_title_truncate', $r , $title , $length);
+		return $result;
+		
 	}
 
 function bp_album_picture_desc() {
@@ -188,6 +197,7 @@ function bp_album_picture_desc() {
 		global $pictures_template;
 		return apply_filters( 'bp_album_get_picture_desc', $pictures_template->picture->description );
 	}
+	
 
 function bp_album_picture_desc_truncate($words=55) {
 	echo bp_album_get_picture_desc_truncate($words);
@@ -212,7 +222,9 @@ function bp_album_picture_url() {
 }
 	function bp_album_get_picture_url() {
 		global $bp,$pictures_template;
-		return apply_filters( 'bp_album_get_picture_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->id  . '/');
+
+		$owner_domain = bp_core_get_user_domain($pictures_template->picture->owner_id);
+		return apply_filters( 'bp_album_get_picture_url', $owner_domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->id  . '/');
 	}
 
 function bp_album_picture_edit_link() {

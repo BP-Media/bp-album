@@ -286,17 +286,30 @@ class BP_Album_Picture {
 		$order = "";	
 		$limits = "";
 			if($adjacent == 'next'){
-				$where .= $wpdb->prepare(' AND id > %d',$id);	
-				$order = "ORDER BY id ASC";	
+				$where .= $wpdb->prepare(' AND id > %d',$id);
+				$order = "ORDER BY id ASC";
 				$limits = "LIMIT 0, 1";
 			}elseif($adjacent == 'prev'){
-				$where .= $wpdb->prepare(' AND id < %d',$id);	
-				$order = "ORDER BY id DESC";	
+				$where .= $wpdb->prepare(' AND id < %d',$id);
+				$order = "ORDER BY id DESC";
 				$limits = "LIMIT 0, 1";
 			}elseif(!$id){
-				if ($orderkey != 'id' && $orderkey != 'user_id' && $orderkey != 'status') $orderkey = 'id';
-				if ($ordersort != 'ASC' && $ordersort != 'DESC') $ordersort = 'DESC';
-				$order = "ORDER BY $orderkey $ordersort";
+
+				if ($orderkey != 'id' && $orderkey != 'user_id' && $orderkey != 'status' && $orderkey != 'random') {
+				    $orderkey = 'id';
+				}
+
+				if ($ordersort != 'ASC' && $ordersort != 'DESC') {
+				    $ordersort = 'DESC';
+				}
+
+				if($orderkey == 'random'){
+				    $order = "ORDER BY RAND() $ordersort";
+				}
+				else {
+				    $order = "ORDER BY $orderkey $ordersort";
+				}
+
 				if ($per_page){
 					if ( empty($offset) ) {
 						$limits = $wpdb->prepare('LIMIT %d, %d', ($page-1)*$per_page , $per_page);

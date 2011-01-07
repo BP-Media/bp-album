@@ -39,6 +39,8 @@ function bp_album_screen_single() {
 		_e( 'Edit Picture', 'bp-album' );
 	}
 
+
+
 	function bp_album_screen_edit_content() {
 
 		global $bp,$pictures_template;
@@ -68,8 +70,8 @@ function bp_album_screen_single() {
             </p>
             <p>
                 <label><?php _e('Picture Description', 'bp-album' ) ?><br />
-                <textarea name="description" id="picture-description" rows="15"cols="40" ><?php 
-                	echo (empty($_POST['description'])) ? $pictures_template->picture->description : wp_filter_kses($_POST['description']);
+                <textarea name="description" id="picture-description" rows="15"cols="40" ><?php
+                	echo (empty($_POST['description'])) ? bp_album_get_picture_desc() : wp_filter_kses($_POST['description']);
                 ?></textarea></label>
             </p>
             <p>
@@ -418,6 +420,7 @@ function bp_album_upload_dir() {
 }
 
 function bp_album_action_edit() {
+    
 	global $bp,$pictures_template;
 	
 	if ( $bp->current_component == $bp->album->slug && $bp->album->single_slug == $bp->current_action && $pictures_template->picture_count && isset($bp->action_variables[1]) && $bp->album->edit_slug == $bp->action_variables[1] &&  isset( $_POST['submit'] )) {
@@ -445,7 +448,8 @@ function bp_album_action_edit() {
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
 			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );	
-		} else {
+		}
+		else {
 			$priv_lvl = intval($_POST['privacy']);
                        
                         // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
@@ -469,7 +473,8 @@ function bp_album_action_edit() {
 			if( $pic_limit === null){ //costant don't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
-			}elseif( $pic_limit !== false && $priv_lvl !== $pictures_template->pictures[0]->privacy && ( $pic_limit === 0|| $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ){
+			}
+			elseif( $pic_limit !== false && $priv_lvl !== $pictures_template->pictures[0]->privacy && ( $pic_limit === 0|| $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ){
 				$error_flag = true;
 				switch ($priv_lvl){
 					case 0 :
@@ -497,8 +502,13 @@ function bp_album_action_edit() {
 		else
 			$_POST['enable_comments']==0;
 			
-		
+		//echo "ACTION EDIT: title->{$_POST['title']} | description->{$_POST['description']}"; die;
+
 		if( !$error_flag ){
+
+			// WordPress adds an escape character "\" to some special values in INPUT FIELDS (test's becomes test\'s), so we have to strip
+			// the escape characters, and then run the data through *proper* filters to prevent SQL injection, XSS, and various other attacks.
+
 			if( bp_album_edit_picture($id,stripslashes($_POST['title']),stripslashes($_POST['description']),$priv_lvl,$_POST['enable_comments']) ){
 				$feedback_message[] = __('Picture details saved.', 'bp-album');
 			}else{
@@ -510,7 +520,7 @@ function bp_album_action_edit() {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'error');
 		} else {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'success' );
-			bp_core_redirect( $bp->loggedin_user->domain . $bp->current_component . '/'.$bp->album->single_slug.'/' . $id.'/');
+			bp_core_redirect( $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/' . $id.'/');
 			die;
 		}
 		
@@ -520,7 +530,8 @@ function bp_album_action_edit() {
 add_action('wp','bp_album_action_edit',3);
 
 function bp_album_action_delete() {
-	global $bp,$pictures_template;;
+
+	global $bp,$pictures_template;
 	
 	if ( $bp->current_component == $bp->album->slug && $bp->album->single_slug == $bp->current_action && $pictures_template->picture_count && isset($bp->action_variables[1]) && $bp->album->delete_slug == $bp->action_variables[1] ) {
 		check_admin_referer('bp-album-delete-pic');
@@ -531,13 +542,15 @@ function bp_album_action_delete() {
 			return;
 		}else{
 			
-			if ( !bp_is_my_profile() ) {
+			if ( !bp_is_my_profile() && !current_user_can(level_10) ) {
 				bp_core_add_message( __( 'You don\'t have permission to delete this picture', 'bp-album' ), 'error' );
-			} elseif (bp_album_delete_picture($pictures_template->pictures[0]->id)){
+			}
+			elseif (bp_album_delete_picture($pictures_template->pictures[0]->id)){
 				bp_core_add_message( __( 'Picture deleted.', 'bp-album' ), 'success' );
 				bp_core_redirect( $bp->displayed_user->domain . $bp->album->slug . '/'. $bp->album->pictures_slug .'/');
 				die;
-			}else{
+			}
+			else{
 				bp_core_add_message( __( 'There were problems deleting the picture.', 'bp-album' ), 'error' );
 			}
 		}
@@ -546,5 +559,20 @@ function bp_album_action_delete() {
 	}
 }
 add_action('wp','bp_album_action_delete',3);
+
+/**
+ * Displays sitewide featured content block
+ *
+ * @version 0.1.9
+ * @since 0.1.9
+ */
+
+function bp_album_screen_all_images() {
+
+        global $bp;
+        //var_dump($bp); die;
+	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ), false );
+}
+add_action('bp_album_all_images','bp_album_screen_all_images',3);
 
 ?>

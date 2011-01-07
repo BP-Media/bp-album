@@ -1,3 +1,45 @@
+
+/* THE DEFAULT TEMPLATE -> FEATURED CONTENT */
+/* ######################################################################### */
+
+
+.bpa-content-wrap#default  {
+    width:840px;
+    margin: 10px 10px 30px 0px;
+    background-color:#fff;
+    display:block;
+}
+
+
+.bpa-content-wrap#default table.bpa-content-sitewide {
+    padding:5px;
+    background: #F3F3FF;
+    border: solid 1px #ddd;
+    display:block;
+}
+
+.bpa-content-wrap#default table.bpa-content-sitewide { /*tr.alt*/
+    background: #F3F3FF;
+}
+
+
+.bpa-content-wrap#default table.bpa-content-sitewide .media-image a {
+    background-color: #333;
+    vertical-align:middle;
+
+}
+
+
+.bpa-content-wrap#default table.bpa-content-sitewide .media-image img {
+    background-color: #333;
+    margin:auto;
+    display:block;
+    vertical-align:middle;
+    border: solid 1px #666;
+}
+
+
+
 /*gallery*/
 .picture-thumb-box {
 	text-align: center;
