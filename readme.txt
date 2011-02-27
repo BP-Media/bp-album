@@ -1,10 +1,9 @@
 === BuddyPress Album+ ===
 Contributors: francescolaffi, foxly
-Donate link: http://code.google.com/p/buddypress-media/
-Tags: BuddyPress, BP, album, albums, picture, pictures, photos, gallery, galleries, media, privacy
-Requires at least: WP 2.9, BP 1.2
-Tested up to: WP 3.0.4, BP 1.2.7
-Stable tag: 0.1.8.7
+Tags: BuddyPress, BP, album, albums, picture, bp-media, pictures, photos, gallery, galleries, media, privacy, buddypress, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking, cms
+Requires at least: WP 3.1,
+Tested up to: WP 3.1,
+Stable tag: 0.1.8.8
 
 Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 
@@ -28,23 +27,11 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 
 = About This Release =
 This release fixes the following defects:
-
-"All BP-Album activity stream posts dropped when admin deletes a user" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=60)
-"Broken activity stream images on virtual servers when using URL Re-mapping" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=56)
-"Plugin does not enforce image upload limits"
-"Error on single image page when activity stream disabled" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=48)
-"Admin cannot delete other user's images" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
-"Incorrect redirect when admin posts edit on another user's image" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=11)
-"Incorrect translation text domain for some text strings"
-"HTML special character fragments in thumbnail view titles"
-"Escape characters in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
-"Incorrect character case in image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=29)
-"Escape characters in image descriptions" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=30)
+* "Please upload only JPG, GIF or PNG photos." error. This was caused by changes made in BuddyPress 1.2.8
+* "No BP-Album+ menu visible inside the BuddyPress admin interface" error. This was caused by changes made in WordPress 3.1
 
 This release adds the following features:
-"Unicode support for image titles" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=58)
-"Post all uploaded images to site activity stream, even if not submitted by users"
-"Display all uploaded images in any template file"
+* "Compatibility multi-site network installations"
 
 This is an early release version of the plugin. You should test it extensively before using it on a production site. It provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
@@ -53,11 +40,13 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 = Translations =
 
-* it_IT by francescolaffi
-* en_US by foxly
-* es_ES by Jose M. Villar & Selu Vega
-* ja_JA by chestnut_jp
-
+* it_IT (Italian)   by francescolaffi
+* en_US (English)   by foxly
+* es_ES (Spanish)   by Jose M. Villar & Selu Vega
+* ja_JA (Japanese)  by chestnut_jp
+* pl_PL (Polish)    by Jacek Wu
+* ru_RU (Russian)   by Chimit
+* zh_CN (Chinese)   by Calvin Hsu
 
 * Please submit new/updated translations via our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
@@ -70,6 +59,10 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 
 == Changelog ==
+
+= 0.1.8.8 =
+* "Please upload only JPG, GIF or PNG photos" error fixed. This defect was caused by changes made in BuddyPress 1.2.8
+* "No BP-Album+ menu visible inside the BuddyPress admin interface" error fixed. This defect was caused by changes made in WordPress 3.1
 
 = 0.1.8.7 =
 * "All BP-Album activity stream posts dropped when admin deletes a user" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=60)
