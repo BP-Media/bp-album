@@ -312,7 +312,7 @@ function bp_album_action_upload() {
 		// Check the file has the correct extension type. Copied from bp_core_check_avatar_type() and modified with /i so that the
 		// regex patterns are case insensitive (otherwise .JPG .GIF and .PNG would trigger an error)
 
-		if ( ( !empty( $file['file']['type'] ) && !preg_match('/(jpe?g|gif|png)$/i', $file['file']['type'] ) ) || !preg_match( '/(jpe?g|gif|png)$/i', $file['file']['name'] ) ) {
+		if ( !( (!empty( $file['file']['type'] ) && !preg_match('/(jpe?g|gif|png)$/i', $file['file']['type'] ) ) || !preg_match( '/(jpe?g|gif|png)$/i', $file['file']['name'] )) ) {
 
 			$feedback_message[] = __( 'Please upload only JPG, GIF or PNG photos.', 'buddypress' );
 			$error_flag = true;
