@@ -1,4 +1,17 @@
 <?php
+/**
+ * BP-ALBUM CORE
+ * Handles the overall operations of the plugin
+ *
+ * @version 0.1.8.9
+ * @since 0.1.8.9
+ * @package BP-Album
+ * @subpackage Main
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
+ */
 
 /* Define a constant that can be checked to see if the component is installed or not. */
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
@@ -103,16 +116,55 @@ add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
  * "BuddyPress" menu.
  */
 function bp_album_add_admin_menu() {
-	global $bp;
 
-	if ( !$bp->loggedin_user->is_site_admin )
-		return false;
+	if( is_multisite()  ){
 
-	require ( dirname( __FILE__ ) . '/bp-album-admin.php' );
+		// If we're in a multisite install, hide the BMP admin menu from users. There are currently no
+		// options that individual users should be able to set by themselves
+		return;
+	}
+	else {
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album+', 'bp-album' ), __( 'BP Album+', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+		// Otherwise, display our admin menu to the super-admin
+
+		global $bp;
+
+		if ( !$bp->loggedin_user->is_site_admin ){
+			return false;
+		}
+
+		require ( dirname( __FILE__ ) . '/bp-album-admin-local.php' );
+
+		add_submenu_page( 'bp-general-settings', __( 'BP Album+', 'bp-album' ), __( 'BP Album+', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+		
+	}
 }
 add_action( 'admin_menu', 'bp_album_add_admin_menu' );
+
+
+/**
+ * bp_album_add_network_menu()
+ *
+ * This function will add a WordPress wp-admin admin menu for your component under the
+ * "BuddyPress" menu.
+ */
+function bp_album_add_network_menu() {
+    
+
+	global $bp;
+
+	if ( !$bp->loggedin_user->is_site_admin ){
+		return false;
+	}
+
+	require ( dirname( __FILE__ ) . '/bp-album-admin-network.php' );
+
+	add_submenu_page( 'bp-general-settings', __( 'BP Album+', 'bp-album' ), __( 'BP Album+', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+
+}
+add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
+
+
 
 /**
  * bp_album_setup_nav()
@@ -820,9 +872,5 @@ function bp_album_undo_rebuild_activity() {
 	return bp_activity_delete(array('component' => $bp->album->id,'secondary_item_id' => 999));
 
 }
-
-
-
-
 
 ?>
