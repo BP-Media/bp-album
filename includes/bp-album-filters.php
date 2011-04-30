@@ -1,11 +1,19 @@
 <?php
-
-
-
-// This filter is a direct copy of "bp_activity_make_nofollow_filter_callback". It is pasted here and re-named because
-// if the user disables the activity stream, buddypress disables bp_activity_make_nofollow_filter_callback, causing an
-// error if we use it.
-// ===================================================================================================================
+/**
+ * BP-ALBUM FILTERS
+ * This filter is a direct copy of "bp_activity_make_nofollow_filter_callback". It is pasted here and re-named because
+ * if the user disables the activity stream, buddypress disables bp_activity_make_nofollow_filter_callback, causing an
+ * error if we use it.
+ * 
+ * @version 0.1.8.9
+ * @since 0.1.8.9
+ * @package BP-Album
+ * @subpackage Filters
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
+ */
 
 function bp_album_make_nofollow_filter( $text ) {
 	return preg_replace_callback( '|<a (.+?)>|i', 'bp_album_make_nofollow_filter_callback', $text );
