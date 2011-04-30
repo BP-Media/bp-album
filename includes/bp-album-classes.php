@@ -1,6 +1,6 @@
 <?php
-
 /**
+ * BP-ALBUM CLASSES
  * This function should include all classes and functions that access the database.
  * In most BuddyPress components the database access classes are treated like a model,
  * where each table has a class that can be used to create an object populated with a row
@@ -8,6 +8,15 @@
  * 
  * By doing this you can easily save, update and delete records using the class, you're also
  * abstracting database access.
+ * 
+ * @version 0.1.8.9
+ * @since 0.1.8.9
+ * @package BP-Album
+ * @subpackage Classes
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
  */
 
 class BP_Album_Picture {
