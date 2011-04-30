@@ -1,12 +1,20 @@
 <?php 
-
-/********************************************************************************
- * Screen Functions
- *
+/**
+ * BP-ALBUM SCREENS
  * Screen functions are the controllers of BuddyPress. They will execute when their
  * specific URL is caught. They will first save or manipulate data using business
  * functions, then pass on the user to a template file.
+ * 
+ * @version 0.1.8.9
+ * @since 0.1.8.9
+ * @package BP-Album
+ * @subpackage Screens
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
  */
+
 
 /**
  * bp_album_screen_picture()
@@ -32,6 +40,7 @@ function bp_album_screen_single() {
 	
 	do_action( 'bp_album_screen_single' );
 
+	bp_album_query_pictures();
 	bp_core_load_template( apply_filters( 'bp_album_template_screen_single', 'album/single' ) );
 }
 
@@ -121,6 +130,7 @@ function bp_album_screen_pictures() {
 
 	do_action( 'bp_album_screen_pictures' );
 
+	bp_album_query_pictures();
 	bp_core_load_template( apply_filters( 'bp_album_template_screen_pictures', 'album/pictures' ) );
 }
 
@@ -204,7 +214,7 @@ function bp_album_screen_upload() {
 			?>
 		</form>
 		<?php else: ?>
-			<p><?php _e( 'You have reached the upload limit, delete some pictures if you want to upload more', 'bp-album' ) ?></p>
+			<p><?php _e( 'You have reached the upload limit, you will have to delete some pictures if you want to upload more', 'bp-album' ) ?></p>
 		<?php endif;
 	}
 
@@ -274,16 +284,16 @@ function bp_album_action_upload() {
 				
 				switch ($priv_lvl){
 					case 0 :
-						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 2 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 4 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 6 :
-						$feedback_message[] = __( 'You reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 				}
 			}
@@ -334,9 +344,34 @@ function bp_album_action_upload() {
 				$error_flag = true;
 			}
 		}		
-		if(!$error_flag){  // If everything is ok resize the picture
-		
-			$abs_path_to_files = defined( 'BLOGUPLOADDIR' ) ? str_replace('/files/','/',BLOGUPLOADDIR) : ABSPATH;
+		if(!$error_flag){  
+
+			// Handle blog upload directories
+
+			if( !is_multisite() ){
+
+			    	// Some site owners with single-blog installs of wordpress change the path of
+				// their upload directory by setting the constant 'BLOGUPLOADDIR'. Handle this
+				// for compatibility with legacy sites.
+
+				if( defined( 'BLOGUPLOADDIR' ) ){
+
+					$abs_path_to_files = str_replace('/files/','/',BLOGUPLOADDIR);
+				}
+				else {
+
+					$abs_path_to_files = ABSPATH;
+				}
+
+			}
+			else {
+
+				// If the install is running in multisite mode, 'BLOGUPLOADDIR' is automatically set by
+				// wordpress to something like "C:\xampp\htdocs/wp-content/blogs.dir/1/" even though the
+				// actual file is in "C:\xampp\htdocs/wp-content/uploads/", so we need to use ABSPATH
+
+				$abs_path_to_files = ABSPATH;
+			}
 			
 			$pic_org_path = $pic_org['file'];
 			$pic_org_url = str_replace($abs_path_to_files,'/',$pic_org_path);
@@ -345,42 +380,51 @@ function bp_album_action_upload() {
 			$pic_org_size = ($pic_org_size[0]>$pic_org_size[1])?$pic_org_size[0]:$pic_org_size[1];
 			
 			if($pic_org_size <= $bp->album->bp_album_middle_size){
-                $pic_mid_path = $pic_org_path;
-                $pic_mid_url = $pic_org_url;
-			} else {
+
+				$pic_mid_path = $pic_org_path;
+				$pic_mid_url = $pic_org_url;
+			} 
+			else {
+
 				$pic_mid = wp_create_thumbnail( $pic_org_path, $bp->album->bp_album_middle_size );
-                $pic_mid_path = str_replace( '//', '/', $pic_mid );
-                $pic_mid_url = str_replace($abs_path_to_files,'/',$pic_mid_path);
-                if (!$bp->album->bp_album_keep_original){
-                	unlink($pic_org_path);
+				$pic_mid_path = str_replace( '//', '/', $pic_mid );
+				$pic_mid_url = str_replace($abs_path_to_files,'/',$pic_mid_path);
+
+				if (!$bp->album->bp_album_keep_original){
+
+					unlink($pic_org_path);
 					$pic_org_url=$pic_mid_url;
 					$pic_org_path=$pic_mid_path;
-                }
-			}
-			if($pic_org_size <= $bp->album->bp_album_thumb_size){
-                $pic_thumb_path = $pic_org_path;
-                $pic_thumb_url = $pic_org_url;
-			} else {
-				$pic_thumb = image_resize( $pic_mid_path, $bp->album->bp_album_thumb_size, $bp->album->bp_album_thumb_size, true);
-                $pic_thumb_path = str_replace( '//', '/', $pic_thumb );
-                $pic_thumb_url = str_replace($abs_path_to_files,'/',$pic_thumb);
+				}
 			}
 
-            $owner_type = 'user';
-            $owner_id = $bp->loggedin_user->id;
-            $date_uploaded =  gmdate( "Y-m-d H:i:s" );
-            $title = $_FILES['file']['name'];
-            $description = ' ';
-            $privacy = $priv_lvl;
-            
-            $id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
-            
-			if($id)
-				$feedback_message[] = __('Picture uploaded. Now you can change picture details.', 'bp-album'); 
+			if($pic_org_size <= $bp->album->bp_album_thumb_size){
+
+				$pic_thumb_path = $pic_org_path;
+				$pic_thumb_url = $pic_org_url;
+			} 
 			else {
-				$error_flag = true;
-				$feedback_message[] = __('There were problems saving picture details.', 'bp-album');
-            }
+
+				$pic_thumb = image_resize( $pic_mid_path, $bp->album->bp_album_thumb_size, $bp->album->bp_album_thumb_size, true);
+				$pic_thumb_path = str_replace( '//', '/', $pic_thumb );
+				$pic_thumb_url = str_replace($abs_path_to_files,'/',$pic_thumb);
+			}
+
+			$owner_type = 'user';
+			$owner_id = $bp->loggedin_user->id;
+			$date_uploaded =  gmdate( "Y-m-d H:i:s" );
+			$title = $_FILES['file']['name'];
+			$description = ' ';
+			$privacy = $priv_lvl;
+
+			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
+
+				    if($id)
+					    $feedback_message[] = __('Picture uploaded. Now you can edit its details.', 'bp-album');
+				    else {
+					    $error_flag = true;
+					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
+			}
 		}
 		
 		if ($error_flag){
@@ -482,16 +526,16 @@ function bp_album_action_edit() {
 				$error_flag = true;
 				switch ($priv_lvl){
 					case 0 :
-						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 2 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 4 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 6 :
-						$feedback_message[] = __( 'You reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 				}
 			}
@@ -517,7 +561,7 @@ function bp_album_action_edit() {
 				$feedback_message[] = __('Picture details saved.', 'bp-album');
 			}else{
 				$error_flag = true;
-				$feedback_message[] = __('There were problems saving picture details.', 'bp-album');
+				$feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
 			}
 		}
 		if ($error_flag){
@@ -574,7 +618,7 @@ add_action('wp','bp_album_action_delete',3);
 function bp_album_screen_all_images() {
 
         global $bp;
-        //var_dump($bp); die;
+        bp_album_query_pictures();
 	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ), false );
 }
 add_action('bp_album_all_images','bp_album_screen_all_images',3);
