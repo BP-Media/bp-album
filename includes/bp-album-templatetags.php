@@ -1,4 +1,16 @@
 <?php
+/**
+ * BP-ALBUM TEMPLATE TAGS
+ *
+ * @version 0.1.8.9
+ * @since 0.1.8.9
+ * @package BP-Album
+ * @subpackage Template Tags
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
+ */
 
 /**
  * Example use in the template file:
@@ -23,6 +35,7 @@
  */
 
 class BP_Album_Template {
+    
 	var $current_picture = -1;
 	var $picture_count = 0;
 	var $pictures;
@@ -181,11 +194,25 @@ function bp_album_picture_title_truncate($length = 11) {
 
 		$title = apply_filters( 'bp_album_get_picture_title_truncate', $title);
 
-		$r = wp_specialchars_decode($title, ENT_QUOTES);		
-		$r = substr($r, 0, $length);
+		$r = wp_specialchars_decode($title, ENT_QUOTES);
+
+
+		if ( function_exists('mb_strlen') && strlen($r) > mb_strlen($r) ) {
+
+			$length = round($length / 2);
+		}
+
+		if ( function_exists( 'mb_substr' ) ) {
+
+
+			$r = mb_substr($r, 0, $length);
+		}
+		else {
+			$r = substr($r, 0, $length);
+		}
 
 		$result = _wp_specialchars($r) . '&#8230;';
-		
+
 		return $result;
 		
 	}
