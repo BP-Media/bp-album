@@ -177,8 +177,9 @@ function bp_album_setup_nav() {
 	global $bp,$pictures_template;
 
 	/* Add 'Example' to the main user profile navigation */
+  $nav_item_name = apply_filters( 'bp_album_nav_item_name', __( 'Album', 'bp-album' ) );
 	bp_core_new_nav_item( array(
-		'name' => __( 'Album', 'bp-album' ),
+		'name' => $nav_item_name,
 		'slug' => $bp->album->slug,
 		'position' => 80,
 		'screen_function' => 'bp_album_screen_pictures',
@@ -872,5 +873,4 @@ function bp_album_undo_rebuild_activity() {
 	return bp_activity_delete(array('component' => $bp->album->id,'secondary_item_id' => 999));
 
 }
-
 ?>
