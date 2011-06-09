@@ -1,16 +1,4 @@
 <?php
-/**
- * BP-ALBUM TEMPLATE TAGS
- *
- * @version 0.1.8.9
- * @since 0.1.8.9
- * @package BP-Album
- * @subpackage Template Tags
- * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
- *
- * ========================================================================================================
- */
 
 /**
  * Example use in the template file:

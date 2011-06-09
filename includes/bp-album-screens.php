@@ -1,20 +1,12 @@
 <?php 
-/**
- * BP-ALBUM SCREENS
+
+/********************************************************************************
+ * Screen Functions
+ *
  * Screen functions are the controllers of BuddyPress. They will execute when their
  * specific URL is caught. They will first save or manipulate data using business
  * functions, then pass on the user to a template file.
- * 
- * @version 0.1.8.9
- * @since 0.1.8.9
- * @package BP-Album
- * @subpackage Screens
- * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
- *
- * ========================================================================================================
  */
-
 
 /**
  * bp_album_screen_picture()
@@ -214,7 +206,7 @@ function bp_album_screen_upload() {
 			?>
 		</form>
 		<?php else: ?>
-			<p><?php _e( 'You have reached the upload limit, you will have to delete some pictures if you want to upload more', 'bp-album' ) ?></p>
+			<p><?php _e( 'You have reached the upload limit, delete some pictures if you want to upload more', 'bp-album' ) ?></p>
 		<?php endif;
 	}
 
@@ -284,51 +276,54 @@ function bp_album_action_upload() {
 				
 				switch ($priv_lvl){
 					case 0 :
-						$feedback_message[] = __( 'You have reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 2 :
-						$feedback_message[] = __( 'You have reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 4 :
-						$feedback_message[] = __( 'You have reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 6 :
-						$feedback_message[] = __( 'You have reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 				}
 			}
 		}
 		
 		$uploadErrors = array(
-			0 => __("There is no error, the file uploaded with success", 'buddypress'),
-			1 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(CORE_MAX_FILE_SIZE),
-			2 => __("Your image was bigger than the maximum allowed file size of: ", 'buddypress') . size_format(CORE_MAX_FILE_SIZE),
-			3 => __("The uploaded file was only partially uploaded", 'buddypress'),
-			4 => __("No file was uploaded", 'buddypress'),
-			6 => __("Missing a temporary folder", 'buddypress')
+			0 => __("There is no error, the file uploaded with success", 'bp-album'),
+			1 => __("Your image was bigger than the maximum allowed file size of: ", 'bp-album') . size_format(CORE_MAX_FILE_SIZE),
+			2 => __("Your image was bigger than the maximum allowed file size of: ", 'bp-album') . size_format(CORE_MAX_FILE_SIZE),
+			3 => __("The uploaded file was only partially uploaded", 'bp-album'),
+			4 => __("No file was uploaded", 'bp-album'),
+			6 => __("Missing a temporary folder", 'bp-album')
 		);
 		if ( isset($_FILES['file']) ){
 		
 			if ( $_FILES['file']['error'] ) {
-				$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'buddypress' ), $uploadErrors[$_FILES['file']['error']] );
+
+				$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'bp-album' ), $uploadErrors[$_FILES['file']['error']] );
+				$error_flag = true;
+
+			}		
+			elseif ( $_FILES['file']['size'] > BP_AVATAR_ORIGINAL_MAX_FILESIZE ) {
+
+				$feedback_message[] = sprintf( __( 'The file you uploaded is too big. Please upload a file under %s', 'bp-album'), size_format(CORE_MAX_FILE_SIZE) );
+				$error_flag = true;
+				
+			}
+			// Check the file has the correct extension type. Copied from bp_core_check_avatar_type() and modified with /i so that the
+			// regex patterns are case insensitive (otherwise .JPG .GIF and .PNG would trigger an error)
+			elseif ( (!empty( $_FILES['file']['type'] ) && !preg_match('/(jpe?g|gif|png)$/i', $_FILES['file']['type'] ) ) || !preg_match( '/(jpe?g|gif|png)$/i', $_FILES['file']['name'] ) ) {
+
+				$feedback_message[] = __( 'Please upload only JPG, GIF or PNG image files.', 'bp-album' );
 				$error_flag = true;
 			}
-		
-			if ( $_FILES['file']['size'] > BP_AVATAR_ORIGINAL_MAX_FILESIZE ) {
-				$feedback_message[] = sprintf( __( 'The file you uploaded is too big. Please upload a file under %s', 'buddypress'), size_format(CORE_MAX_FILE_SIZE) );
-				$error_flag = true;
-			}
-		
-		// Check the file has the correct extension type. Copied from bp_core_check_avatar_type() and modified with /i so that the
-		// regex patterns are case insensitive (otherwise .JPG .GIF and .PNG would trigger an error)
 
-		if ( !( (!empty( $file['file']['type'] ) && !preg_match('/(jpe?g|gif|png)$/i', $file['file']['type'] ) ) || !preg_match( '/(jpe?g|gif|png)$/i', $file['file']['name'] )) ) {
-
-			$feedback_message[] = __( 'Please upload only JPG, GIF or PNG photos.', 'buddypress' );
-			$error_flag = true;
 		}
-		}else{
-			$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'buddypress' ), $uploadErrors[4] );
+		else {
+			$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'bp-album' ), $uploadErrors[4] );
 			$error_flag = true;
 		
 		}
@@ -340,7 +335,7 @@ function bp_album_action_upload() {
 			$pic_org = wp_handle_upload( $_FILES['file'],array('action'=>'picture_upload') );
 
 			if ( !empty( $pic_org['error'] ) ) {
-				$feedback_message[] = sprintf( __('Your upload failed, please try again. Error was: %s', 'buddypress' ), $pic_org['error'] );
+				$feedback_message[] = sprintf( __('Your upload failed, please try again. Error was: %s', 'bp-album' ), $pic_org['error'] );
 				$error_flag = true;
 			}
 		}		
@@ -420,10 +415,10 @@ function bp_album_action_upload() {
 			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
 
 				    if($id)
-					    $feedback_message[] = __('Picture uploaded. Now you can edit its details.', 'bp-album');
+					    $feedback_message[] = __('Picture uploaded. Now you can change picture details.', 'bp-album');
 				    else {
 					    $error_flag = true;
-					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
+					    $feedback_message[] = __('There were problems saving picture details.', 'bp-album');
 			}
 		}
 		
@@ -526,16 +521,16 @@ function bp_album_action_edit() {
 				$error_flag = true;
 				switch ($priv_lvl){
 					case 0 :
-						$feedback_message[] = __( 'You have reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 2 :
-						$feedback_message[] = __( 'You have reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 4 :
-						$feedback_message[] = __( 'You have reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 6 :
-						$feedback_message[] = __( 'You have reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 				}
 			}
@@ -561,7 +556,7 @@ function bp_album_action_edit() {
 				$feedback_message[] = __('Picture details saved.', 'bp-album');
 			}else{
 				$error_flag = true;
-				$feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
+				$feedback_message[] = __('There were problems saving picture details.', 'bp-album');
 			}
 		}
 		if ($error_flag){

@@ -1,9 +1,9 @@
 === BuddyPress Album+ ===
-Contributors: francescolaffi, foxly, fanquake
+Contributors: francescolaffi, foxly
 Tags: BuddyPress, BP, album, albums, picture, bp-media, pictures, photos, gallery, galleries, media, privacy, buddypress, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking, cms
-Requires at least: 3.1
-Tested up to: 3.1.2
-Stable tag: 0.1.8.9
+Requires at least: 3.1.0
+Tested up to: 3.1.3
+Stable tag: 0.1.8.10
 
 Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 
@@ -28,14 +28,8 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 = About This Release =
 This release fixes the following defects:
 
-* "Please upload only JPG, GIF or PNG photos" error when user uploads a file with an upper-case extension (.JPG vs .jpg) fixed. This was defect was caused by changes made in BuddyPress 1.2.8 [Tracker Entry](https://www.pivotaltracker.com/story/show/11097197)
-* "ABSPATH incorrectly added to file path on multi-site WordPress installs" fixed. [Tracker Entry](https://www.pivotaltracker.com/story/show/10567999)
-* "Wrong images displayed on servers with persistent caching" fixed. [Tracker Entry](https://www.pivotaltracker.com/story/show/10494941)
-
-This release adds the following features:
-
-* "Improved support for Asian languages" [Tracker Entry](https://www.pivotaltracker.com/story/show/10567805)
-
+* "Ability to upload files with extensions other than .jpg, .png, and .gif "
+* "Missing translation text domains on file upload error messages"
 
 This is an early release version of the plugin. You should test it extensively before using it on a production site. It provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
@@ -52,6 +46,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * ru_RU (Russian)   by Chimit
 * zh_CN (Chinese)   by Calvin Hsu
 
+
 * Please submit new/updated translations via our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
 
@@ -63,6 +58,10 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 
 == Changelog ==
+
+= 0.1.8.10 =
+* "Ability to upload files with extensions other than .jpg, .png, and .gif"
+* "Missing translation text domains on file upload error messages"
 
 = 0.1.8.9 =
 * "Please upload only JPG, GIF or PNG photos" error when user uploads a file with an upper-case extension (.JPG vs .jpg) fixed. This was defect was caused by changes made in BuddyPress 1.2.8 [Tracker Entry](https://www.pivotaltracker.com/story/show/11097197)
@@ -94,14 +93,14 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * Added URL re-mapping functionality to fix 'Incorrect Image File URL Problem'
 
 = 0.1.7 =
-* Fix the loader so it doesn't give an error when updating/deactivating bp or when it is not installed.
+* Fix the loader so it don't give error when updating/deactivating bp or when it is not installed.
 * es_ES updated; fi_FI,he_IL added.
 
 = 0.1.6 =
 * Fix added for 'There were problems saving picture details' problem.
 
 = 0.1.5 =
-* Some files were not updated in the last release, now they should all work fine
+* Some files were not updated in last release, now all should work fine
 
 = 0.1.4 =
 * Admin menu added
@@ -112,7 +111,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 = 0.1.3 =
 * Buddybar menu link fixed
 * Broken image link fixed
-* Now tested with success on FF,Webkit,IE7,IE8, IE6 displays well but without cool effects
+* Now tested with success on FF,Webkit,IE7,IE8, IE6 display well but without cool effects
 * fr_FR updated; tr_TR,de_DE added
 
 = 0.1.2 =
@@ -125,3 +124,15 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 = 0.1 =
 * Early release of the plugin
+
+== Upgrade Notice ==
+
+= 0.1.5 =
+* this will resolve several errors
+
+= 0.1.4 =
+admin menu added,  es_ES, ru_RU
+
+= 0.1.3=
+bug fixes,css fixes, tr_TR,de_DE translations
+

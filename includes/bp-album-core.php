@@ -1,17 +1,4 @@
 <?php
-/**
- * BP-ALBUM CORE
- * Handles the overall operations of the plugin
- *
- * @version 0.1.8.9
- * @since 0.1.8.9
- * @package BP-Album
- * @subpackage Main
- * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
- *
- * ========================================================================================================
- */
 
 /* Define a constant that can be checked to see if the component is installed or not. */
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
@@ -177,9 +164,8 @@ function bp_album_setup_nav() {
 	global $bp,$pictures_template;
 
 	/* Add 'Example' to the main user profile navigation */
-  $nav_item_name = apply_filters( 'bp_album_nav_item_name', __( 'Album', 'bp-album' ) );
 	bp_core_new_nav_item( array(
-		'name' => $nav_item_name,
+		'name' => __( 'Album', 'bp-album' ),
 		'slug' => $bp->album->slug,
 		'position' => 80,
 		'screen_function' => 'bp_album_screen_pictures',
@@ -873,4 +859,9 @@ function bp_album_undo_rebuild_activity() {
 	return bp_activity_delete(array('component' => $bp->album->id,'secondary_item_id' => 999));
 
 }
+
+
+
+
+
 ?>
