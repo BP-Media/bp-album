@@ -161,11 +161,13 @@ add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
  * rendered in the template.
  */
 function bp_album_setup_nav() {
+    
 	global $bp,$pictures_template;
 
-	/* Add 'Example' to the main user profile navigation */
+	$nav_item_name = apply_filters( 'bp_album_nav_item_name', __( 'Album', 'bp-album' ) );
+
 	bp_core_new_nav_item( array(
-		'name' => __( 'Album', 'bp-album' ),
+		'name' => $nav_item_name,
 		'slug' => $bp->album->slug,
 		'position' => 80,
 		'screen_function' => 'bp_album_screen_pictures',
