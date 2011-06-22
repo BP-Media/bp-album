@@ -34,6 +34,7 @@ class BP_Album_Template {
 	var $pag_page;
 	var $pag_per_page;
 	var $pag_links;
+	var $pag_links_global;
 
 	function BP_Album_Template( $args = '' ) {
 		$this->__construct( $args);
@@ -73,7 +74,21 @@ class BP_Album_Template {
 			$this->picture_count = count($this->pictures);
 		else
 			$this->picture_count = $max;
+		
+		// $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .
 
+		$this->pag_links_global = paginate_links( array(
+			'base' => @add_query_arg('page','%#%'),
+			'format'       => '%#%',
+			'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
+			'current' => (int) $this->pag_page,
+			'prev_text' => '&larr;',
+			'next_text' => '&rarr;',
+			'mid_size' => 1
+		    
+		   
+		));
+		
 		$this->pag_links = paginate_links( array(
 			'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
 			'format' => '%#%',
@@ -347,6 +362,15 @@ function bp_album_picture_pagination($always_show = false) {
 		global $pictures_template;
 		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
 		return apply_filters( 'bp_album_get_picture_pagination', $pictures_template->pag_links );
+	}
+	
+function bp_album_picture_pagination_global($always_show = false) {
+	echo bp_album_get_picture_pagination_global($always_show);
+}
+	function bp_album_get_picture_pagination_global($always_show = false) {
+		global $pictures_template;
+		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
+		return apply_filters( 'bp_album_get_picture_pagination_global', $pictures_template->pag_links_global );
 	}
 
 function bp_album_adjacent_links() {
