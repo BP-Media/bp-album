@@ -35,7 +35,7 @@ class BP_Album_Template {
 	var $pag_per_page;
 	var $pag_links;
 	var $pag_links_global;
-
+	
 	function BP_Album_Template( $args = '' ) {
 		$this->__construct( $args);
 	}
@@ -75,10 +75,10 @@ class BP_Album_Template {
 		else
 			$this->picture_count = $max;
 		
-		// $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .
+		//echo get_permalink( $post->ID );   $bp->root_domain . '/' .
 
 		$this->pag_links_global = paginate_links( array(
-			'base' => @add_query_arg('page','%#%'),
+			'base' => get_permalink( $post->ID ) . '%#%',
 			'format'       => '%#%',
 			'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
 			'current' => (int) $this->pag_page,
