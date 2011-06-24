@@ -75,19 +75,20 @@ class BP_Album_Template {
 		else
 			$this->picture_count = $max;
 		
-		//echo get_permalink( $post->ID );   $bp->root_domain . '/' .
-
+		
 		$this->pag_links_global = paginate_links( array(
-			'base' => get_permalink( $post->ID ) . '%#%',
-			'format'       => '%#%',
+			'base' => get_permalink() . '%#%',
+			'format' => '%#%',
 			'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
 			'current' => (int) $this->pag_page,
 			'prev_text' => '&larr;',
 			'next_text' => '&rarr;',
 			'mid_size' => 1
 		    
-		   
+		
 		));
+		
+		 //var_dump( get_permalink() );
 		
 		$this->pag_links = paginate_links( array(
 			'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
