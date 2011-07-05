@@ -1,9 +1,9 @@
-=== BuddyPress Album+ ===
-Contributors: francescolaffi, foxly
+=== BuddyPress Album ===
+Contributors: francescolaffi, foxly, fanquake
 Tags: BuddyPress, BP, album, albums, picture, bp-media, pictures, photos, gallery, galleries, media, privacy, buddypress, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking, cms
-Requires at least: 3.1.0
-Tested up to: 3.1.3
-Stable tag: 0.1.8.10
+Requires at least: 3.1
+Tested up to: 3.2
+Stable tag: 0.1.8.11
 
 Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 

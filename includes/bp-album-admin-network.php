@@ -102,7 +102,7 @@ function bp_album_admin() {
 		?>
 		</p>
 
-                <p>
+		<p>
 		<?php 
 			echo "<a href='http://code.google.com/p/buddypress-media/'>";
 			_e("Official Website", 'bp-album' );
@@ -151,7 +151,7 @@ function bp_album_admin() {
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Name of BP Album+ slug', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_slug" type="text" id="bp_album_slug" value="<?php echo attribute_escape($bp_album_slug ); ?>" size="10" />
+						<input name="bp_album_slug" type="text" id="bp_album_slug" value="<?php echo esc_attr($bp_album_slug ); ?>" size="10" />
 					</td>
 				</tr>
 
@@ -194,37 +194,37 @@ function bp_album_admin() {
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Max total images allowed in a members album', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_max_pictures" type="text" id="example-setting-one" value="<?php echo attribute_escape( $bp_album_max_pictures ); ?>" size="10" />
+						<input name="bp_album_max_pictures" type="text" id="example-setting-one" value="<?php echo esc_attr( $bp_album_max_pictures ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Max images visible to public allowed in a members album', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_max_priv0_pictures" type="text" id="bp_album_max_priv0_pictures" value="<?php echo attribute_escape( $bp_album_max_priv0_pictures ); ?>" size="10" />
+						<input name="bp_album_max_priv0_pictures" type="text" id="bp_album_max_priv0_pictures" value="<?php echo esc_attr( $bp_album_max_priv0_pictures ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Max images visible only to members in a members album', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_max_priv2_pictures" type="text" id="bp_album_max_priv2_pictures" value="<?php echo attribute_escape( $bp_album_max_priv2_pictures ); ?>" size="10" />
+						<input name="bp_album_max_priv2_pictures" type="text" id="bp_album_max_priv2_pictures" value="<?php echo esc_attr( $bp_album_max_priv2_pictures ); ?>" size="10" />
 					</td>
 				</tr>
                                  <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Max images visible only to friends in a members album', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_max_priv4_pictures" type="text" id="bp_album_max_priv4_pictures" value="<?php echo attribute_escape( $bp_album_max_priv4_pictures ); ?>" size="10" />
+						<input name="bp_album_max_priv4_pictures" type="text" id="bp_album_max_priv4_pictures" value="<?php echo esc_attr( $bp_album_max_priv4_pictures ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Max private images in a members album', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_max_priv6_pictures" type="text" id="bp_album_max_priv6_pictures" value="<?php echo attribute_escape( $bp_album_max_priv6_pictures ); ?>" size="10" />
+						<input name="bp_album_max_priv6_pictures" type="text" id="bp_album_max_priv6_pictures" value="<?php echo esc_attr( $bp_album_max_priv6_pictures ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Images per album page', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_per_page" type="text" id="bp_album_per_page" value="<?php echo attribute_escape( $bp_album_per_page ); ?>" size="10" />
+						<input name="bp_album_per_page" type="text" id="bp_album_per_page" value="<?php echo esc_attr( $bp_album_per_page ); ?>" size="10" />
 					</td>
 				</tr>
 			</table>
@@ -239,13 +239,13 @@ function bp_album_admin() {
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Album Image Size', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_middle_size" type="text" id="bp_album_middle_size" value="<?php echo attribute_escape( $bp_album_middle_size ); ?>" size="10" />
+						<input name="bp_album_middle_size" type="text" id="bp_album_middle_size" value="<?php echo esc_attr( $bp_album_middle_size ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Thumbnail Image Size', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_thumb_size" type="text" id="bp_album_thumb_size" value="<?php echo attribute_escape( $bp_album_thumb_size ); ?>" size="10" />
+						<input name="bp_album_thumb_size" type="text" id="bp_album_thumb_size" value="<?php echo esc_attr( $bp_album_thumb_size ); ?>" size="10" />
 					</td>
 				</tr>
                                 <tr>
@@ -262,7 +262,7 @@ function bp_album_admin() {
 
 			<p>
 			<?php
-			    _e( "If you get broken links when viewing images in BP-Album+, it means your server is sending the wrong base URL to the plugin. You can use the image URL re-mapping function to fix this.",'bp-album' );
+			    _e( "If you get broken links when viewing images in BP-Album, it means your server is sending the wrong base URL to the plugin. You can use the image URL re-mapping function to fix this.",'bp-album' );
 			    echo "<a href='http://code.google.com/p/buddypress-media/wiki/UsingTheURLRemapper'> ";
 			    _e("DOCUMENTATION",'bp-album' );
 			    echo "</a>";
@@ -280,7 +280,7 @@ function bp_album_admin() {
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Base URL', 'bp-album' ) ?></label></th>
 					<td>
-						<input name="bp_album_base_url" type="text" id="bp_album_base_url" value="<?php echo attribute_escape( $bp_album_base_url ); ?>" size="70" />
+						<input name="bp_album_base_url" type="text" id="bp_album_base_url" value="<?php echo esc_attr( $bp_album_base_url ); ?>" size="70" />
 						/userID/filename.xxx
 					</td>
 				</tr>
@@ -325,4 +325,5 @@ function bp_album_admin() {
 	</div>
 <?php
 }
+
 ?>

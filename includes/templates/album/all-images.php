@@ -11,7 +11,7 @@
 	$args['max']=false;		// Do *not* change this
 	$args['privacy']='public';	// Do *not* change this
 	$args['priv_override']=false;	// Do *not* change this
-	$args['groupby']=false;		// Do *not* change this
+	$args['groupby']=false;	// Do *not* change this
 
 	$args['per_page']=24;
 	$args['ordersort']='DESC';
@@ -49,7 +49,6 @@
 		    }
 
 		    endwhile;
-
 
 		 // STEP 4: Close the CSS block.   ?>
 		    </tr>

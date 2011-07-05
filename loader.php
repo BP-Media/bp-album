@@ -1,22 +1,23 @@
 <?php
 /*
-Plugin Name: BP-Album+
+Plugin Name: BP-Album
 Plugin URI: http://code.google.com/p/buddypress-media/
 Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with current BuddyPress theme and includes Easy To Skin Templates.
-Version: 0.1.8.10
-Revision Date: June 9, 2011
+Version: 0.1.8.11
+Revision Date: July 5, 2011
 Requires at least: 3.1
-Tested up to: WP 3.1.3, BP 1.2.8
+Tested up to: WP 3.2, BP 1.2.9, PHP 5.3
+License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
 Author: The BP-Media Team
 Author URI: http://buddypress.org/community/groups/bp-album/forum/
-Network: true
+Network: True
 */
 
 /* Only load the component if BuddyPress is loaded and initialized. */
 function bp_album_init() {
 
 	/* Define a constant that will hold the current version number of the component */
-	define ( 'BP_ALBUM_VERSION', '0.1.8.10' );
+	define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
 	
 	require( dirname( __FILE__ ) . '/includes/bp-album-core.php' );
 	
@@ -133,7 +134,7 @@ function bp_album_check_installed() {
 add_action( 'admin_menu', 'bp_album_check_installed' );
 
 function bp_album_compatibility_notices() {
-	$message = 'BuddyPress Album+ needs at least BuddyPress 1.2 to work.';
+	$message = 'BP Album needs at least BuddyPress 1.2 to work. Please either install or update BuddyPress';
 	if (!defined('BP_VERSION')){
 		$message .= ' Please install Buddypress';
 	}elseif(version_compare(BP_VERSION, '1.2','<') ){
@@ -141,7 +142,6 @@ function bp_album_compatibility_notices() {
 	}
 	echo '<div class="error fade"><p>'.$message.'</p></div>';
 }
-
 
 function bp_album_activate() {
 	bp_album_check_installed();

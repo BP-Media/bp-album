@@ -88,7 +88,7 @@ class BP_Album_Template {
 		
 		));
 		
-		 //var_dump( get_permalink() );
+		 // var_dump( get_permalink() );
 		
 		$this->pag_links = paginate_links( array(
 			'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
@@ -138,7 +138,7 @@ class BP_Album_Template {
 		$this->in_the_loop = true;
 		$this->picture = $this->next_picture();
 
-		if ( 0 == $this->current_picture ) // loop has just started
+		if ( 0 == $this->current_picture ) // Loop has just started
 			do_action('bp_album_loop_start');
 	}
 	
@@ -506,9 +506,9 @@ function bp_album_picture_has_activity(){
 }
 
 
-
 function bp_album_comments_enabled() {
         global $bp;
         return $bp->album->bp_album_enable_comments;
 }
+
 ?>

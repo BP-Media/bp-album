@@ -40,8 +40,6 @@ function bp_album_screen_single() {
 		_e( 'Edit Picture', 'bp-album' );
 	}
 
-
-
 	function bp_album_screen_edit_content() {
 
 		global $bp,$pictures_template;
@@ -111,8 +109,6 @@ function bp_album_screen_single() {
 		<?php endif;
 	}
 
-
-
 /**
  * bp_album_screen_pictures()
  *
@@ -141,10 +137,10 @@ function bp_album_screen_upload() {
 	 */
 	do_action( 'bp_album_screen_upload' );
 
-	//add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
+	// add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
 	add_action( 'bp_template_content', 'bp_album_screen_upload_content' );
 
-	/* Finally load the plugin template file. */
+	// Load the plugin template file
 	bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
 }
 
@@ -211,8 +207,6 @@ function bp_album_screen_upload() {
 	}
 
 
-
-
 /********************************************************************************
  * Action Functions
  *
@@ -232,7 +226,7 @@ function bp_album_action_upload() {
 		$error_flag = false;
 		$feedback_message = array();
 		
-		// check privacy
+		// Check privacy
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
 			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );
@@ -259,14 +253,14 @@ function bp_album_action_upload() {
                         }
 
 			$test = bp_album_get_picture_count(array('privacy'=>$priv_lvl));
-			//bp_album_dump($bp->album); die;
+			// bp_album_dump($bp->album); die;
 
 
 			if($priv_lvl == 10 ) {
 				$pic_limit = is_site_admin() ? false : null;
 			}
 
-			if( $pic_limit === null){ //costant don't exist
+			if( $pic_limit === null){ // Costant don't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}			
@@ -330,7 +324,7 @@ function bp_album_action_upload() {
 		
 		if(!$error_flag){  // If everything is ok handle the upload and move to the directory
 
-			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 ); //the upload handle get the upload dir from this filter
+			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 ); // The upload handle get the upload dir from this filter
 
 			$pic_org = wp_handle_upload( $_FILES['file'],array('action'=>'picture_upload') );
 
@@ -362,7 +356,7 @@ function bp_album_action_upload() {
 			else {
 
 				// If the install is running in multisite mode, 'BLOGUPLOADDIR' is automatically set by
-				// wordpress to something like "C:\xampp\htdocs/wp-content/blogs.dir/1/" even though the
+				// WordPress to something like "C:\xampp\htdocs/wp-content/blogs.dir/1/" even though the
 				// actual file is in "C:\xampp\htdocs/wp-content/uploads/", so we need to use ABSPATH
 
 				$abs_path_to_files = ABSPATH;
@@ -434,9 +428,7 @@ function bp_album_action_upload() {
 	
 }
 add_action('wp','bp_album_action_upload',3);
- 
- 
-
+  
 function bp_album_upload_dir() {
 	global $bp;
 
@@ -475,19 +467,19 @@ function bp_album_action_edit() {
 		
 		$id = $pictures_template->pictures[0]->id;
 		
-		// check title
+		// Check title
 		if(empty($_POST['title'])){
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture Title can not be blank.', 'bp-album' );
 		}
 		
-		// check description
+		// Check description
 		if( $bp->album->bp_album_require_description && empty($_POST['description'])){
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture Description can not be blank.', 'bp-album' );
 		}
 		
-		// check privacy
+		// Check privacy
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
 			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );	
@@ -513,7 +505,7 @@ function bp_album_action_edit() {
 
 			if($priv_lvl == 10 )
 				$pic_limit = is_site_admin() ? false : null;
-			if( $pic_limit === null){ //costant don't exist
+			if( $pic_limit === null){ // Costant don't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}
@@ -536,7 +528,7 @@ function bp_album_action_edit() {
 			}
 		}
 		
-		// check enable_comments
+		// Check enable_comments
 		if(bp_is_active('activity') && $bp->album->bp_album_enable_comments)
 			if(!isset($_POST['enable_comments']) || ($_POST['enable_comments']!= 0 && $_POST['enable_comments']!= 1)){
 				$error_flag = true;
@@ -545,7 +537,7 @@ function bp_album_action_edit() {
 		else
 			$_POST['enable_comments']==0;
 			
-		//echo "ACTION EDIT: title->{$_POST['title']} | description->{$_POST['description']}"; die;
+		// echo "ACTION EDIT: title->{$_POST['title']} | description->{$_POST['description']}"; die;
 
 		if( !$error_flag ){
 

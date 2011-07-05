@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This function should include all classes and functions that access the database.
+ * This Class should include all classes and functions that access the database.
  * In most BuddyPress components the database access classes are treated like a model,
  * where each table has a class that can be used to create an object populated with a row
  * from the corresponding database table.
@@ -313,7 +313,7 @@ class BP_Album_Picture {
 				if ($per_page){
 					if ( empty($offset) ) {
 						$limits = $wpdb->prepare('LIMIT %d, %d', ($page-1)*$per_page , $per_page);
-					} else { // we're ignoring $page and using 'offset'
+					} else { // We're ignoring $page and using 'offset'
 						$limits = $wpdb->prepare('LIMIT %d, %d', $offset , $per_page);
 					}
 				}

@@ -1,7 +1,5 @@
 <?php
 
-
-
 // This filter is a direct copy of "bp_activity_make_nofollow_filter_callback". It is pasted here and re-named because
 // if the user disables the activity stream, buddypress disables bp_activity_make_nofollow_filter_callback, causing an
 // error if we use it.
@@ -16,8 +14,7 @@ function bp_album_make_nofollow_filter( $text ) {
 		return "<a $text rel=\"nofollow\">";
 	}
 
-
-
+	
 add_filter( 'bp_album_title_before_save', 'wp_filter_kses', 1 );
 add_filter( 'bp_album_title_before_save', 'strip_tags', 1 );
 
@@ -51,10 +48,5 @@ add_filter( 'bp_album_get_picture_desc_truncate', 'convert_smilies' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'convert_chars' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'make_clickable' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'bp_album_make_nofollow_filter' );
-
-
-
-
-
 
 ?>

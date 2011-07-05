@@ -106,8 +106,8 @@ function bp_album_add_admin_menu() {
 
 	if( is_multisite()  ){
 
-		// If we're in a multisite install, hide the BMP admin menu from users. There are currently no
-		// options that individual users should be able to set by themselves
+		// If we're in a multisite install, hide the admin menu from users. There are currently no
+		// options that individual users should be able to configure.
 		return;
 	}
 	else {
@@ -122,7 +122,7 @@ function bp_album_add_admin_menu() {
 
 		require ( dirname( __FILE__ ) . '/bp-album-admin-local.php' );
 
-		add_submenu_page( 'bp-general-settings', __( 'BP Album+', 'bp-album' ), __( 'BP Album+', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+		add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
 		
 	}
 }
@@ -146,7 +146,7 @@ function bp_album_add_network_menu() {
 
 	require ( dirname( __FILE__ ) . '/bp-album-admin-network.php' );
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album+', 'bp-album' ), __( 'BP Album+', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
 
 }
 add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
@@ -275,7 +275,7 @@ function bp_album_load_subtemplate( $template_name ) {
 }
 
 function bp_album_upload_path(){
-	if ( bp_core_is_multisite() )
+	if ( is_multisite() )
 		$path = ABSPATH . get_blog_option( BP_ROOT_BLOG, 'upload_path' );
 	else {
 		$upload_path = get_option( 'upload_path' );
@@ -427,7 +427,7 @@ function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comment
     
 	global $bp;
 
-	//echo "EDIT PICTURE: title->{$title} | description->{$description}"; die;
+	// echo "EDIT PICTURE: title->{$title} | description->{$description}"; die;
 	
 	$pic = new BP_Album_Picture($id);
 
@@ -711,7 +711,6 @@ function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = 
 }
 
 
-
 /**
  * Adds *all* images in the database which users have marked as *public* to the user and site activity streams. Distributes the created activity
  * stream posts over the entire history of site to make the posts look natural. Detects images that already exist in the activity stream and
@@ -861,9 +860,5 @@ function bp_album_undo_rebuild_activity() {
 	return bp_activity_delete(array('component' => $bp->album->id,'secondary_item_id' => 999));
 
 }
-
-
-
-
 
 ?>
