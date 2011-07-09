@@ -45,6 +45,8 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * pl_PL (Polish)    by Jacek Wu
 * ru_RU (Russian)   by Chimit
 * zh_CN (Chinese)   by Calvin Hsu
+* de_DE (German) by Olaf Baumann
+* fr_FR (French) by Chouf1 / bp-fr.net
 
 
 * Please submit new/updated translations via our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)

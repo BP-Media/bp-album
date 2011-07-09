@@ -28,7 +28,8 @@ function bp_album_admin() {
 				$option_value = $_POST[$option_name]=='' ? false : intval($_POST[$option_name]);
 				update_site_option($option_name , $option_value);
 			}
-
+			
+			update_site_option( 'bp_album_max_upload_size', $_POST['bp_album_max_upload_size'] );
 			update_site_option( 'bp_album_keep_original', $_POST['bp_album_keep_original'] );
 			update_site_option( 'bp_album_require_description', $_POST['bp_album_require_description'] );
 			update_site_option( 'bp_album_enable_comments', $_POST['bp_album_enable_comments'] );
@@ -57,6 +58,7 @@ function bp_album_admin() {
 
         $bp_album_slug = get_site_option( 'bp_album_slug' );
         $bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
+        $bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );
         $bp_album_max_priv0_pictures = get_site_option( 'bp_album_max_priv0_pictures' );
         $bp_album_max_priv2_pictures = get_site_option( 'bp_album_max_priv2_pictures' );
         $bp_album_max_priv4_pictures = get_site_option( 'bp_album_max_priv4_pictures' );
@@ -141,7 +143,7 @@ function bp_album_admin() {
 
 		    <p>
 		    <?php 
-			_e("Bad slug names will disable the plugin. No Spaces. No punctuation. No special characters. No accents.", 'bp-album' );
+			_e("Bad slug names will disable the plugin. No Spaces. No Punctuation. No Special Characters. No Accents.", 'bp-album' );
 			echo " <br> ";
 			_e("{ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_- } ONLY.", 'bp-album' )
 		    ?>
@@ -149,7 +151,7 @@ function bp_album_admin() {
 		    
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><label for="target_uri"><?php _e('Name of BP Album+ slug', 'bp-album' ) ?></label></th>
+					<th scope="row"><label for="target_uri"><?php _e('Name of BP Album slug', 'bp-album' ) ?></label></th>
 					<td>
 						<input name="bp_album_slug" type="text" id="bp_album_slug" value="<?php echo esc_attr($bp_album_slug ); ?>" size="10" />
 					</td>
@@ -159,7 +161,7 @@ function bp_album_admin() {
 
                     <h3><?php _e('General', 'bp-album' ) ?></h3>
 
-			<table class="form-table">
+                                                         <table class="form-table">
                                 <tr>
 					<th scope="row"><?php _e('Force members to enter a description for each image', 'bp-album' ) ?></th>
 					<td>
@@ -183,7 +185,7 @@ function bp_album_admin() {
 				</tr>
 
 			</table>
-
+		    
                     <h3><?php _e( 'Album Size Limits', 'bp-album' ) ?></h3>
 
                     <p>
@@ -236,7 +238,13 @@ function bp_album_admin() {
 			</p>
 			
 			<table class="form-table">
-				<tr valign="top">
+			    <tr valign="top">
+					<th scope="row"><label for="target_uri"><?php _e('Maximum file (mb) size that can be uploaded', 'bp-album' ) ?></label></th>
+					<td>
+						<input name="bp_album_max_upload_size" type="text" id="bp_album_max_upload_size" value="<?php echo esc_attr( $bp_album_max_upload_size ); ?>" size="10" />
+					</td> 
+				</tr>
+	              <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Album Image Size', 'bp-album' ) ?></label></th>
 					<td>
 						<input name="bp_album_middle_size" type="text" id="bp_album_middle_size" value="<?php echo esc_attr( $bp_album_middle_size ); ?>" size="10" />

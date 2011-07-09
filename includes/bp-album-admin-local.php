@@ -34,7 +34,8 @@ function bp_album_admin() {
 				$option_value = $_POST[$option_name]=='' ? false : intval($_POST[$option_name]);
 				update_site_option($option_name , $option_value);
 			}
-
+			
+			update_site_option( 'bp_album_max_upload_size', $_POST['bp_album_max_upload_size'] );
 			update_site_option( 'bp_album_keep_original', $_POST['bp_album_keep_original'] );
 			update_site_option( 'bp_album_require_description', $_POST['bp_album_require_description'] );
 			update_site_option( 'bp_album_enable_comments', $_POST['bp_album_enable_comments'] );
@@ -62,6 +63,7 @@ function bp_album_admin() {
 
         $bp_album_slug = get_site_option( 'bp_album_slug' );
         $bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
+        $bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );
         $bp_album_max_priv0_pictures = get_site_option( 'bp_album_max_priv0_pictures' );
         $bp_album_max_priv2_pictures = get_site_option( 'bp_album_max_priv2_pictures' );
         $bp_album_max_priv4_pictures = get_site_option( 'bp_album_max_priv4_pictures' );
@@ -163,7 +165,7 @@ function bp_album_admin() {
 
                     <h3><?php _e('General', 'bp-album' ) ?></h3>
 
-			<table class="form-table">
+			<table class="form-table">  
                                 <tr>
 					<th scope="row"><?php _e('Force members to enter a description for each image', 'bp-album' ) ?></th>
 					<td>
@@ -201,7 +203,7 @@ function bp_album_admin() {
 						<input name="bp_album_max_pictures" type="text" id="example-setting-one" value="<?php echo esc_attr( $bp_album_max_pictures ); ?>" size="10" />
 					</td>
 				</tr>
-                                <tr>
+	              <tr>		
 					<th scope="row"><label for="target_uri"><?php _e('Max images visible to public allowed in a members album', 'bp-album' ) ?></label></th>
 					<td>
 						<input name="bp_album_max_priv0_pictures" type="text" id="bp_album_max_priv0_pictures" value="<?php echo esc_attr( $bp_album_max_priv0_pictures ); ?>" size="10" />
@@ -240,7 +242,13 @@ function bp_album_admin() {
 			</p>
 			
 			<table class="form-table">
-				<tr valign="top">
+			    <tr valign="top">
+					<th scope="row"><label for="target_uri"><?php _e('Maximum file size (mb) that can be uploaded', 'bp-album' ) ?></label></th>
+					<td>
+						<input name="bp_album_max_upload_size" type="text" id="bp_album_max_upload_size" value="<?php echo esc_attr( $bp_album_max_upload_size ); ?>" size="10" />
+					</td> 
+				</tr>
+	              <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Album Image Size', 'bp-album' ) ?></label></th>
 					<td>
 						<input name="bp_album_middle_size" type="text" id="bp_album_middle_size" value="<?php echo esc_attr( $bp_album_middle_size ); ?>" size="10" />

@@ -287,8 +287,8 @@ function bp_album_action_upload() {
 		
 		$uploadErrors = array(
 			0 => __("There is no error, the file uploaded with success", 'bp-album'),
-			1 => __("Your image was bigger than the maximum allowed file size of: ", 'bp-album') . size_format(CORE_MAX_FILE_SIZE),
-			2 => __("Your image was bigger than the maximum allowed file size of: ", 'bp-album') . size_format(CORE_MAX_FILE_SIZE),
+			1 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
+			2 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
 			3 => __("The uploaded file was only partially uploaded", 'bp-album'),
 			4 => __("No file was uploaded", 'bp-album'),
 			6 => __("Missing a temporary folder", 'bp-album')
@@ -301,9 +301,9 @@ function bp_album_action_upload() {
 				$error_flag = true;
 
 			}		
-			elseif ( $_FILES['file']['size'] > BP_AVATAR_ORIGINAL_MAX_FILESIZE ) {
+			elseif ( ($_FILES['file']['size'] / 1048576) > $bp->album->bp_album_max_upload_size ) {
 
-				$feedback_message[] = sprintf( __( 'The file you uploaded is too big. Please upload a file under %s', 'bp-album'), size_format(CORE_MAX_FILE_SIZE) );
+				$feedback_message[] = sprintf(__( 'The file you uploaded is too big. Please upload a file less than ' . $bp->album->bp_album_max_upload_size . 'MB', 'bp-album'));
 				$error_flag = true;
 				
 			}

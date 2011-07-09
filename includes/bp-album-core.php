@@ -68,6 +68,7 @@ function bp_album_setup_globals() {
         // Site configuration constants have been replaced with entries in the $bp->album global
 
         $bp->album->bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
+        $bp->album->bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );	
         $bp->album->bp_album_max_priv0_pictures = get_site_option( 'bp_album_max_priv0_pictures' );
         $bp->album->bp_album_max_priv2_pictures = get_site_option( 'bp_album_max_priv2_pictures' );
         $bp->album->bp_album_max_priv4_pictures = get_site_option( 'bp_album_max_priv4_pictures' );
