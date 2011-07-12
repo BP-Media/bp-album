@@ -40,7 +40,7 @@
 
 
 
-/*gallery*/
+/* Gallery */
 .picture-thumb-box {
 	text-align: center;
 	float: left;
@@ -64,7 +64,7 @@
 	top:3px;
 }
 
-/*single*/
+/* Single */
 .picture-single{
 	overflow: hidden;
 	position: relative;
@@ -170,7 +170,7 @@
 	margin-left: 0;
 }
 
-/*single ie6*/
+/* Single IE6 */
 * html .picture-inner-container a{
 	position: relative;
 	width: 100%;
@@ -184,12 +184,12 @@
 }
 
 
-/*edit*/
+/* Edit */
 #picture-edit-thumb {
 	float: right;
 }
 
-/*stream*/
+/* Stream */
 .picture-activity-thumb {
 	float:left;
 	margin-right: 10px;
@@ -199,6 +199,6 @@
 	width: 100px;
 }
 
-/*float clear*/
+/* Float Clear */
 .picture-gallery, .picture-adjacent-links { min-height: 0; _zoom: 1; }
 .picture-gallery:after, .picture-adjacent-links:after{ content: " "; height: 0; clear: both; display: block; }

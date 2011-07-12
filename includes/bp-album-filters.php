@@ -13,7 +13,6 @@ function bp_album_make_nofollow_filter( $text ) {
 		$text = str_replace( array( ' rel="nofollow"', " rel='nofollow'"), '', $text );
 		return "<a $text rel=\"nofollow\">";
 	}
-
 	
 add_filter( 'bp_album_title_before_save', 'wp_filter_kses', 1 );
 add_filter( 'bp_album_title_before_save', 'strip_tags', 1 );

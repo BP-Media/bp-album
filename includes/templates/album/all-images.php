@@ -15,7 +15,7 @@
 
 	$args['per_page']=24;
 	$args['ordersort']='DESC';
-	$args['orderkey']='id';		// Can also use 'random' to shuffle images, but will make site much slower
+	$args['orderkey']='id';	// You can also use 'random' to shuffle images, but this will slow down your site
 	$images_per_row = 5;
 
 
@@ -24,7 +24,7 @@
 
 	$row_count = 0;
 
-	// STEP 2: Test if items were found. If so, open the CSS block.
+	// STEP 2: Check items were found. If so, open the CSS block.
 	if ( bp_album_has_pictures() ) : ?>
 
 	    <div class="bpa-content-wrap" id="default">
@@ -33,7 +33,7 @@
 		    <tr>
 
 		    <?php
-		    // STEP 3: Iterate through the items the query has found, printing each one out.
+		    // STEP 3: Iterate through the items the query has found, printing out each one.
 		    while ( bp_album_has_pictures() ) : bp_album_the_picture(); ?>
 
 			<td>

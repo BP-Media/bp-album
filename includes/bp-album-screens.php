@@ -47,8 +47,6 @@ function bp_album_screen_single() {
 		if (bp_album_has_pictures() ) :  bp_album_the_picture();
 		$limit_info = bp_album_limits_info();
 
-
-		
 		$priv_str = array(
 			0 => __('Public','bp-album'),
 			2 => __('Registered members','bp-album'),
@@ -206,7 +204,6 @@ function bp_album_screen_upload() {
 		<?php endif;
 	}
 
-
 /********************************************************************************
  * Action Functions
  *
@@ -234,8 +231,6 @@ function bp_album_action_upload() {
 		} else {
 
 			$priv_lvl = intval($_POST['privacy']);
-
-
 
                         // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
                         switch ($priv_lvl) {
@@ -324,7 +319,7 @@ function bp_album_action_upload() {
 		
 		if(!$error_flag){  // If everything is ok handle the upload and move to the directory
 
-			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 ); // The upload handle get the upload dir from this filter
+			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 ); // The upload handle gets the upload dir from this filter
 
 			$pic_org = wp_handle_upload( $_FILES['file'],array('action'=>'picture_upload') );
 
@@ -339,7 +334,7 @@ function bp_album_action_upload() {
 
 			if( !is_multisite() ){
 
-			    	// Some site owners with single-blog installs of wordpress change the path of
+			    	// Some site owners with single-blog installs of WordPress change the path of
 				// their upload directory by setting the constant 'BLOGUPLOADDIR'. Handle this
 				// for compatibility with legacy sites.
 

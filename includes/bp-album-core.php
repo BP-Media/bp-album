@@ -129,7 +129,6 @@ function bp_album_add_admin_menu() {
 }
 add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 
-
 /**
  * bp_album_add_network_menu()
  *
@@ -151,8 +150,6 @@ function bp_album_add_network_menu() {
 
 }
 add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
-
-
 
 /**
  * bp_album_setup_nav()
@@ -295,7 +292,6 @@ function bp_album_upload_path(){
 	$path .= '/album';
 
 	return apply_filters( 'bp_album_upload_path', $path );
-
 }
 
 function bp_album_privacy_level_permitted(){
@@ -421,7 +417,6 @@ function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lv
 	$pic->pic_thumb_path = $pic_thumb_path;
 	
     return $pic->save() ? $pic->id : false;
-
 }
 
 function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comments){
@@ -489,7 +484,6 @@ function bp_album_delete_picture($id=false){
 		return false;
 }
 
-
 function bp_album_delete_by_user_id($user_id,$remove_files = true){
     
 	global $bp;
@@ -515,7 +509,6 @@ function bp_album_delete_by_user_id($user_id,$remove_files = true){
 	
 	return BP_Album_Picture::delete_by_user_id($user_id);
 }
-
 
 /********************************************************************************
  * Activity & Notification Functions
@@ -558,7 +551,6 @@ function bp_album_record_activity($pic_data) {
 	
 	$action = sprintf( __( '%s uploaded a new picture: %s', 'bp-album' ), bp_core_get_userlink($pic_data->owner_id), '<a href="'. $primary_link .'">'.$title.'</a>' );
 
-
 	// Image path workaround for virtual servers that do not return correct base URL
 	// ===========================================================================================================
 
@@ -575,16 +567,13 @@ function bp_album_record_activity($pic_data) {
 
 	// ===========================================================================================================
 
-
 	$content = '<p> <a href="'. $primary_link .'" class="picture-activity-thumb" title="'.$title.'"><img src="'. $image_path .'" /></a>'.$desc.'</p>';
 	
 	$type = 'bp_album_picture';
 	$item_id = $pic_data->id;
 	$hide_sitewide = $pic_data->privacy != 0;
 
-	return bp_activity_add( array( 'id' => $id, 'user_id' => $pic_data->owner_id, 'action' => $action, 'content' => $content, 'primary_link' => $primary_link, 'component' => $bp->album->id, 'type' => $type, 'item_id' => $item_id, 'recorded_time' => $pic_data->date_uploaded , 'hide_sitewide' => $hide_sitewide ) );
-	
-	
+	return bp_activity_add( array( 'id' => $id, 'user_id' => $pic_data->owner_id, 'action' => $action, 'content' => $content, 'primary_link' => $primary_link, 'component' => $bp->album->id, 'type' => $type, 'item_id' => $item_id, 'recorded_time' => $pic_data->date_uploaded , 'hide_sitewide' => $hide_sitewide ) );	
 }
 
 function bp_album_delete_activity( $user_id ) {
@@ -598,8 +587,6 @@ function bp_album_delete_activity( $user_id ) {
 	return bp_activity_delete(array('component' => $bp->album->id,'item_id' => $user_id));
 }
 
-
-
 /**
  * bp_album_remove_data()
  *
@@ -612,9 +599,10 @@ function bp_album_delete_user_data( $user_id ) {
 	
 	/* Remember to remove usermeta for this component for the user being deleted */
 	//delete_usermeta( $user_id, 'bp_album_some_setting' );
-
+	
 	do_action( 'bp_album_delete_user_data', $user_id );
 }
+
 add_action( 'wpmu_delete_user', 'bp_album_delete_user_data', 1 );
 add_action( 'delete_user', 'bp_album_delete_user_data', 1 );
 
@@ -628,12 +616,12 @@ add_action( 'delete_user', 'bp_album_delete_user_data', 1 );
  * @param string $info | Text to add to dumped variable html block, when dumping multiple variables.
  */
 
-function bp_album_dump(&$var, $info = FALSE)
-{
+function bp_album_dump(&$var, $info = FALSE) {
+    
     $scope = false;
     $prefix = 'unique';
     $suffix = 'value';
-
+    
     if($scope) $vals = $scope;
     else $vals = $GLOBALS;
 
@@ -648,8 +636,6 @@ function bp_album_dump(&$var, $info = FALSE)
     echo "</pre>";
 }
 
-
-
 /**
  * Recursive iterator function used by bp_album_dump()
  *
@@ -657,21 +643,21 @@ function bp_album_dump(&$var, $info = FALSE)
  * @see bp_album_dump()
  */
 
-function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = NULL)
-{
+function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = NULL) {
+    
     $do_dump_indent = "<span style='color:#eeeeee;'>|</span> &nbsp;&nbsp; ";
     $reference = $reference.$var_name;
     $keyvar = 'the_do_dump_recursion_protection_scheme'; $keyname = 'referenced_object_name';
 
-    if (is_array($var) && isset($var[$keyvar]))
-    {
+    if (is_array($var) && isset($var[$keyvar])) {
+
         $real_var = &$var[$keyvar];
         $real_name = &$var[$keyname];
         $type = ucfirst(gettype($real_var));
         echo "$indent$var_name <span style='color:#a2a2a2'>$type</span> = <span style='color:#e87800;'>&amp;$real_name</span><br>";
     }
-    else
-    {
+    else {
+	
         $var = array($keyvar => $var, $keyname => $reference);
         $avar = &$var[$keyvar];
 
@@ -682,8 +668,8 @@ function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = 
         elseif($type == "Boolean") $type_color = "<span style='color:#92008d'>";
         elseif($type == "NULL") $type_color = "<span style='color:black'>";
 
-        if(is_array($avar))
-        {
+        if(is_array($avar)) {
+	    
             $count = count($avar);
             echo "$indent" . ($var_name ? "$var_name => ":"") . "<span style='color:#a2a2a2'>$type ($count)</span><br>$indent(<br>";
             $keys = array_keys($avar);
@@ -694,8 +680,8 @@ function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = 
             }
             echo "$indent)<br>";
         }
-        elseif(is_object($avar))
-        {
+        elseif(is_object($avar)) {
+	    
             echo "$indent$var_name <span style='color:#a2a2a2'>$type</span><br>$indent(<br>";
             foreach($avar as $name=>$value) bp_album_do_dump($value, "$name", $indent.$do_dump_indent, $reference);
             echo "$indent)<br>";
@@ -710,7 +696,6 @@ function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = 
         $var = $var[$keyvar];
     }
 }
-
 
 /**
  * Adds *all* images in the database which users have marked as *public* to the user and site activity streams. Distributes the created activity
@@ -737,19 +722,16 @@ function bp_album_rebuild_activity() {
 	$sql =  $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE privacy = 0") ;
 	$results = $wpdb->get_results( $sql );
 
-
 	// Handle users that decide to run the function on sites with no uploaded content.
 	//--------------------------------------------------------------------------------
 	if(!$results){
 	    return;
 	}
 
-
 	// Create an activity stream post for each image, with a special secondary_item_id so we can easily find our posts
 	// ===============================================================================================================
 
 	foreach($results as $pic_data){
-
 
 		// Check if the item *already* has an activity stream post
 
@@ -768,7 +750,6 @@ function bp_album_rebuild_activity() {
 			$desc = ( strlen($desc)<= 400 ) ? $desc : substr($desc, 0 ,400-1).'&#8230;';
 
 			$action = sprintf( __( '%s uploaded a new picture: %s', 'bp-album' ), bp_core_get_userlink($pic_data->owner_id), '<a href="'. $primary_link .'">'.$title.'</a>' );
-
 
 			// Image path workaround for virtual servers that do not return correct base URL
 			// ===========================================================================================================
@@ -799,7 +780,6 @@ function bp_album_rebuild_activity() {
 	}
 	unset($results); unset($pic_data);
 
-
 	// Find the site's oldest activity stream post, get its date, and convert it into a unix integer timestamp. Note this handles
 	// sites with *zero* activity stream posts, because we added (potentially thousands of) them in the previous step.
 	// ================================================================================================================================
@@ -822,7 +802,6 @@ function bp_album_rebuild_activity() {
         $oldest_unix_date = mktime($hour, $minute, $second, $month, $day, $year);
 	$current_date = time();
 
-
 	// Set each of our marked activity stream items to a random date between the first activity stream post date and the current date
 	// ================================================================================================================================
 
@@ -841,7 +820,6 @@ function bp_album_rebuild_activity() {
 
 
 }
-
 
 /**
  * Removes all posts that were created by bp_album_rebuild_activity() from the activity stream.
