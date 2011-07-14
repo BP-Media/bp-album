@@ -296,7 +296,7 @@ function bp_album_action_upload() {
 				$error_flag = true;
 
 			}		
-			elseif ( ($_FILES['file']['size'] / 1048576) > $bp->album->bp_album_max_upload_size ) {
+			elseif ( ($_FILES['file']['size'] / (1024 * 1024)) > $bp->album->bp_album_max_upload_size ) {
 
 				$feedback_message[] = sprintf(__( 'The file you uploaded is too big. Please upload a file less than ' . $bp->album->bp_album_max_upload_size . 'MB', 'bp-album'));
 				$error_flag = true;
