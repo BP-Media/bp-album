@@ -252,7 +252,7 @@ function bp_album_action_upload() {
 
 
 			if($priv_lvl == 10 ) {
-				$pic_limit = is_site_admin() ? false : null;
+				$pic_limit = is_super_admin() ? false : null;
 			}
 
 			if( $pic_limit === null){ // Costant don't exist
@@ -281,7 +281,7 @@ function bp_album_action_upload() {
 		}
 		
 		$uploadErrors = array(
-			0 => __("There is no error, the file uploaded with success", 'bp-album'),
+			0 => __("There was no error, the file uploaded with success", 'bp-album'),
 			1 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
 			2 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
 			3 => __("The uploaded file was only partially uploaded", 'bp-album'),
@@ -499,7 +499,7 @@ function bp_album_action_edit() {
 
 
 			if($priv_lvl == 10 )
-				$pic_limit = is_site_admin() ? false : null;
+				$pic_limit = is_super_admin() ? false : null;
 			if( $pic_limit === null){ // Costant don't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	

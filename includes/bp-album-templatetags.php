@@ -78,16 +78,15 @@ class BP_Album_Template {
 		
 		$this->pag_links_global = paginate_links( array(
 			'base' => get_permalink() . '%#%',
-			'format' => '%#%',
+			'format' => '?page=%#%',
 			'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
 			'current' => (int) $this->pag_page,
 			'prev_text' => '&larr;',
 			'next_text' => '&rarr;',
 			'mid_size' => 1
 		    
-		
 		));
-		
+						
 		 // var_dump( get_permalink() );
 		
 		$this->pag_links = paginate_links( array(
@@ -110,7 +109,7 @@ class BP_Album_Template {
 			return true;
 		} elseif ( $this->current_picture + 1 == $this->picture_count && $this->picture_count > 0) {
 			do_action('bp_album_loop_end');
-			// Do some cleaning up after the loop
+
 			$this->rewind_pictures();
 		}
 
@@ -138,7 +137,7 @@ class BP_Album_Template {
 		$this->in_the_loop = true;
 		$this->picture = $this->next_picture();
 
-		if ( 0 == $this->current_picture ) // Loop has just started
+		if ( 0 == $this->current_picture )
 			do_action('bp_album_loop_start');
 	}
 	
@@ -259,7 +258,7 @@ function bp_album_picture_url() {
 	}
 
 function bp_album_picture_edit_link() {
-	if (bp_is_my_profile() || is_site_admin())
+	if (bp_is_my_profile() || is_super_admin())
 		echo '<a href="'.bp_album_get_picture_edit_url().'" class="picture-edit">'.__('Edit picture','bp-album').'</a>';
 }
 function bp_album_picture_edit_url() {
@@ -267,12 +266,12 @@ function bp_album_picture_edit_url() {
 }
 	function bp_album_get_picture_edit_url() {
 		global $bp,$pictures_template;
-		if (bp_is_my_profile() || is_site_admin())
+		if (bp_is_my_profile() || is_super_admin())
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_edit_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->edit_slug),'bp-album-edit-pic');
 	}
 
 function bp_album_picture_delete_link() {
-	if (bp_is_my_profile() || is_site_admin())
+	if (bp_is_my_profile() || is_super_admin())
 		echo '<a href="'.bp_album_get_picture_delete_url().'" class="picture-delete">'.__('Delete picture','bp-album').'</a>';
 }
 function bp_album_picture_delete_url() {
@@ -280,7 +279,7 @@ function bp_album_picture_delete_url() {
 }
 	function bp_album_get_picture_delete_url() {
 		global $bp,$pictures_template;
-		if (bp_is_my_profile() || is_site_admin())
+		if (bp_is_my_profile() || is_super_admin())
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_delete_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->delete_slug ),'bp-album-delete-pic');
 	}
 

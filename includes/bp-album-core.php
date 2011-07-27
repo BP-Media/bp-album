@@ -117,7 +117,7 @@ function bp_album_add_admin_menu() {
 
 		global $bp;
 
-		if ( !$bp->loggedin_user->is_site_admin ){
+		if ( !$bp->loggedin_user->is_super_admin ){
 			return false;
 		}
 
@@ -140,7 +140,7 @@ function bp_album_add_network_menu() {
 
 	global $bp;
 
-	if ( !$bp->loggedin_user->is_site_admin ){
+	if ( !$bp->loggedin_user->is_super_admin ){
 		return false;
 	}
 
@@ -299,7 +299,7 @@ function bp_album_privacy_level_permitted(){
 	
 	if(!is_user_logged_in())
 		return 0;
-	elseif(is_site_admin())
+	elseif(is_super_admin())
 		return 10;
 	elseif ( ($bp->displayed_user->id && $bp->displayed_user->id == $bp->loggedin_user->id) )
 		return 6;
@@ -336,7 +336,7 @@ function bp_album_limits_info(){
 			$return[$i]['current'] = false;
 		
 		if ($i==10){
-			$return[$i]['enabled'] = is_site_admin();
+			$return[$i]['enabled'] = is_super_admin();
 			$return[$i]['remaining'] = $return[$i]['enabled'];
 		} else {
                         // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
