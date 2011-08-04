@@ -2,22 +2,19 @@
 /*
 Plugin Name: BP-Album
 Plugin URI: http://code.google.com/p/buddypress-media/
-Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with current BuddyPress theme and includes Easy To Skin Templates.
+Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with the current BuddyPress theme and includes Easy To Skin Templates.
 Version: 0.1.8.11
-Revision Date: July 27, 2011
+Revision Date: August 03, 2011
 Requires at least: 3.1
-Tested up to: WP 3.2.1, BP 1.3, PHP 5.3.6
+Tested up to: WP 3.2.1, BP 1.5, PHP 5.3.6
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
 Author: The BP-Media Team
-Author URI: http://buddypress.org/community/groups/bp-album/forum/
+Author URI: http://code.google.com/p/buddypress-media/people/list
 Network: True
 */
 
 /* Only load the component if BuddyPress is loaded and initialized. */
 function bp_album_init() {
-
-	/* Define a constant that will hold the current version number of the component */
-	define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
 	
 	require( dirname( __FILE__ ) . '/includes/bp-album-core.php' );
 	
@@ -25,9 +22,6 @@ function bp_album_init() {
 }
 add_action( 'bp_init', 'bp_album_init' );
 
-
-// Moved this function to loader.php file because this is the standard place for it
-// and it will get very large once we add database upgrade code to migrate plugin versions
 function bp_album_install(){
 	global $bp,$wpdb;
 
@@ -69,7 +63,7 @@ function bp_album_install(){
             update_site_option( 'bp_album_slug', 'album');
 	
         if ( !get_site_option( 'bp_album_max_upload_size' ))
-            update_site_option( 'bp_album_max_upload_size', 6 ); /* 6mb */
+            update_site_option( 'bp_album_max_upload_size', 6 ); // 6mb
 
         if (!get_site_option( 'bp_album_max_pictures' ))
             update_site_option( 'bp_album_max_pictures', false);
@@ -119,7 +113,6 @@ function bp_album_install(){
 
 register_activation_hook( __FILE__, 'bp_album_install' );
 
-
 function bp_album_check_installed() {
 	global $wpdb, $bp;
 
@@ -137,7 +130,7 @@ function bp_album_check_installed() {
 add_action( 'admin_menu', 'bp_album_check_installed' );
 
 function bp_album_compatibility_notices() {
-	$message = 'BP Album needs at least BuddyPress 1.2 to work. Please either install or update BuddyPress';
+	$message = 'BP Album needs BuddyPress 1.2 or later to work. Please either install or update BuddyPress';
 	if (!defined('BP_VERSION')){
 		$message .= ' Please install Buddypress';
 	}elseif(version_compare(BP_VERSION, '1.2','<') ){

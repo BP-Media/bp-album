@@ -1,39 +1,47 @@
 <?php
 
-/* Define a constant that can be checked to see if the component is installed or not. */
-define ( 'BP_ALBUM_IS_INSTALLED', 1 );
-
-/* Define a constant that will hold the database version number that can be used for upgrading the DB
- *
- * NOTE: When table defintions change and you need to upgrade,
- * make sure that you increment this constant so that it runs the install function again.
-*/
-
-define ( 'BP_ALBUM_DB_VERSION', '0.2' );
-
-
-/* Translation support */
-load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
-
 /**
- * The next step is to include all the files you need for your component.
- * You should remove or comment out any files that you don't need.
+ * BP-ALBUM CORE
+ * Handles the overall operations of the plugin
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ * @package BP-Album
+ * @subpackage Main
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
  */
 
-/* The classes file should hold all database access classes and functions */
+
+
+// Constant to check if our plugin is installed
+define ( 'BP_ALBUM_IS_INSTALLED', 1 );
+
+// Constant for the plugin DB version
+define ( 'BP_ALBUM_DB_VERSION', '0.2' );
+
+// Current Version Number
+define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
+
+// Load translation files
+load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
+
+// Load the base classes
 require ( dirname( __FILE__ ) . '/bp-album-classes.php' );
 
-/* The screens file hold the screens functions */
+// Load the Screens
 require ( dirname( __FILE__ ) . '/bp-album-screens.php' );
 
-/* The cssjs file should set up and enqueue all CSS and JS files used by the component */
+// Load the CSS & JS files
 require ( dirname( __FILE__ ) . '/bp-album-cssjs.php' );
 
-/* The templatetags file should contain classes and functions designed for use in template files */
+// Load the Template Tags classes
 require ( dirname( __FILE__ ) . '/bp-album-templatetags.php' );
 
 
-/* The filters file should create and apply filters to component output functions. */
+// Load the filters class
 require ( dirname( __FILE__ ) . '/bp-album-filters.php' );
 
 require_once( ABSPATH . '/wp-admin/includes/image.php' );
@@ -43,8 +51,12 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
 /**
  * bp_album_setup_globals()
  *
- * Sets up global variables for your component.
+ * Sets up BP-Albums global variables.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8
  */
+
 function bp_album_setup_globals() {
     
 	global $bp, $wpdb;
@@ -54,7 +66,7 @@ function bp_album_setup_globals() {
 	
 	$bp->album = new stdClass();
 	
-	/* For internal identification */
+	// For internal identification
 	$bp->album->id = 'album';
 	$bp->album->table_name = $wpdb->base_prefix . 'bp_album';
 	$bp->album->format_notification_function = 'bp_album_format_notifications';
@@ -98,51 +110,41 @@ add_action( 'wp', 'bp_album_setup_globals', 2 );
 add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
 
 /**
- * bp_album_add_admin_menu()
- *
- * This function will add a WordPress wp-admin admin menu for your component under the
- * "BuddyPress" menu.
- */
+     * Adds the BP-Album admin menu to the wordpress "Site" admin menu
+     *
+     * @version 0.1.8.11
+     * @since 0.1.8
+     */
 function bp_album_add_admin_menu() {
 
 	if( is_multisite()  ){
-
-		// If we're in a multisite install, hide the admin menu from users. There are currently no
-		// options that individual users should be able to configure.
 		return;
 	}
+	
 	else {
+		if ( !is_super_admin() ){
+		    return false;
+	    }
 
-		// Otherwise, display our admin menu to the super-admin
+	require ( dirname( __FILE__ ) . '/bp-album-admin-local.php' );
 
-		global $bp;
-
-		if ( !$bp->loggedin_user->is_super_admin ){
-			return false;
-		}
-
-		require ( dirname( __FILE__ ) . '/bp-album-admin-local.php' );
-
-		add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
 		
 	}
 }
 add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 
-/**
- * bp_album_add_network_menu()
- *
- * This function will add a WordPress wp-admin admin menu for your component under the
- * "BuddyPress" menu.
- */
+    /**
+     * Adds the BP-Album admin menu to the wordpress "Network" admin menu.
+     *
+     * @version 0.1.8.11
+     * @since 0.1.8
+     */
 function bp_album_add_network_menu() {
     
-
-	global $bp;
-
-	if ( !$bp->loggedin_user->is_super_admin ){
-		return false;
-	}
+	if ( !is_super_admin() ){
+		    return false;
+	    }
 
 	require ( dirname( __FILE__ ) . '/bp-album-admin-network.php' );
 
@@ -788,18 +790,18 @@ function bp_album_rebuild_activity() {
 	$oldest_post_date = $wpdb->get_var( $sql );
 
 	$full = explode(' ', $oldest_post_date);
-        $date = explode('-', $full[0]);
-        $time = explode(':', $full[1]);
+	$date = explode('-', $full[0]);
+	    $time = explode(':', $full[1]);
 
-        $year = $date[0];
-        $month = $date[1];
-        $day = $date[2];
+	    $year = $date[0];
+	    $month = $date[1];
+	    $day = $date[2];
 
-        $hour = $time[0];
-        $minute = $time[1];
-        $second = $time[2];
+	    $hour = $time[0];
+	    $minute = $time[1];
+	    $second = $time[2];
 
-        $oldest_unix_date = mktime($hour, $minute, $second, $month, $day, $year);
+	    $oldest_unix_date = mktime($hour, $minute, $second, $month, $day, $year);
 	$current_date = time();
 
 	// Set each of our marked activity stream items to a random date between the first activity stream post date and the current date
@@ -817,8 +819,7 @@ function bp_album_rebuild_activity() {
 		$wpdb->query( $sql );	    
 	}
 	unset($results); unset($post);
-
-
+	
 }
 
 /**

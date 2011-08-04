@@ -18,8 +18,6 @@
  *		<p class="error">No Pics!</p>
  *
  *	<?php endif; ?>
- *
- * 
  */
 
 class BP_Album_Template {
@@ -87,8 +85,6 @@ class BP_Album_Template {
 		    
 		));
 						
-		 // var_dump( get_permalink() );
-		
 		$this->pag_links = paginate_links( array(
 			'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
 			'format' => '%#%',
