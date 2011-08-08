@@ -14,7 +14,7 @@
  * ========================================================================================================
  */
 
-
+//echo " CORE LOADED! ";
 
 // Constant to check if our plugin is installed
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
@@ -102,11 +102,7 @@ function bp_album_setup_globals() {
 		bp_album_query_pictures();
 	}	
 }
-/***
- * In versions of BuddyPress 1.2.2 and newer you will be able to use:
- * add_action( 'bp_setup_globals', 'bp_album_setup_globals' );
- */
-add_action( 'wp', 'bp_album_setup_globals', 2 );
+add_action( 'bp_setup_globals', 'bp_album_setup_globals', 2 );
 add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
 
 /**
@@ -171,12 +167,13 @@ function bp_album_setup_nav() {
 		'slug' => $bp->album->slug,
 		'position' => 80,
 		'screen_function' => 'bp_album_screen_pictures',
-		'default_subnav_slug' => $bp->album->pictures_slug
+		'default_subnav_slug' => $bp->album->pictures_slug,
+		'show_for_displayed_user' => true
 	) );
-	
+
 	$album_link = ($bp->displayed_user->id ? $bp->displayed_user->domain : $bp->loggedin_user->domain) . $bp->album->slug . '/';
 	$album_link_title = ($bp->displayed_user->id) ? bp_word_or_name( __( "My pictures", 'bp-album' ), __( "%s's pictures", 'bp-album' ) ,false,false) : __( "My pictures", 'bp-album' );
-	
+
 	bp_core_new_subnav_item( array(
 		'name' => $album_link_title,
 		'slug' => $bp->album->pictures_slug,
@@ -207,7 +204,9 @@ function bp_album_setup_nav() {
 		'position' => 30,
 		'user_has_access' => bp_is_my_profile() // Only the logged in user can access this on his/her profile
 	) );
+
 }
+add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
 
 function bp_album_single_subnav_filter($link,$user_nav_item){
 	global $bp,$pictures_template;
@@ -222,8 +221,9 @@ function bp_album_single_subnav_filter($link,$user_nav_item){
  * In versions of BuddyPress 1.2.2 and newer you will be able to use:
  * add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
  */
-add_action( 'wp', 'bp_album_setup_nav', 2 );
-add_action( 'admin_menu', 'bp_album_setup_nav', 2 );
+//add_action( 'wp', 'bp_album_setup_nav', 2 );
+//add_action( 'admin_menu', 'bp_album_setup_nav', 2 );
+
 
 /**
  * bp_album_load_template_filter()

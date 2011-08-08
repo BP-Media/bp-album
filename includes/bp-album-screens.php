@@ -36,76 +36,76 @@ function bp_album_screen_single() {
 	bp_core_load_template( apply_filters( 'bp_album_template_screen_single', 'album/single' ) );
 }
 
-	function bp_album_screen_edit_title() {
-		_e( 'Edit Picture', 'bp-album' );
-	}
+function bp_album_screen_edit_title() {
+	_e( 'Edit Picture', 'bp-album' );
+}
 
-	function bp_album_screen_edit_content() {
+function bp_album_screen_edit_content() {
 
-		global $bp,$pictures_template;
-		
-		if (bp_album_has_pictures() ) :  bp_album_the_picture();
-		$limit_info = bp_album_limits_info();
+	global $bp,$pictures_template;
 
-		$priv_str = array(
-			0 => __('Public','bp-album'),
-			2 => __('Registered members','bp-album'),
-			4 => __('Only friends','bp-album'),
-			6 => __('Private','bp-album'),
-			10 => __('Hidden (admin only)','bp-album')
-		);
-		?>		
-		<h4><?php _e( 'Edit Picture', 'bp-album' ) ?></h4>
+	if (bp_album_has_pictures() ) :  bp_album_the_picture();
+	$limit_info = bp_album_limits_info();
 
-		<form method="post" enctype="multipart/form-data" name="bp-album-edit-form" id="bp-album-edit-form" class="standard-form">
-            <img id="picture-edit-thumb" src='<?php bp_album_picture_thumb_url() ?>' />
-            <p>
-                <label><?php _e('Picture Title *', 'bp-album' ) ?><br />
-                <input type="text" name="title" id="picture-title" size="100" value="<?php 
-                	echo (empty($_POST['title'])) ? bp_album_get_picture_title() : wp_filter_kses($_POST['title']);
-                ?>"/></label>
-            </p>
-            <p>
-                <label><?php _e('Picture Description', 'bp-album' ) ?><br />
-                <textarea name="description" id="picture-description" rows="15"cols="40" ><?php
-                	echo (empty($_POST['description'])) ? bp_album_get_picture_desc() : wp_filter_kses($_POST['description']);
-                ?></textarea></label>
-            </p>
-            <p>
-                <label><?php _e('Visibility','bp-album') ?></label>
-                
-				<?php foreach($priv_str as $k => $str){
-						if($limit_info[$k]['enabled']) { ?>
-				
-				<label><input type="radio" name="privacy" value="<?php echo $k ?>" <?php
-					if($limit_info[$k]['current']) echo 'checked="checked" ';
-					if (!$limit_info[$k]['current'] && !$limit_info[$k]['remaining'])
-						echo 'disabled="disabled" />'.$str.' '.__( '(limit reached)', 'bp-album' );
-					else
-						echo '/>'.$str;
-				?></label>
-				
-				<?php }} ?>
-            </p>
-            <?php if(bp_is_active('activity') && $bp->album->bp_album_enable_comments ): ?>
-            <p>
-                <label><?php _e('Picture activity and comments','bp-album') ?></label>
-				<label><input type="radio" name="enable_comments" value="1" checked="checked" /><?php _e('Enable','bp-album') ?></label>
-				<label><input type="radio" name="enable_comments" value="0" /><?php _e('Disable','bp-album') ?></label>
-				<?php _e('If picture already has comments this will delete them','bp-album') ?>
-            </p>
-            <?php endif; ?>
-            <input type="submit" name="submit" id="submit" value="<?php _e( 'Save', 'bp-album' ) ?>"/>
+	$priv_str = array(
+		0 => __('Public','bp-album'),
+		2 => __('Registered members','bp-album'),
+		4 => __('Only friends','bp-album'),
+		6 => __('Private','bp-album'),
+		10 => __('Hidden (admin only)','bp-album')
+	);
+	?>
+	<h4><?php _e( 'Edit Picture', 'bp-album' ) ?></h4>
 
-			<?php
-			/* This is very important, don't leave it out. */
-			wp_nonce_field( 'bp-album-edit' );
-			?>
-		</form>
-		<?php else: ?>
-			<p><?php _e( "Either this url is not valid or you can't edit this picture.", 'bp-album' ) ?></p>
-		<?php endif;
-	}
+	<form method="post" enctype="multipart/form-data" name="bp-album-edit-form" id="bp-album-edit-form" class="standard-form">
+    <img id="picture-edit-thumb" src='<?php bp_album_picture_thumb_url() ?>' />
+    <p>
+	<label><?php _e('Picture Title *', 'bp-album' ) ?><br />
+	<input type="text" name="title" id="picture-title" size="100" value="<?php
+		echo (empty($_POST['title'])) ? bp_album_get_picture_title() : wp_filter_kses($_POST['title']);
+	?>"/></label>
+    </p>
+    <p>
+	<label><?php _e('Picture Description', 'bp-album' ) ?><br />
+	<textarea name="description" id="picture-description" rows="15"cols="40" ><?php
+		echo (empty($_POST['description'])) ? bp_album_get_picture_desc() : wp_filter_kses($_POST['description']);
+	?></textarea></label>
+    </p>
+    <p>
+	<label><?php _e('Visibility','bp-album') ?></label>
+
+			<?php foreach($priv_str as $k => $str){
+					if($limit_info[$k]['enabled']) { ?>
+
+			<label><input type="radio" name="privacy" value="<?php echo $k ?>" <?php
+				if($limit_info[$k]['current']) echo 'checked="checked" ';
+				if (!$limit_info[$k]['current'] && !$limit_info[$k]['remaining'])
+					echo 'disabled="disabled" />'.$str.' '.__( '(limit reached)', 'bp-album' );
+				else
+					echo '/>'.$str;
+			?></label>
+
+			<?php }} ?>
+    </p>
+    <?php if(bp_is_active('activity') && $bp->album->bp_album_enable_comments ): ?>
+    <p>
+	<label><?php _e('Picture activity and comments','bp-album') ?></label>
+			<label><input type="radio" name="enable_comments" value="1" checked="checked" /><?php _e('Enable','bp-album') ?></label>
+			<label><input type="radio" name="enable_comments" value="0" /><?php _e('Disable','bp-album') ?></label>
+			<?php _e('If picture already has comments this will delete them','bp-album') ?>
+    </p>
+    <?php endif; ?>
+    <input type="submit" name="submit" id="submit" value="<?php _e( 'Save', 'bp-album' ) ?>"/>
+
+		<?php
+		/* This is very important, don't leave it out. */
+		wp_nonce_field( 'bp-album-edit' );
+		?>
+	</form>
+	<?php else: ?>
+		<p><?php _e( "Either this url is not valid or you can't edit this picture.", 'bp-album' ) ?></p>
+	<?php endif;
+}
 
 /**
  * bp_album_screen_pictures()
@@ -129,10 +129,6 @@ function bp_album_screen_upload() {
     
 	global $bp;
 
-	/**
-	 * If the user has not Accepted or Rejected anything, then the code above will not run,
-	 * we can continue and load the template.
-	 */
 	do_action( 'bp_album_screen_upload' );
 
 	// add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
@@ -142,67 +138,68 @@ function bp_album_screen_upload() {
 	bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
 }
 
-	function bp_album_screen_upload_title() {
-		_e( 'Upload new picture', 'bp-album' );
-	}
 
-	function bp_album_screen_upload_content() {
+function bp_album_screen_upload_title() {
+	_e( 'Upload new picture', 'bp-album' );
+}
 
-		global $bp;
+function bp_album_screen_upload_content() {
 
-		$limit_info = bp_album_limits_info();
-		
-		$priv_str = array(
-			0 => __('Public','bp-album'),
-			2 => __('Registered members','bp-album'),
-			4 => __('Only friends','bp-album'),
-			6 => __('Private','bp-album'),
-		);
+	global $bp;
 
-		if( ($limit_info['all']['enabled'] == true) && ($limit_info['all']['remaining'] > 0) ):?>
-		
-		<h4><?php _e( 'Upload new picture', 'bp-album' ) ?></h4>
+	$limit_info = bp_album_limits_info();
 
-		<form method="post" enctype="multipart/form-data" name="bp-album-upload-form" id="bp-album-upload-form" class="standard-form">
-       
-            <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo CORE_MAX_FILE_SIZE; ?>" />
-            <input type="hidden" name="action" value="picture_upload" />
+	$priv_str = array(
+		0 => __('Public','bp-album'),
+		2 => __('Registered members','bp-album'),
+		4 => __('Only friends','bp-album'),
+		6 => __('Private','bp-album'),
+	);
 
-            <p>
-                <label><?php _e('Select Picture to Upload *', 'bp-album' ) ?><br />
-                <input type="file" name="file" id="file"/></label>
-            </p>
-            <p>
-                <label><?php _e('Visibility','bp-album') ?></label>
-                
-				<?php $checked=false;
-					foreach($priv_str as $k => $str){
-						if($limit_info[$k]['enabled']) {?>
-				
-				<label><input type="radio" name="privacy" value="<?php echo $k ?>" <?php
-					if(!$checked){
-						 echo 'checked="checked" ';
-						 $checked = true;
-					}
-					if (!$limit_info[$k]['current'] && !$limit_info[$k]['remaining'])
-						echo 'disabled="disabled" />'.$str.' '.__( '(limit reached)', 'bp-album' );
-					else
-						echo '/>'.$str;
-				?></label>
-				
-				<?php }} ?>
-            </p>
-            <input type="submit" name="submit" id="submit" value="<?php _e( 'Upload picture', 'bp-album' ) ?>"/>
+	if( ($limit_info['all']['enabled'] == true) && ($limit_info['all']['remaining'] > 0) ):?>
 
-			<?php
-			/* This is very important, don't leave it out. */
-			wp_nonce_field( 'bp-album-upload' );
-			?>
-		</form>
-		<?php else: ?>
-			<p><?php _e( 'You have reached the upload limit, delete some pictures if you want to upload more', 'bp-album' ) ?></p>
-		<?php endif;
-	}
+	<h4><?php _e( 'Upload new picture', 'bp-album' ) ?></h4>
+
+	<form method="post" enctype="multipart/form-data" name="bp-album-upload-form" id="bp-album-upload-form" class="standard-form">
+
+    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo CORE_MAX_FILE_SIZE; ?>" />
+    <input type="hidden" name="action" value="picture_upload" />
+
+    <p>
+	<label><?php _e('Select Picture to Upload *', 'bp-album' ) ?><br />
+	<input type="file" name="file" id="file"/></label>
+    </p>
+    <p>
+	<label><?php _e('Visibility','bp-album') ?></label>
+
+			<?php $checked=false;
+				foreach($priv_str as $k => $str){
+					if($limit_info[$k]['enabled']) {?>
+
+			<label><input type="radio" name="privacy" value="<?php echo $k ?>" <?php
+				if(!$checked){
+					 echo 'checked="checked" ';
+					 $checked = true;
+				}
+				if (!$limit_info[$k]['current'] && !$limit_info[$k]['remaining'])
+					echo 'disabled="disabled" />'.$str.' '.__( '(limit reached)', 'bp-album' );
+				else
+					echo '/>'.$str;
+			?></label>
+
+			<?php }} ?>
+    </p>
+    <input type="submit" name="submit" id="submit" value="<?php _e( 'Upload picture', 'bp-album' ) ?>"/>
+
+		<?php
+		/* This is very important, don't leave it out. */
+		wp_nonce_field( 'bp-album-upload' );
+		?>
+	</form>
+	<?php else: ?>
+		<p><?php _e( 'You have reached the upload limit, delete some pictures if you want to upload more', 'bp-album' ) ?></p>
+	<?php endif;
+}
 
 /********************************************************************************
  * Action Functions
@@ -422,7 +419,7 @@ function bp_album_action_upload() {
 	}
 	
 }
-add_action('wp','bp_album_action_upload',3);
+add_action('bp_actions','bp_album_action_upload',3);
   
 function bp_album_upload_dir() {
 	global $bp;
@@ -557,7 +554,7 @@ function bp_album_action_edit() {
 	}
 	
 }
-add_action('wp','bp_album_action_edit',3);
+add_action('bp_actions','bp_album_action_edit',3);
 
 function bp_album_action_delete() {
 
@@ -588,7 +585,7 @@ function bp_album_action_delete() {
 		die;
 	}
 }
-add_action('wp','bp_album_action_delete',3);
+add_action('bp_actions','bp_album_action_delete',3);
 
 /**
  * Displays sitewide featured content block

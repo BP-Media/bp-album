@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: BP-Album
+Plugin Name: BuddyPress Media
 Plugin URI: http://code.google.com/p/buddypress-media/
 Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with the current BuddyPress theme and includes Easy To Skin Templates.
 Version: 0.1.8.11
-Revision Date: August 03, 2011
-Requires at least: 3.1
+Revision Date: August 07, 2011
+Requires at least: 3.2
 Tested up to: WP 3.2.1, BP 1.5, PHP 5.3.6
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
 Author: The BP-Media Team
@@ -14,13 +14,15 @@ Network: True
 */
 
 /* Only load the component if BuddyPress is loaded and initialized. */
-function bp_album_init() {
+function bpm_init() {
 	
 	require( dirname( __FILE__ ) . '/includes/bp-album-core.php' );
 	
-	do_action('bp_album_init');
+	do_action('bpm_init');
+	
 }
-add_action( 'bp_init', 'bp_album_init' );
+add_action( 'bp_include', 'bpm_init' );
+
 
 function bp_album_install(){
 	global $bp,$wpdb;
@@ -110,8 +112,8 @@ function bp_album_install(){
 	}
 
 }
-
 register_activation_hook( __FILE__, 'bp_album_install' );
+
 
 function bp_album_check_installed() {
 	global $wpdb, $bp;
