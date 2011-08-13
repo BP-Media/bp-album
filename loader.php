@@ -22,7 +22,7 @@ Network: True
  */
 function bpm_init() {
 	
-	require( dirname( __FILE__ ) . '/includes/bp-album-core.php' );
+	require( dirname( __FILE__ ) . '/includes/bpa.core.php' );
 	
 	do_action('bpm_init');
 	
