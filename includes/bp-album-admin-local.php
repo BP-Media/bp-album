@@ -330,7 +330,7 @@ function bp_album_admin() {
 			</p>
 
 			<?php
-			/* This is very important, don't leave it out. */
+			// This is very important, don't leave it out.
 			wp_nonce_field( 'bpa-settings' );
 			?>
 		</form>

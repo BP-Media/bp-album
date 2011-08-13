@@ -17,15 +17,15 @@ function bp_album_add_js() {
 	if ( $bp->current_component == $bp->album->slug )
 		wp_enqueue_script( 'bp-album-js', WP_PLUGIN_URL .'/bp-album/includes/js/general.js' );
 }
-//add_action( 'template_redirect', 'bp_album_add_js', 1 );
+// add_action( 'template_redirect', 'bp_album_add_js', 1 );
 
 function bp_album_add_css() {
 	global $bp;
 
 		wp_enqueue_style( 'bp-album-css', WP_PLUGIN_URL .'/bp-album/includes/css/general.css' );
-		wp_print_styles();
-		
+		wp_print_styles();	
 }
+
 add_action( 'wp_head', 'bp_album_add_css' );
 
 ?>

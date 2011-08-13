@@ -13,7 +13,7 @@ function bp_album_admin() {
     
 	global $bp;
 
-	/* If the form has been submitted and the admin referrer checks out, save the settings */
+	// If the form has been submitted and the admin referrer checks out, save the settings
 	if ( isset( $_POST['submit'] )  ) { 
 
 		check_admin_referer('bpa-settings');
@@ -326,7 +326,7 @@ function bp_album_admin() {
 			</p>
 
 			<?php
-			/* This is very important, don't leave it out. */
+			// This is very important, don't leave it out.
 			wp_nonce_field( 'bpa-settings' );
 			?>
 		</form>

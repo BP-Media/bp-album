@@ -4,7 +4,7 @@ Plugin Name: BuddyPress Album
 Plugin URI: http://code.google.com/p/buddypress-media/
 Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with the current BuddyPress theme and includes Easy To Skin Templates.
 Version: 0.1.8.11
-Revision Date: August 07, 2011
+Revision Date: August 13, 2011
 Requires at least: 3.2
 Tested up to: WP 3.2.1, BP 1.5, PHP 5.3.6
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
@@ -13,7 +13,13 @@ Author URI: http://code.google.com/p/buddypress-media/people/list
 Network: True
 */
 
-/* Only load the component if BuddyPress is loaded and initialized. */
+/**
+ * Attaches BuddyPress Album to Buddypress.
+ *
+ * This function is REQUIRED to prevent WordPress from white-screening if BuddyPress Album is activated on a
+ * system that does not have an active copy of BuddyPress.
+ *
+ */
 function bpm_init() {
 	
 	require( dirname( __FILE__ ) . '/includes/bp-album-core.php' );
@@ -136,7 +142,7 @@ function bp_album_compatibility_notices() {
 	if (!defined('BP_VERSION')){
 		$message .= ' Please install Buddypress';
 	}elseif(version_compare(BP_VERSION, '1.2','<') ){
-		$message .= ' Your current version is '.BP_VERSION.' please updrade.';
+		$message .= ' Your current version is '.BP_VERSION.' please upgrade.';
 	}
 	echo '<div class="error fade"><p>'.$message.'</p></div>';
 }

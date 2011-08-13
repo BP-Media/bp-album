@@ -98,7 +98,7 @@ function bp_album_screen_edit_content() {
     <input type="submit" name="submit" id="submit" value="<?php _e( 'Save', 'bp-album' ) ?>"/>
 
 		<?php
-		/* This is very important, don't leave it out. */
+		// This is very important, don't leave it out. 
 		wp_nonce_field( 'bp-album-edit' );
 		?>
 	</form>
@@ -162,7 +162,7 @@ function bp_album_screen_upload_content() {
 
 	<form method="post" enctype="multipart/form-data" name="bp-album-upload-form" id="bp-album-upload-form" class="standard-form">
 
-    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo CORE_MAX_FILE_SIZE; ?>" />
+    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $bp->album->bp_album_max_upload_size; ?>" />
     <input type="hidden" name="action" value="picture_upload" />
 
     <p>
@@ -192,7 +192,7 @@ function bp_album_screen_upload_content() {
     <input type="submit" name="submit" id="submit" value="<?php _e( 'Upload picture', 'bp-album' ) ?>"/>
 
 		<?php
-		/* This is very important, don't leave it out. */
+		// This is very important, don't leave it out. 
 		wp_nonce_field( 'bp-album-upload' );
 		?>
 	</form>
@@ -245,14 +245,12 @@ function bp_album_action_upload() {
                         }
 
 			$test = bp_album_get_picture_count(array('privacy'=>$priv_lvl));
-			// bp_album_dump($bp->album); die;
-
 
 			if($priv_lvl == 10 ) {
 				$pic_limit = is_super_admin() ? false : null;
 			}
 
-			if( $pic_limit === null){ // Costant don't exist
+			if( $pic_limit === null){ // Costant doesn't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}			
@@ -401,10 +399,10 @@ function bp_album_action_upload() {
 			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
 
 				    if($id)
-					    $feedback_message[] = __('Picture uploaded. Now you can change picture details.', 'bp-album');
+					    $feedback_message[] = __('Picture uploaded. Now you can edit the pictures details.', 'bp-album');
 				    else {
 					    $error_flag = true;
-					    $feedback_message[] = __('There were problems saving picture details.', 'bp-album');
+					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
 			}
 		}
 		
@@ -497,7 +495,7 @@ function bp_album_action_edit() {
 
 			if($priv_lvl == 10 )
 				$pic_limit = is_super_admin() ? false : null;
-			if( $pic_limit === null){ // Costant don't exist
+			if( $pic_limit === null){ // Costant doesn't exist
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}
@@ -590,8 +588,8 @@ add_action('bp_actions','bp_album_action_delete',3);
 /**
  * Displays sitewide featured content block
  *
- * @version 0.1.9
- * @since 0.1.9
+ * @version 0.1.8.11
+ * @since 0.1.8.11
  */
 
 function bp_album_screen_all_images() {

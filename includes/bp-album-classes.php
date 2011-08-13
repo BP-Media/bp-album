@@ -1,13 +1,17 @@
 <?php
 
 /**
- * This Class should include all classes and functions that access the database.
- * In most BuddyPress components the database access classes are treated like a model,
- * where each table has a class that can be used to create an object populated with a row
- * from the corresponding database table.
- * 
- * By doing this you can easily save, update and delete records using the class, you're also
- * abstracting database access.
+ * BP-ALBUM DATABASE CLASS
+ * Handles database functionality for the plugin
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ * @package BP-Album
+ * @subpackage Database
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/wiki/DOCS_BPM_db_top
+ *
+ * ========================================================================================================
  */
 
 class BP_Album_Picture {
@@ -103,7 +107,7 @@ class BP_Album_Picture {
 		$this->title = apply_filters( 'bp_album_title_before_save', $this->title );
 		$this->description = apply_filters( 'bp_album_description_before_save', $this->description, $this->id );
 		
-		/* Call a before save action here */
+		// Call a before save action here
 		do_action( 'bp_album_data_before_save', $this );
 
 		// Don't try and save if there is no user ID.
@@ -187,7 +191,7 @@ class BP_Album_Picture {
 			$this->id = $wpdb->insert_id;
 		}	
 		
-		/* Add an after save action here */
+		// Add an after save action here
 		do_action( 'bp_album_data_after_save', $this ); 
 		
 		return $result;

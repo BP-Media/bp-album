@@ -25,10 +25,10 @@ define ( 'BP_ALBUM_DB_VERSION', '0.2' );
 // Current Version Number
 define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
 
-// Load translation files
+// Load Translation files
 load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
 
-// Load the base classes
+// Load the Base classes
 require ( dirname( __FILE__ ) . '/bp-album-classes.php' );
 
 // Load the Screens
@@ -41,7 +41,7 @@ require ( dirname( __FILE__ ) . '/bp-album-cssjs.php' );
 require ( dirname( __FILE__ ) . '/bp-album-templatetags.php' );
 
 
-// Load the filters class
+// Load the Filters class
 require ( dirname( __FILE__ ) . '/bp-album-filters.php' );
 
 require_once( ABSPATH . '/wp-admin/includes/image.php' );
@@ -51,7 +51,7 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
 /**
  * bp_album_setup_globals()
  *
- * Sets up BP-Albums global variables.
+ * Sets up BP-Album's global variables.
  * 
  * @version 0.1.8.11
  * @since 0.1.8
@@ -592,14 +592,14 @@ function bp_album_delete_activity( $user_id ) {
 /**
  * bp_album_remove_data()
  *
- * It's always wise to clean up after a user is deleted. This stops the database from filling up with
+ * It's always wise to clean up after a user has been deleted. This stops the database from filling up with
  * redundant information.
  */
 function bp_album_delete_user_data( $user_id ) {
 	
 	bp_album_delete_by_user_id( $user_id );
 	
-	/* Remember to remove usermeta for this component for the user being deleted */
+	// Remember to remove usermeta for this component for the user being deleted
 	//delete_usermeta( $user_id, 'bp_album_some_setting' );
 	
 	do_action( 'bp_album_delete_user_data', $user_id );
@@ -814,7 +814,6 @@ function bp_album_rebuild_activity() {
 
 		$new_date = gmdate( "Y-m-d H:i:s", rand($oldest_unix_date, $current_date) );
 
-		//$sql = $wpdb->prepare( "UPDATE {$bp->activity->table_name} SET date_cached = '{$new_date}', date_recorded = '{$new_date}' WHERE id = {$post->id}");
 		$sql = $wpdb->prepare( "UPDATE {$bp->activity->table_name} SET date_recorded = '{$new_date}' WHERE id = {$post->id}");
 		$wpdb->query( $sql );	    
 	}

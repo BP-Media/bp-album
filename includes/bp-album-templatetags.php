@@ -485,8 +485,7 @@ function bp_album_pictures_url() {
 			return apply_filters( 'bp_album_get_pictures_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->pictures_slug . '/');
 	}
 
-
-
+	
 function bp_album_picture_has_activity(){
 
 	global $bp,$pictures_template;

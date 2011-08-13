@@ -26,10 +26,10 @@ We handle all user support through our buddypress.org [Support Forum](http://bud
 We accept bug reports through our [Google Code Bug Tracker](http://code.google.com/p/buddypress-media/issues/list). Bug reports posted on wordpress.org will be ignored.
 
 = About This Release =
-This release fixes the following defects:
 
-* "Ability to upload files with extensions other than .jpg, .png, and .gif "
-* "Missing translation text domains on file upload error messages"
+* "Full compatibility with BuddyPress 1.5"
+* "Fixed the bug that was restricting file upload size"
+* "Added de_DE (German) and fr_FR (French) translations"
 
 This is an early release version of the plugin. You should test it extensively before using it on a production site. It provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
@@ -62,8 +62,9 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 == Changelog ==
 
 = 0.1.8.11 =
-* " Fixed the bug that was restricting file upload size"
-* " Added de_DE (German) and fr_FR (French) translations"
+* "Full compatibility with BuddyPress 1.5"
+* "Fixed the bug that was restricting file upload size"
+* "Added de_DE (German) and fr_FR (French) translations"
 
 = 0.1.8.10 =
 * "Ability to upload files with extensions other than .jpg, .png, and .gif"
