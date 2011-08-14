@@ -14,34 +14,16 @@
  * ========================================================================================================
  */
 
-//echo " CORE LOADED! ";
-
-// Constant to check if our plugin is installed
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
-
-// Constant for the plugin DB version
 define ( 'BP_ALBUM_DB_VERSION', '0.2' );
-
-// Current Version Number
 define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
 
-// Load Translation files
 load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
 
-// Load the Base classes
 require ( dirname( __FILE__ ) . '/bpa.classes.php' );
-
-// Load the Screens
 require ( dirname( __FILE__ ) . '/bpa.screens.php' );
-
-// Load the CSS & JS files
 require ( dirname( __FILE__ ) . '/bpa.cssjs.php' );
-
-// Load the Template Tags classes
 require ( dirname( __FILE__ ) . '/bpa.template.tags.php' );
-
-
-// Load the Filters class
 require ( dirname( __FILE__ ) . '/bpa.filters.php' );
 
 require_once( ABSPATH . '/wp-admin/includes/image.php' );
@@ -65,8 +47,7 @@ function bp_album_setup_globals() {
 		define ( 'BP_ALBUM_UPLOAD_PATH', bp_album_upload_path() );
 	
 	$bp->album = new stdClass();
-	
-	// For internal identification
+
 	$bp->album->id = 'album';
 	$bp->album->table_name = $wpdb->base_prefix . 'bp_album';
 	$bp->album->format_notification_function = 'bp_album_format_notifications';
@@ -76,8 +57,6 @@ function bp_album_setup_globals() {
 	$bp->album->upload_slug = 'upload';
 	$bp->album->delete_slug = 'delete';
 	$bp->album->edit_slug = 'edit';
-
-        // Site configuration constants have been replaced with entries in the $bp->album global
 
         $bp->album->bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
         $bp->album->bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );	
@@ -95,18 +74,18 @@ function bp_album_setup_globals() {
 	$bp->album->bp_album_url_remap = get_site_option( 'bp_album_url_remap' );
 	$bp->album->bp_album_base_url = get_site_option( 'bp_album_base_url' );
 
-	/* Register this in the active components array */
 	$bp->active_components[$bp->album->slug] = $bp->album->id;
 	
 	if ( $bp->current_component == $bp->album->slug && $bp->album->upload_slug != $bp->current_action  ){
 		bp_album_query_pictures();
 	}	
 }
+
 add_action( 'bp_setup_globals', 'bp_album_setup_globals', 2 );
 add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
 
 /**
-     * Adds the BP-Album admin menu to the wordpress "Site" admin menu
+     * Adds the BuddyPress Album admin menu to the wordpress "Site" admin menu
      *
      * @version 0.1.8.11
      * @since 0.1.8
@@ -117,7 +96,8 @@ function bp_album_add_admin_menu() {
 		return;
 	}
 	
-	else {
+	else 
+	    {
 		if ( !is_super_admin() ){
 		    return false;
 	    }
@@ -217,14 +197,6 @@ function bp_album_single_subnav_filter($link,$user_nav_item){
 	return $link;
 }
 
-/***
- * In versions of BuddyPress 1.2.2 and newer you will be able to use:
- * add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
- */
-//add_action( 'wp', 'bp_album_setup_nav', 2 );
-//add_action( 'admin_menu', 'bp_album_setup_nav', 2 );
-
-
 /**
  * bp_album_load_template_filter()
  *
@@ -238,13 +210,14 @@ function bp_album_single_subnav_filter($link,$user_nav_item){
  *
  * This will become clearer in the function bp_album_screen_one() when you want to load
  * a template file.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_load_template_filter( $found_template, $templates ) {
+    
 	global $bp;
 
-	/**
-	 * Only filter the template location when we're on the example component pages.
-	 */
 	if ( $bp->current_component != $bp->album->slug )
 		return $found_template;
 
@@ -264,6 +237,7 @@ function bp_album_load_template_filter( $found_template, $templates ) {
 add_filter( 'bp_located_template', 'bp_album_load_template_filter', 10, 2 );
 
 function bp_album_load_subtemplate( $template_name ) {
+    
 	if ( file_exists(STYLESHEETPATH . '/' . $template_name . '.php')) {
 		$located = STYLESHEETPATH . '/' . $template_name . '.php';
 	} else if ( file_exists(TEMPLATEPATH . '/' . $template_name . '.php') ) {
@@ -275,6 +249,7 @@ function bp_album_load_subtemplate( $template_name ) {
 }
 
 function bp_album_upload_path(){
+    
 	if ( is_multisite() )
 		$path = ABSPATH . get_blog_option( BP_ROOT_BLOG, 'upload_path' );
 	else {
@@ -282,7 +257,8 @@ function bp_album_upload_path(){
 		$upload_path = trim($upload_path);
 		if ( empty($upload_path) || '/wp-content/uploads' == $upload_path) {
 			$path = WP_CONTENT_DIR . '/uploads';
-		} else {
+		} 
+		else {
 			$path = $upload_path;
 			if ( 0 !== strpos($path, ABSPATH) ) {
 				// $dir is absolute, $upload_path is (maybe) relative to ABSPATH
@@ -340,8 +316,8 @@ function bp_album_limits_info(){
 		if ($i==10){
 			$return[$i]['enabled'] = is_super_admin();
 			$return[$i]['remaining'] = $return[$i]['enabled'];
-		} else {
-                        // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
+		} 
+		else {
                         switch ($i) {
                             case "0": $pic_limit = $bp->album->bp_album_max_priv0_pictures; break;
                             case "1": $pic_limit = $bp->album->bp_album_max_priv1_pictures; break;
@@ -389,16 +365,12 @@ function bp_album_get_prev_picture($args = ''){
 }
 
 function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path){
-	global $bp;
+	
+    global $bp;
 	
 	$pic = new BP_Album_Picture();
 	
 	$pic->owner_type = $owner_type;
-
-	// Filters have to be applied *here*, not in the database class. Otherwise they get run on
-	// data that has already been filtered, corrupting the db. Since filtered data is stored in
-	// the db, we also have to run the filters on submitted values before comparing them against
-	// the db, to determine if the data needs to be updated.
 
 	$title = esc_attr( strip_tags($title) );
 	$description = esc_attr( strip_tags($description) );
@@ -424,17 +396,10 @@ function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lv
 function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comments){
     
 	global $bp;
-
-	// echo "EDIT PICTURE: title->{$title} | description->{$description}"; die;
 	
 	$pic = new BP_Album_Picture($id);
 
 	if(!empty($pic->id)){
-
-		// Filters have to be applied *here*, not in the database class. Otherwise they get run on
-		// data that has already been filtered, corrupting the db. Since filtered data is stored in
-		// the db, we also have to run the filters on submitted values before comparing them against
-		// the db, to determine if the data needs to be updated.
 
 	    	$title = esc_attr( strip_tags($title) );
 		$description = esc_attr( strip_tags($description) );
@@ -448,7 +413,8 @@ function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comment
 		    $pic->privacy = $priv_lvl;
 		    
 		    $save_res = $pic->save();
-		}else{
+		}
+		else{
 		    $save_res = true;	
 		}
 	    
@@ -462,11 +428,13 @@ function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comment
 	    
 	    return $save_res;
     
-	}else
+	}
+	else
 		return false;
 }
 
 function bp_album_delete_picture($id=false){
+    
 	global $bp;
 	if(!$id) return false;
 	

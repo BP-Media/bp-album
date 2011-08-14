@@ -36,6 +36,9 @@ class BP_Album_Picture {
 	 * This is the constructor, it is auto run when the class is instantiated.
 	 * It will either create a new empty object if no ID is set, or fill the object
 	 * with a row from the table if an ID is provided.
+	 * 
+	 * @version 0.1.8.11
+	 * @since 0.1.8.0
 	 */
 	function BP_Album_Picture( $id = null ) {
 		$this->__construct( $id );
@@ -54,6 +57,9 @@ class BP_Album_Picture {
 	 *
 	 * This method will populate the object with a row from the database, based on the
 	 * ID passed to the constructor.
+	 * 
+	 * @version 0.1.8.11
+	 * @since 0.1.8.0
 	 */
 	function populate($id) {
 		global $wpdb,$bp;
@@ -83,42 +89,28 @@ class BP_Album_Picture {
 	 *
 	 * This method will save an object to the database. It will dynamically switch between
 	 * INSERT and UPDATE depending on whether or not the object already exists in the database.
+	 * 
+	 * @version 0.1.8.11
+	 * @since 0.1.8.0
 	 */
 	
 	function save() {
+	    
 		global $wpdb, $bp;
-		
-		/***
-		 * In this save() method, you should add pre-save filters to all the values you are saving to the
-		 * database. This helps with two things -
-		 * 
-		 * 1. Blanket filtering of values by plugins (for example if a plugin wanted to force a specific 
-		 *	  value for all saves)
-		 * 
-		 * 2. Security - attaching a wp_filter_kses() call to all filters, so you are not saving
-		 *	  potentially dangerous values to the database.
-		 *
-		 * It's very important that for number 2 above, you add a call like this for each filter to
-		 * 'bp-album-filters.php'
-		 *
-		 *   add_filter( 'example_data_fieldname1_before_save', 'wp_filter_kses' );
-		 */	
 		
 		$this->title = apply_filters( 'bp_album_title_before_save', $this->title );
 		$this->description = apply_filters( 'bp_album_description_before_save', $this->description, $this->id );
 		
-		// Call a before save action here
 		do_action( 'bp_album_data_before_save', $this );
 
-		// Don't try and save if there is no user ID.
 		if ( !$this->owner_id)
+		    
 			return false;
 
 		$this->title = esc_attr( strip_tags($this->title) );
 		$this->description = wp_filter_kses($this->description);
 
         if ( $this->id ) {
-			// Update
 			$sql = $wpdb->prepare(
 				"UPDATE {$bp->album->table_name} SET
 					owner_type = %s,
@@ -148,8 +140,8 @@ class BP_Album_Picture {
 					$this->pic_thumb_path,
 					$this->id
 				);
-		} else {
-			// Save
+		} 
+		else {
 			$sql = $wpdb->prepare(
 					"INSERT INTO {$bp->album->table_name} (
 						owner_type,
@@ -165,8 +157,7 @@ class BP_Album_Picture {
 						pic_thumb_url,
 						pic_thumb_path
 					) VALUES (
-						%s, %d, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s
-					)",
+						%s, %d, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s)",
 						$this->owner_type,
 						$this->owner_id,
 						$this->date_uploaded,
@@ -191,7 +182,6 @@ class BP_Album_Picture {
 			$this->id = $wpdb->insert_id;
 		}	
 		
-		// Add an after save action here
 		do_action( 'bp_album_data_after_save', $this ); 
 		
 		return $result;
@@ -201,27 +191,18 @@ class BP_Album_Picture {
 	 * delete()
 	 *
 	 * This method will delete the corresponding row for an object from the database.
+	 * 
+	 * @version 0.1.8.11
+	 * @since 0.1.8.0
 	 */	
 	function delete() {
 		global $wpdb, $bp;
 		
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM {$bp->album->table_name} WHERE id = %d", $this->id ) );
 	}
-
-	/* Static Functions */
-
-	/**
-	 * Static functions can be used to bulk delete items in a table, or do something that
-	 * doesn't necessarily warrant the instantiation of the class.
-	 *
-	 * Look at bp-core-classes.php for examples of mass delete.
-	 */
-
-	/*function delete_all() {
-
-	}*/
 	
 	public static function query_pictures($args = '',$count=false,$adjacent=false) {
+	    
 		global $bp, $wpdb;
 		
 		$defaults = bp_album_default_query_args();
@@ -293,11 +274,13 @@ class BP_Album_Picture {
 				$where .= $wpdb->prepare(' AND id > %d',$id);
 				$order = "ORDER BY id ASC";
 				$limits = "LIMIT 0, 1";
-			}elseif($adjacent == 'prev'){
+			}
+			elseif($adjacent == 'prev'){
 				$where .= $wpdb->prepare(' AND id < %d',$id);
 				$order = "ORDER BY id DESC";
 				$limits = "LIMIT 0, 1";
-			}elseif(!$id){
+			}
+			elseif(!$id){
 
 				if ($orderkey != 'id' && $orderkey != 'user_id' && $orderkey != 'status' && $orderkey != 'random') {
 				    $orderkey = 'id';
@@ -317,7 +300,8 @@ class BP_Album_Picture {
 				if ($per_page){
 					if ( empty($offset) ) {
 						$limits = $wpdb->prepare('LIMIT %d, %d', ($page-1)*$per_page , $per_page);
-					} else { // We're ignoring $page and using 'offset'
+					} 
+					else { // We're ignoring $page and using 'offset'
 						$limits = $wpdb->prepare('LIMIT %d, %d', $offset , $per_page);
 					}
 				}
@@ -326,7 +310,8 @@ class BP_Album_Picture {
 			$sql = $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE $where $order $limits") ;
 			$result = $wpdb->get_results( $sql );
 			
-		} else {
+		} 
+		else {
 			$select='';
 			$group='';
 			if ($groupby=='privacy'){
@@ -352,12 +337,14 @@ class BP_Album_Picture {
 	}
 
 	public static function delete_by_user_id($user_id) {
+	    
 		return BP_Album_Picture::delete_by_owner($user_id,'user');
 	}
 	
 }
 
 function bp_album_default_query_args(){
+    
 	global $bp;
 	$args = array();
 	

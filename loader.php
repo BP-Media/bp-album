@@ -29,7 +29,12 @@ function bpm_init() {
 }
 add_action( 'bp_include', 'bpm_init' );
 
-
+/**
+ * bp_album_install()
+ *
+ *  @version 0.1.8.11
+ *  @since 1.8
+ */
 function bp_album_install(){
 	global $bp,$wpdb;
 
