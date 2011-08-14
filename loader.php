@@ -19,6 +19,8 @@ Network: True
  * This function is REQUIRED to prevent WordPress from white-screening if BuddyPress Album is activated on a
  * system that does not have an active copy of BuddyPress.
  *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bpm_init() {
 	
@@ -33,14 +35,13 @@ add_action( 'bp_include', 'bpm_init' );
  * bp_album_install()
  *
  *  @version 0.1.8.11
- *  @since 1.8
+ *  @since 0.1.8.0
  */
 function bp_album_install(){
 	global $bp,$wpdb;
 
 	if ( !empty($wpdb->charset) )
 		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-
 
     $sql[] = "CREATE TABLE {$wpdb->base_prefix}bp_album (
 	            id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -66,11 +67,6 @@ function bp_album_install(){
 	dbDelta($sql);
 
 	update_site_option( 'bp-album-db-version', BP_ALBUM_DB_VERSION  );
-
-        // Write default options to the WP database if they do not exist,
-        // but do not overwrite options if the user has set them. Using
-        // update_site_option() because it puts data in a top-level WP
-        // table so it is easy to debug.
 
         if (!get_site_option( 'bp_album_slug' ))
             update_site_option( 'bp_album_slug', 'album');
@@ -125,7 +121,12 @@ function bp_album_install(){
 }
 register_activation_hook( __FILE__, 'bp_album_install' );
 
-
+/**
+ * bp_album_check_installed()
+ *
+ *  @version 0.1.8.11
+ *  @since 0.1.8.0
+ */
 function bp_album_check_installed() {
 	global $wpdb, $bp;
 
@@ -142,6 +143,12 @@ function bp_album_check_installed() {
 }
 add_action( 'admin_menu', 'bp_album_check_installed' );
 
+/**
+ * bp_album_compatibility_notices() 
+ *
+ *  @version 0.1.8.11
+ *  @since 0.1.8.0
+ */
 function bp_album_compatibility_notices() {
 	$message = 'BP Album needs BuddyPress 1.2 or later to work. Please either install or update BuddyPress';
 	if (!defined('BP_VERSION')){
@@ -152,6 +159,12 @@ function bp_album_compatibility_notices() {
 	echo '<div class="error fade"><p>'.$message.'</p></div>';
 }
 
+/**
+ * bp_album_activate()
+ *
+ *  @version 0.1.8.11
+ *  @since 0.1.8.0
+ */
 function bp_album_activate() {
 	bp_album_check_installed();
 
@@ -159,6 +172,12 @@ function bp_album_activate() {
 }
 register_activation_hook( __FILE__, 'bp_album_activate' );
 
+/**
+ * bp_album_deactivate()
+ *
+ *  @version 0.1.8.11
+ *  @since 0.1.8.0
+ */
 function bp_album_deactivate() {
 	do_action( 'bp_album_deactivate' );
 }
