@@ -8,6 +8,9 @@
  * bp_album_admin()
  *
  * Checks for form submission, saves component settings and outputs admin screen HTML.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_admin() {
     

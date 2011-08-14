@@ -5,6 +5,13 @@
 // error if we use it.
 // ===================================================================================================================
 
+
+/**
+ * bp_album_make_nofollow_filter()
+ *
+ *  @version 0.1.8.11
+ *  @since 1.8
+ */
 function bp_album_make_nofollow_filter( $text ) {
 	return preg_replace_callback( '|<a (.+?)>|i', 'bp_album_make_nofollow_filter_callback', $text );
 }

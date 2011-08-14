@@ -93,7 +93,6 @@ class BP_Album_Picture {
 	 * @version 0.1.8.11
 	 * @since 0.1.8.0
 	 */
-	
 	function save() {
 	    
 		global $wpdb, $bp;
@@ -343,6 +342,12 @@ class BP_Album_Picture {
 	
 }
 
+	/**
+	 * bp_album_default_query_args()
+	 *
+	 * @version 0.1.8.11
+	 * @since 0.1.8.0
+	 */
 function bp_album_default_query_args(){
     
 	global $bp;

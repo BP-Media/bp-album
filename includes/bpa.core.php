@@ -38,7 +38,6 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
  * @version 0.1.8.11
  * @since 0.1.8
  */
-
 function bp_album_setup_globals() {
     
 	global $bp, $wpdb;
@@ -85,11 +84,11 @@ add_action( 'bp_setup_globals', 'bp_album_setup_globals', 2 );
 add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
 
 /**
-     * Adds the BuddyPress Album admin menu to the wordpress "Site" admin menu
-     *
-     * @version 0.1.8.11
-     * @since 0.1.8
-     */
+ * Adds the BuddyPress Album admin menu to the wordpress "Site" admin menu
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_add_admin_menu() {
 
 	if( is_multisite()  ){
@@ -110,12 +109,12 @@ function bp_album_add_admin_menu() {
 }
 add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 
-    /**
-     * Adds the BP-Album admin menu to the wordpress "Network" admin menu.
-     *
-     * @version 0.1.8.11
-     * @since 0.1.8
-     */
+/**
+ * Adds the BP-Album admin menu to the wordpress "Network" admin menu.
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_add_network_menu() {
     
 	if ( !is_super_admin() ){
@@ -135,6 +134,9 @@ add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
  * Sets up the user profile navigation items for the component. This adds the top level nav
  * item and all the sub level nav items to the navigation array. This is then
  * rendered in the template.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_setup_nav() {
     
@@ -188,6 +190,12 @@ function bp_album_setup_nav() {
 }
 add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
 
+/**
+ * bp_album_single_subnav_filter()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_single_subnav_filter($link,$user_nav_item){
 	global $bp,$pictures_template;
 	
@@ -236,6 +244,12 @@ function bp_album_load_template_filter( $found_template, $templates ) {
 }
 add_filter( 'bp_located_template', 'bp_album_load_template_filter', 10, 2 );
 
+/**
+ * bp_album_load_subtemplate()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_load_subtemplate( $template_name ) {
     
 	if ( file_exists(STYLESHEETPATH . '/' . $template_name . '.php')) {
@@ -248,6 +262,12 @@ function bp_album_load_subtemplate( $template_name ) {
 	include ($located);
 }
 
+/**
+ * bp_album_upload_path()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_upload_path(){
     
 	if ( is_multisite() )
@@ -272,6 +292,12 @@ function bp_album_upload_path(){
 	return apply_filters( 'bp_album_upload_path', $path );
 }
 
+/**
+ * bp_album_privacy_level_permitted()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_privacy_level_permitted(){
 	global $bp;
 	
@@ -287,6 +313,12 @@ function bp_album_privacy_level_permitted(){
 		return 2;
 }
 
+/**
+ * bp_album_limits_info()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_limits_info(){
     
 	global $bp,$pictures_template;
@@ -348,22 +380,54 @@ function bp_album_limits_info(){
 	return $return;
 }
 
+/**
+ * bp_album_get_pictures()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_get_pictures($args = ''){
 	return BP_Album_Picture::query_pictures($args);
 }
 
+/**
+ * bp_album_get_picture_count()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_get_picture_count($args = ''){
 	return BP_Album_Picture::query_pictures($args,true);
 }
+
+/**
+ * bp_album_get_next_picture()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_get_next_picture($args = ''){
 	$result = BP_Album_Picture::query_pictures($args,false,'next');
 	return ($result)?$result[0]:false;
 }
+
+/**
+ * bp_album_get_prev_picture()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_get_prev_picture($args = ''){
 	$result = BP_Album_Picture::query_pictures($args,false,'prev');
 	return ($result)?$result[0]:false;
 }
 
+/**
+ * bp_album_add_picture()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path){
 	
     global $bp;
@@ -393,6 +457,12 @@ function bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lv
     return $pic->save() ? $pic->id : false;
 }
 
+/**
+ * bp_album_edit_picture()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comments){
     
 	global $bp;
@@ -433,6 +503,12 @@ function bp_album_edit_picture($id,$title,$description,$priv_lvl,$enable_comment
 		return false;
 }
 
+/**
+ * bp_album_delete_picture()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_delete_picture($id=false){
     
 	global $bp;
@@ -454,6 +530,12 @@ function bp_album_delete_picture($id=false){
 		return false;
 }
 
+/**
+ * bp_album_delete_by_user_id()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_delete_by_user_id($user_id,$remove_files = true){
     
 	global $bp;
@@ -487,7 +569,12 @@ function bp_album_delete_by_user_id($user_id,$remove_files = true){
  * notifications for the user and for this specific component.
  */
  
- 
+ /**
+ * bp_album_record_activity()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_record_activity($pic_data) {
 
 	global $bp;
@@ -546,6 +633,12 @@ function bp_album_record_activity($pic_data) {
 	return bp_activity_add( array( 'id' => $id, 'user_id' => $pic_data->owner_id, 'action' => $action, 'content' => $content, 'primary_link' => $primary_link, 'component' => $bp->album->id, 'type' => $type, 'item_id' => $item_id, 'recorded_time' => $pic_data->date_uploaded , 'hide_sitewide' => $hide_sitewide ) );	
 }
 
+ /**
+ * bp_album_delete_activity()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8
+ */
 function bp_album_delete_activity( $user_id ) {
     
 	global $bp;
@@ -562,13 +655,13 @@ function bp_album_delete_activity( $user_id ) {
  *
  * It's always wise to clean up after a user has been deleted. This stops the database from filling up with
  * redundant information.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_delete_user_data( $user_id ) {
 	
 	bp_album_delete_by_user_id( $user_id );
-	
-	// Remember to remove usermeta for this component for the user being deleted
-	//delete_usermeta( $user_id, 'bp_album_some_setting' );
 	
 	do_action( 'bp_album_delete_user_data', $user_id );
 }
@@ -678,6 +771,15 @@ function bp_album_do_dump(&$var, $var_name = NULL, $indent = NULL, $reference = 
  *
  */
 
+/**
+ * bp_album_rebuild_activity()
+ *
+ * It's always wise to clean up after a user has been deleted. This stops the database from filling up with
+ * redundant information.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_rebuild_activity() {
 
 	global $bp, $wpdb;
@@ -792,8 +894,9 @@ function bp_album_rebuild_activity() {
 /**
  * Removes all posts that were created by bp_album_rebuild_activity() from the activity stream.
  *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
-
 function bp_album_undo_rebuild_activity() {
 
 	global $bp, $wpdb;

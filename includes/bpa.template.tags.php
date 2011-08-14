@@ -62,7 +62,6 @@ class BP_Album_Template {
 		$total = bp_album_get_picture_count($r);
 		$this->pictures = bp_album_get_pictures($r);
 
-		// Item Requests
 		if ( !$max || $max >= $total )
 			$this->total_picture_count = $total;
 		else
@@ -99,7 +98,7 @@ class BP_Album_Template {
 			$this->picture = $this->pictures[0];
 		
 	}
-
+	
 	function has_pictures() {
 		if ( $this->current_picture + 1 < $this->picture_count ) {
 			return true;
@@ -169,11 +168,23 @@ function bp_album_the_picture() {
 	return $pictures_template->the_picture();
 }
 
+/**
+ * bp_album_has_pictures()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_has_pictures() {
 	global $pictures_template;
 	return $pictures_template->has_pictures();
 }
 
+/**
+ * bp_album_picture_title()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_title() {
 	echo bp_album_get_picture_title();
 }
@@ -181,7 +192,13 @@ function bp_album_picture_title() {
 		global $pictures_template;
 		return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->title);
 	}
-	
+
+/**
+ * bp_album_picture_title_truncate()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_title_truncate($length = 11) {
 	echo bp_album_get_picture_title_truncate($length);
 }	
@@ -216,6 +233,12 @@ function bp_album_picture_title_truncate($length = 11) {
 		
 	}
 
+/**
+ * bp_album_picture_desc()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_desc() {
 	echo bp_album_get_picture_desc();
 }
@@ -224,7 +247,12 @@ function bp_album_picture_desc() {
 		return apply_filters( 'bp_album_get_picture_desc', $pictures_template->picture->description );
 	}
 	
-
+/**
+ * bp_album_picture_desc_truncate()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_desc_truncate($words=55) {
 	echo bp_album_get_picture_desc_truncate($words);
 }
@@ -234,7 +262,13 @@ function bp_album_picture_desc_truncate($words=55) {
 		
 		return apply_filters( 'bp_album_get_picture_desc_truncate', $exc, $pictures_template->picture->description, $words );
 	}
-	
+
+/**
+ * bp_album_picture_id()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_id() {
 	echo bp_album_get_picture_id();
 }
@@ -243,6 +277,12 @@ function bp_album_picture_id() {
 		return apply_filters( 'bp_album_get_picture_id', $pictures_template->picture->id );
 	}
 
+/**
+ * bp_album_picture_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_url() {
 	echo bp_album_get_picture_url();
 }
@@ -253,10 +293,23 @@ function bp_album_picture_url() {
 		return apply_filters( 'bp_album_get_picture_url', $owner_domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->id  . '/');
 	}
 
+/**
+ * bp_album_picture_edit_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_edit_link() {
 	if (bp_is_my_profile() || is_super_admin())
 		echo '<a href="'.bp_album_get_picture_edit_url().'" class="picture-edit">'.__('Edit picture','bp-album').'</a>';
 }
+
+/**
+ * bp_album_picture_edit_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_edit_url() {
 	echo bp_album_get_picture_edit_url();
 }
@@ -266,10 +319,23 @@ function bp_album_picture_edit_url() {
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_edit_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->edit_slug),'bp-album-edit-pic');
 	}
 
+/**
+ * bp_album_picture_delete_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_delete_link() {
 	if (bp_is_my_profile() || is_super_admin())
 		echo '<a href="'.bp_album_get_picture_delete_url().'" class="picture-delete">'.__('Delete picture','bp-album').'</a>';
 }
+
+/**
+ * bp_album_picture_delete_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_delete_url() {
 	echo bp_album_get_picture_delete_url();
 }
@@ -279,7 +345,12 @@ function bp_album_picture_delete_url() {
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_delete_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->delete_slug ),'bp-album-delete-pic');
 	}
 
-
+/**
+ * bp_album_picture_original_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_original_url() {
 	echo bp_album_get_picture_original_url();
 }
@@ -301,7 +372,12 @@ function bp_album_picture_original_url() {
 		
 	}
 
-
+/**
+ * bp_album_picture_middle_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_middle_url() {
 	echo bp_album_get_picture_middle_url();
 }
@@ -322,7 +398,12 @@ function bp_album_picture_middle_url() {
 		}
 	}
 
-
+/**
+ * bp_album_picture_thumb_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_thumb_url() {
 	echo bp_album_get_picture_thumb_url();
 }
@@ -343,36 +424,64 @@ function bp_album_picture_thumb_url() {
 		}
 	}
 
+/**
+ * bp_album_total_picture_count()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_total_picture_count() {
 	echo bp_album_get_total_picture_count();
 }
 	function bp_album_get_total_picture_count() {
+	    
 		global $pictures_template;
 		return apply_filters( 'bp_album_get_total_picture_count', $pictures_template->total_picture_count );
 	}
 
+/**
+ * bp_album_picture_pagination()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_pagination($always_show = false) {
 	echo bp_album_get_picture_pagination($always_show);
 }
 	function bp_album_get_picture_pagination($always_show = false) {
+	    
 		global $pictures_template;
 		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
 		return apply_filters( 'bp_album_get_picture_pagination', $pictures_template->pag_links );
 	}
-	
+
+/**
+ * bp_album_picture_pagination_global()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_picture_pagination_global($always_show = false) {
 	echo bp_album_get_picture_pagination_global($always_show);
 }
 	function bp_album_get_picture_pagination_global($always_show = false) {
+	    
 		global $pictures_template;
 		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
 		return apply_filters( 'bp_album_get_picture_pagination_global', $pictures_template->pag_links_global );
 	}
 
+/**
+ * bp_album_adjacent_links()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */	
 function bp_album_adjacent_links() {
 	echo bp_album_get_adjacent_links();
 }
 	function bp_album_get_adjacent_links() {
+	    
 		global $pictures_template;
 		
 		if ($pictures_template->has_prev_pic() || $pictures_template->has_next_pic())
@@ -381,10 +490,17 @@ function bp_album_adjacent_links() {
 			return '<a href="'.bp_album_get_pictures_url().'" class="picture-album-link picture-no-adjacent-link"><span>'.bp_word_or_name( __( "Return to your album", 'bp-album' ), __( "Return to %s album", 'bp-album' ) ,false,false ).'</span> </a>';
 	}
 
+/**
+ * bp_album_next_picture_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_next_picture_link($text = ' &raquo;', $title = true) {
 	echo bp_album_get_next_picture_link($text, $title);
 }
 	function bp_album_get_next_picture_link($text = ' &raquo;', $title = true) {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_next_pic()){
 			$text = ( ($title)?bp_album_get_next_picture_title():'' ).$text;
@@ -394,10 +510,17 @@ function bp_album_next_picture_link($text = ' &raquo;', $title = true) {
 			return null;
 	}
 
+/**
+ * bp_album_next_picture_or_album_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_next_picture_or_album_link($text = ' &raquo;', $title = true) {
 	echo bp_album_get_next_picture_or_album_link($text, $title);
 }
 	function bp_album_get_next_picture_or_album_link($text = ' &raquo;', $title = true) {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_next_pic()){
 			$text = ( ($title)?bp_album_get_next_picture_title():'' ).$text;
@@ -407,31 +530,61 @@ function bp_album_next_picture_or_album_link($text = ' &raquo;', $title = true) 
 			return '<a href="'.bp_album_get_pictures_url().'" class="picture-album-link picture-next-link"> <span> '.bp_word_or_name( __( "Return to your album", 'bp-album' ), __( "Return to %s album", 'bp-album' ) ,false,false ).'</span></a>';
 	}
 
+/**
+ * bp_album_next_picture_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_next_picture_url() {
 	echo bp_album_get_next_picture_url();
 }
 	function bp_album_get_next_picture_url() {
+	    
 		global $bp,$pictures_template;
 		if ($pictures_template->has_next_pic())
 			return apply_filters( 'bp_album_get_next_picture_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->next_pic->id  . '/');
 	}
+
+/**
+ * bp_album_next_picture_title()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_next_picture_title() {
 	echo bp_album_get_next_picture_title();
 }
 	function bp_album_get_next_picture_title() {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_next_pic())
 			return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->next_pic->title );
 	}
+	
+/**
+ * bp_album_has_next_picture()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_has_next_picture() {
+    
 	global $bp,$pictures_template;
 	return $pictures_template->has_next_pic();
 }
 
+/**
+ * bp_album_prev_picture_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_prev_picture_link($text = '&laquo; ', $title = true) {
 	echo bp_album_get_prev_picture_link($text, $title);
 }
 	function bp_album_get_prev_picture_link($text = '&laquo; ', $title = true) {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_prev_pic()){
 			$text .= ($title)?bp_album_get_prev_picture_title():'';
@@ -441,10 +594,17 @@ function bp_album_prev_picture_link($text = '&laquo; ', $title = true) {
 			return null;
 	}
 
+/**
+ * bp_album_prev_picture_or_album_link()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_prev_picture_or_album_link($text = '&laquo; ', $title = true) {
 	echo bp_album_get_prev_picture_or_album_link($text, $title);
 }
 	function bp_album_get_prev_picture_or_album_link($text = '&laquo; ', $title = true) {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_prev_pic()){
 			$text .= ($title)?bp_album_get_prev_picture_title():'';
@@ -454,38 +614,72 @@ function bp_album_prev_picture_or_album_link($text = '&laquo; ', $title = true) 
 			return '<a href="'.bp_album_get_pictures_url().'" class="picture-album-link picture-prev-link"><span> '.bp_word_or_name( __( "Return to your album", 'bp-album' ), __( "Return to %s album", 'bp-album' ) ,false,false ).'</span> </a>';
 	}
 
+/**
+ * bp_album_prev_picture_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_prev_picture_url() {
 	echo bp_album_get_prev_picture_url();
 }
 	function bp_album_get_prev_picture_url() {
+	    
 		global $bp,$pictures_template;
 		if ($pictures_template->has_prev_pic())
 			return apply_filters( 'bp_album_get_prev_picture_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->prev_pic->id . '/');
 	}
 
+/**
+ * bp_album_prev_picture_title()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_prev_picture_title() {
 	echo bp_album_get_prev_picture_title();
 }
 	function bp_album_get_prev_picture_title() {
+	    
 		global $pictures_template;
 		if ($pictures_template->has_prev_pic())
 			return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->prev_pic->title );
 	}
+	
+/**
+ * bp_album_has_prev_picture()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_has_prev_picture() {
+    
 	global $pictures_template;
 	return $pictures_template->has_prev_pic();
 }
 
-
+/**
+ * bp_album_pictures_url()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_pictures_url() {
+    
 	echo bp_album_get_pictures_url();
+	
 }
 	function bp_album_get_pictures_url() {
 		global $bp;
 			return apply_filters( 'bp_album_get_pictures_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->pictures_slug . '/');
 	}
 
-	
+/**
+ * bp_album_picture_has_activity()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */	
 function bp_album_picture_has_activity(){
 
 	global $bp,$pictures_template;
@@ -499,10 +693,18 @@ function bp_album_picture_has_activity(){
 	return bp_has_activities( array('object'=> $bp->album->id,'primary_id'=>$pictures_template->picture->id , 'show_hidden' => true) );
 }
 
-
+/**
+ * bp_album_comments_enabled()
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_comments_enabled() {
+    
         global $bp;
+
         return $bp->album->bp_album_enable_comments;
+	
 }
 
 ?>

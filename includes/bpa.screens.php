@@ -12,8 +12,10 @@
  * bp_album_screen_picture()
  *
  * Single picture
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */ 
-
 function bp_album_screen_single() {
 
 	global $bp,$pictures_template;
@@ -36,10 +38,22 @@ function bp_album_screen_single() {
 	bp_core_load_template( apply_filters( 'bp_album_template_screen_single', 'album/single' ) );
 }
 
+/**
+ * bp_album_screen_edit_title()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */ 
 function bp_album_screen_edit_title() {
 	_e( 'Edit Picture', 'bp-album' );
 }
 
+/**
+ * bp_album_screen_edit_content()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */ 
 function bp_album_screen_edit_content() {
 
 	global $bp,$pictures_template;
@@ -111,6 +125,9 @@ function bp_album_screen_edit_content() {
  * bp_album_screen_pictures()
  *
  * An album page
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.11
  */
 function bp_album_screen_pictures() {
 
@@ -124,6 +141,9 @@ function bp_album_screen_pictures() {
  * bp_album_screen_upload()
  *
  * Sets up and displays the screen output for the sub nav item "example/screen-two"
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_screen_upload() {
     
@@ -138,11 +158,22 @@ function bp_album_screen_upload() {
 	bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
 }
 
-
+/**
+ * bp_album_screen_upload_title()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_screen_upload_title() {
 	_e( 'Upload new picture', 'bp-album' );
 }
 
+/**
+ * bp_album_screen_upload_content()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_screen_upload_content() {
 
 	global $bp;
@@ -209,6 +240,12 @@ function bp_album_screen_upload_content() {
  * back to the default screen after execution.
  */
 
+/**
+ * bp_album_action_upload()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_action_upload() {
     
 	global $bp;
@@ -229,7 +266,6 @@ function bp_album_action_upload() {
 
 			$priv_lvl = intval($_POST['privacy']);
 
-                        // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
                         switch ($priv_lvl) {
                             case "0": $pic_limit = $bp->album->bp_album_max_priv0_pictures; break;
                             case "1": $pic_limit = $bp->album->bp_album_max_priv1_pictures; break;
@@ -243,14 +279,13 @@ function bp_album_action_upload() {
                             case "9": $pic_limit = $bp->album->bp_album_max_priv9_pictures; break;
                             default: $pic_limit = null;
                         }
-
 			$test = bp_album_get_picture_count(array('privacy'=>$priv_lvl));
 
 			if($priv_lvl == 10 ) {
 				$pic_limit = is_super_admin() ? false : null;
 			}
 
-			if( $pic_limit === null){ // Costant doesn't exist
+			if( $pic_limit === null){
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}			
@@ -312,9 +347,9 @@ function bp_album_action_upload() {
 		
 		}
 		
-		if(!$error_flag){  // If everything is ok handle the upload and move to the directory
+		if(!$error_flag){
 
-			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 ); // The upload handle gets the upload dir from this filter
+			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 );
 
 			$pic_org = wp_handle_upload( $_FILES['file'],array('action'=>'picture_upload') );
 
@@ -324,8 +359,6 @@ function bp_album_action_upload() {
 			}
 		}		
 		if(!$error_flag){  
-
-			// Handle blog upload directories
 
 			if( !is_multisite() ){
 
@@ -418,7 +451,13 @@ function bp_album_action_upload() {
 	
 }
 add_action('bp_actions','bp_album_action_upload',3);
-  
+ 
+/**
+ * bp_album_upload_dir() 
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_upload_dir() {
 	global $bp;
 
@@ -444,6 +483,12 @@ function bp_album_upload_dir() {
 
 }
 
+/**
+ * bp_album_action_edit()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_action_edit() {
     
 	global $bp,$pictures_template;
@@ -457,27 +502,23 @@ function bp_album_action_edit() {
 		
 		$id = $pictures_template->pictures[0]->id;
 		
-		// Check title
 		if(empty($_POST['title'])){
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture Title can not be blank.', 'bp-album' );
 		}
-		
-		// Check description
+
 		if( $bp->album->bp_album_require_description && empty($_POST['description'])){
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture Description can not be blank.', 'bp-album' );
 		}
 		
-		// Check privacy
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
 			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );	
 		}
 		else {
 			$priv_lvl = intval($_POST['privacy']);
-                       
-                        // TODO: Refactor this, and the bp_album_max_privXX variable as an array.
+
                         switch ($priv_lvl) {
                             case "0": $pic_limit = $bp->album->bp_album_max_priv0_pictures; break;
                             case "1": $pic_limit = $bp->album->bp_album_max_priv1_pictures; break;
@@ -495,7 +536,7 @@ function bp_album_action_edit() {
 
 			if($priv_lvl == 10 )
 				$pic_limit = is_super_admin() ? false : null;
-			if( $pic_limit === null){ // Costant doesn't exist
+			if( $pic_limit === null){
 				$error_flag = true;
 				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
 			}
@@ -517,8 +558,7 @@ function bp_album_action_edit() {
 				}
 			}
 		}
-		
-		// Check enable_comments
+
 		if(bp_is_active('activity') && $bp->album->bp_album_enable_comments)
 			if(!isset($_POST['enable_comments']) || ($_POST['enable_comments']!= 0 && $_POST['enable_comments']!= 1)){
 				$error_flag = true;
@@ -526,8 +566,6 @@ function bp_album_action_edit() {
 			}
 		else
 			$_POST['enable_comments']==0;
-			
-		// echo "ACTION EDIT: title->{$_POST['title']} | description->{$_POST['description']}"; die;
 
 		if( !$error_flag ){
 
@@ -554,6 +592,12 @@ function bp_album_action_edit() {
 }
 add_action('bp_actions','bp_album_action_edit',3);
 
+/**
+ * bp_album_action_delete()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_action_delete() {
 
 	global $bp,$pictures_template;
@@ -586,12 +630,13 @@ function bp_album_action_delete() {
 add_action('bp_actions','bp_album_action_delete',3);
 
 /**
+ * bp_album_screen_all_images()
+ * 
  * Displays sitewide featured content block
  *
  * @version 0.1.8.11
  * @since 0.1.8.11
  */
-
 function bp_album_screen_all_images() {
 
         global $bp;

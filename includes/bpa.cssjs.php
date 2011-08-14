@@ -10,6 +10,9 @@
  *
  * This function will enqueue the components Javascript file, so that you can make
  * use of any Javascript you bundle with your component within your interface screens.
+ * 
+ * @version 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_add_js() {
 	global $bp;
@@ -19,6 +22,12 @@ function bp_album_add_js() {
 }
 // add_action( 'template_redirect', 'bp_album_add_js', 1 );
 
+/**
+ * bp_album_add_css()
+ *
+ * @version 0.1.8.11
+ * @since 0.1.8.0
+ */
 function bp_album_add_css() {
 	global $bp;
 
