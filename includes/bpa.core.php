@@ -36,7 +36,7 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
  * Sets up BP-Album's global variables.
  * 
  * @version 0.1.8.11
- * @since 0.1.8
+ * @since 0.1.8.0
  */
 function bp_album_setup_globals() {
     

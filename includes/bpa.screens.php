@@ -127,7 +127,7 @@ function bp_album_screen_edit_content() {
  * An album page
  * 
  * @version 0.1.8.11
- * @since 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_screen_pictures() {
 
@@ -256,8 +256,7 @@ function bp_album_action_upload() {
 		
 		$error_flag = false;
 		$feedback_message = array();
-		
-		// Check privacy
+
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
 			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );
@@ -635,7 +634,7 @@ add_action('bp_actions','bp_album_action_delete',3);
  * Displays sitewide featured content block
  *
  * @version 0.1.8.11
- * @since 0.1.8.11
+ * @since 0.1.8.0
  */
 function bp_album_screen_all_images() {
 

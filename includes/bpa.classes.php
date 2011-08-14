@@ -5,7 +5,7 @@
  * Handles database functionality for the plugin
  *
  * @version 0.1.8.11
- * @since 0.1.8
+ * @since 0.1.8.0
  * @package BP-Album
  * @subpackage Database
  * @license GPL v2.0
