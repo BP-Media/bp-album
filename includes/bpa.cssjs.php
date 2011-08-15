@@ -15,6 +15,7 @@
  * @since 0.1.8.0
  */
 function bp_album_add_js() {
+    
 	global $bp;
 
 	if ( $bp->current_component == $bp->album->slug )
@@ -29,6 +30,7 @@ function bp_album_add_js() {
  * @since 0.1.8.0
  */
 function bp_album_add_css() {
+    
 	global $bp;
 
 		wp_enqueue_style( 'bp-album-css', WP_PLUGIN_URL .'/bp-album/includes/css/general.css' );

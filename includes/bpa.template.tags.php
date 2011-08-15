@@ -51,13 +51,6 @@ class BP_Album_Template {
 		$this->pag_per_page = $per_page;
 		$this->owner_id = $owner_id;
 		$this->privacy= $privacy;
-		
-		/***
-		 * You can use the "type" variable to fetch different things to output.
-		 * For example on the groups template loop, you can fetch groups by "newest", "active", "alphabetical"
-		 * and more. This would be the "type". You can then call different functions to fetch those
-		 * different results.
-		 */
 
 		$total = bp_album_get_picture_count($r);
 		$this->pictures = bp_album_get_pictures($r);
@@ -156,6 +149,7 @@ class BP_Album_Template {
 }
 
 function bp_album_query_pictures( $args = '' ) {
+    
 	global $pictures_template;
 
 	$pictures_template = new BP_Album_Template( $args );
@@ -164,6 +158,7 @@ function bp_album_query_pictures( $args = '' ) {
 }
 
 function bp_album_the_picture() {
+    
 	global $pictures_template;
 	return $pictures_template->the_picture();
 }
@@ -175,6 +170,7 @@ function bp_album_the_picture() {
  * @since 0.1.8.0
  */
 function bp_album_has_pictures() {
+    
 	global $pictures_template;
 	return $pictures_template->has_pictures();
 }
@@ -189,6 +185,7 @@ function bp_album_picture_title() {
 	echo bp_album_get_picture_title();
 }
 	function bp_album_get_picture_title() {
+	    
 		global $pictures_template;
 		return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->title);
 	}
@@ -243,7 +240,9 @@ function bp_album_picture_desc() {
 	echo bp_album_get_picture_desc();
 }
 	function bp_album_get_picture_desc() {
+	    
 		global $pictures_template;
+		
 		return apply_filters( 'bp_album_get_picture_desc', $pictures_template->picture->description );
 	}
 	
@@ -257,7 +256,9 @@ function bp_album_picture_desc_truncate($words=55) {
 	echo bp_album_get_picture_desc_truncate($words);
 }
 	function bp_album_get_picture_desc_truncate($words=55) {
+	    
 		global $pictures_template;
+		
 		$exc = bp_create_excerpt($pictures_template->picture->description, $words, true) ;
 		
 		return apply_filters( 'bp_album_get_picture_desc_truncate', $exc, $pictures_template->picture->description, $words );
@@ -273,7 +274,9 @@ function bp_album_picture_id() {
 	echo bp_album_get_picture_id();
 }
 	function bp_album_get_picture_id() {
+	    
 		global $pictures_template;
+		
 		return apply_filters( 'bp_album_get_picture_id', $pictures_template->picture->id );
 	}
 
@@ -287,6 +290,7 @@ function bp_album_picture_url() {
 	echo bp_album_get_picture_url();
 }
 	function bp_album_get_picture_url() {
+	    
 		global $bp,$pictures_template;
 
 		$owner_domain = bp_core_get_user_domain($pictures_template->picture->owner_id);
@@ -314,7 +318,9 @@ function bp_album_picture_edit_url() {
 	echo bp_album_get_picture_edit_url();
 }
 	function bp_album_get_picture_edit_url() {
+	    
 		global $bp,$pictures_template;
+		
 		if (bp_is_my_profile() || is_super_admin())
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_edit_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->edit_slug),'bp-album-edit-pic');
 	}
@@ -340,7 +346,9 @@ function bp_album_picture_delete_url() {
 	echo bp_album_get_picture_delete_url();
 }
 	function bp_album_get_picture_delete_url() {
+	    
 		global $bp,$pictures_template;
+		
 		if (bp_is_my_profile() || is_super_admin())
 			return wp_nonce_url(apply_filters( 'bp_album_get_picture_delete_url', $bp->displayed_user->domain . $bp->album->slug .'/'.$bp->album->single_slug.'/'.$pictures_template->picture->id.'/'.$bp->album->delete_slug ),'bp-album-delete-pic');
 	}
@@ -436,6 +444,7 @@ function bp_album_total_picture_count() {
 	function bp_album_get_total_picture_count() {
 	    
 		global $pictures_template;
+		
 		return apply_filters( 'bp_album_get_total_picture_count', $pictures_template->total_picture_count );
 	}
 
@@ -451,6 +460,7 @@ function bp_album_picture_pagination($always_show = false) {
 	function bp_album_get_picture_pagination($always_show = false) {
 	    
 		global $pictures_template;
+		
 		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
 		return apply_filters( 'bp_album_get_picture_pagination', $pictures_template->pag_links );
 	}
@@ -467,6 +477,7 @@ function bp_album_picture_pagination_global($always_show = false) {
 	function bp_album_get_picture_pagination_global($always_show = false) {
 	    
 		global $pictures_template;
+		
 		if ($always_show || $pictures_template->total_picture_count > $pictures_template->pag_per_page)
 		return apply_filters( 'bp_album_get_picture_pagination_global', $pictures_template->pag_links_global );
 	}
@@ -502,6 +513,7 @@ function bp_album_next_picture_link($text = ' &raquo;', $title = true) {
 	function bp_album_get_next_picture_link($text = ' &raquo;', $title = true) {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_next_pic()){
 			$text = ( ($title)?bp_album_get_next_picture_title():'' ).$text;
 			return '<a href="'.bp_album_get_next_picture_url().'" class="picture-next-link"> <span>'.$text.'</span></a>';
@@ -522,6 +534,7 @@ function bp_album_next_picture_or_album_link($text = ' &raquo;', $title = true) 
 	function bp_album_get_next_picture_or_album_link($text = ' &raquo;', $title = true) {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_next_pic()){
 			$text = ( ($title)?bp_album_get_next_picture_title():'' ).$text;
 			return '<a href="'.bp_album_get_next_picture_url().'" class="picture-next-link"> <span>'.$text.'</span></a>';
@@ -542,6 +555,7 @@ function bp_album_next_picture_url() {
 	function bp_album_get_next_picture_url() {
 	    
 		global $bp,$pictures_template;
+		
 		if ($pictures_template->has_next_pic())
 			return apply_filters( 'bp_album_get_next_picture_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->next_pic->id  . '/');
 	}
@@ -558,6 +572,7 @@ function bp_album_next_picture_title() {
 	function bp_album_get_next_picture_title() {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_next_pic())
 			return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->next_pic->title );
 	}
@@ -571,6 +586,7 @@ function bp_album_next_picture_title() {
 function bp_album_has_next_picture() {
     
 	global $bp,$pictures_template;
+	
 	return $pictures_template->has_next_pic();
 }
 
@@ -586,6 +602,7 @@ function bp_album_prev_picture_link($text = '&laquo; ', $title = true) {
 	function bp_album_get_prev_picture_link($text = '&laquo; ', $title = true) {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_prev_pic()){
 			$text .= ($title)?bp_album_get_prev_picture_title():'';
 			return '<a href="'.bp_album_get_prev_picture_url().'" class="picture-prev-link"><span>'.$text.'</span> </a>';
@@ -606,6 +623,7 @@ function bp_album_prev_picture_or_album_link($text = '&laquo; ', $title = true) 
 	function bp_album_get_prev_picture_or_album_link($text = '&laquo; ', $title = true) {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_prev_pic()){
 			$text .= ($title)?bp_album_get_prev_picture_title():'';
 			return '<a href="'.bp_album_get_prev_picture_url().'" class="picture-prev-link"><span>'.$text.'</span> </a>';
@@ -626,6 +644,7 @@ function bp_album_prev_picture_url() {
 	function bp_album_get_prev_picture_url() {
 	    
 		global $bp,$pictures_template;
+		
 		if ($pictures_template->has_prev_pic())
 			return apply_filters( 'bp_album_get_prev_picture_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/'.$pictures_template->picture->prev_pic->id . '/');
 	}
@@ -642,6 +661,7 @@ function bp_album_prev_picture_title() {
 	function bp_album_get_prev_picture_title() {
 	    
 		global $pictures_template;
+		
 		if ($pictures_template->has_prev_pic())
 			return apply_filters( 'bp_album_get_picture_title', $pictures_template->picture->prev_pic->title );
 	}
@@ -655,6 +675,7 @@ function bp_album_prev_picture_title() {
 function bp_album_has_prev_picture() {
     
 	global $pictures_template;
+	
 	return $pictures_template->has_prev_pic();
 }
 
@@ -670,6 +691,7 @@ function bp_album_pictures_url() {
 	
 }
 	function bp_album_get_pictures_url() {
+	    
 		global $bp;
 			return apply_filters( 'bp_album_get_pictures_url', $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->pictures_slug . '/');
 	}

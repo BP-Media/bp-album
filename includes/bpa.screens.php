@@ -151,10 +151,8 @@ function bp_album_screen_upload() {
 
 	do_action( 'bp_album_screen_upload' );
 
-	// add_action( 'bp_template_title', 'bp_album_screen_upload_title' );
 	add_action( 'bp_template_content', 'bp_album_screen_upload_content' );
 
-	// Load the plugin template file
 	bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
 }
 
@@ -440,7 +438,8 @@ function bp_album_action_upload() {
 		
 		if ($error_flag){
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'error');
-		} else {
+		} 
+		else {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'success' );
 			bp_core_redirect( $bp->loggedin_user->domain . $bp->current_component . '/'.$bp->album->single_slug.'/' . $id.'/'.$bp->album->edit_slug.'/');
 			die;
@@ -458,6 +457,7 @@ add_action('bp_actions','bp_album_action_upload',3);
  * @since 0.1.8.0
  */
 function bp_album_upload_dir() {
+    
 	global $bp;
 
 	$user_id = $bp->loggedin_user->id;
@@ -580,7 +580,8 @@ function bp_album_action_edit() {
 		}
 		if ($error_flag){
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'error');
-		} else {
+		} 
+		else {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'success' );
 			bp_core_redirect( $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/' . $id.'/');
 			die;
@@ -608,7 +609,8 @@ function bp_album_action_delete() {
 		if(!$pictures_template->picture_count){
 			bp_core_add_message( __( 'This url is not valid.', 'bp-album' ), 'error' );
 			return;
-		}else{
+		}
+		else{
 			
 			if ( !bp_is_my_profile() && !current_user_can(level_10) ) {
 				bp_core_add_message( __( 'You don\'t have permission to delete this picture', 'bp-album' ), 'error' );
@@ -639,6 +641,7 @@ add_action('bp_actions','bp_album_action_delete',3);
 function bp_album_screen_all_images() {
 
         global $bp;
+
         bp_album_query_pictures();
 	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ), false );
 }

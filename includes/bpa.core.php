@@ -254,9 +254,11 @@ function bp_album_load_subtemplate( $template_name ) {
     
 	if ( file_exists(STYLESHEETPATH . '/' . $template_name . '.php')) {
 		$located = STYLESHEETPATH . '/' . $template_name . '.php';
-	} else if ( file_exists(TEMPLATEPATH . '/' . $template_name . '.php') ) {
+	} 
+	else if ( file_exists(TEMPLATEPATH . '/' . $template_name . '.php') ) {
 		$located = TEMPLATEPATH . '/' . $template_name . '.php';
-	} else{
+	} 
+	else{
 		$located = dirname( __FILE__ ) . '/templates/' . $template_name . '.php';
 	}
 	include ($located);
@@ -526,7 +528,8 @@ function bp_album_delete_picture($id=false){
 		
 		return $pic->delete();
 	
-	}else
+	}
+	else
 		return false;
 }
 
