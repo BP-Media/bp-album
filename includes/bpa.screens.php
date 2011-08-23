@@ -191,7 +191,7 @@ function bp_album_screen_upload_content() {
 
 	<form method="post" enctype="multipart/form-data" name="bp-album-upload-form" id="bp-album-upload-form" class="standard-form">
 
-    <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $bp->album->bp_album_max_upload_size; ?>" />
+    <input type="hidden" name="upload" value="<?php echo $bp->album->bp_album_max_upload_size; ?>" />
     <input type="hidden" name="action" value="picture_upload" />
 
     <p>
@@ -309,8 +309,8 @@ function bp_album_action_upload() {
 		
 		$uploadErrors = array(
 			0 => __("There was no error, the file uploaded with success", 'bp-album'),
-			1 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
-			2 => __("Your image was bigger than the maximum allowed file size of:" . $bp->album->bp_album_max_upload_size),
+			1 => __("Your image was bigger than the maximum allowed file size of: " . $bp->album->bp_album_max_upload_size . "MB"),
+			2 => __("Your image was bigger than the maximum allowed file size of: " . $bp->album->bp_album_max_upload_size . "MB"),
 			3 => __("The uploaded file was only partially uploaded", 'bp-album'),
 			4 => __("No file was uploaded", 'bp-album'),
 			6 => __("Missing a temporary folder", 'bp-album')
@@ -449,7 +449,8 @@ function bp_album_action_upload() {
 	
 }
 add_action('bp_actions','bp_album_action_upload',3);
- 
+add_action('wp','bp_album_action_upload',3);
+
 /**
  * bp_album_upload_dir() 
  *
@@ -591,6 +592,7 @@ function bp_album_action_edit() {
 	
 }
 add_action('bp_actions','bp_album_action_edit',3);
+add_action('wp','bp_album_action_edit',3);
 
 /**
  * bp_album_action_delete()
@@ -629,6 +631,7 @@ function bp_album_action_delete() {
 	}
 }
 add_action('bp_actions','bp_album_action_delete',3);
+add_action('wp','bp_album_action_delete',3);
 
 /**
  * bp_album_screen_all_images()

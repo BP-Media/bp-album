@@ -79,6 +79,7 @@ function bp_album_setup_globals() {
 		bp_album_query_pictures();
 	}	
 }
+add_action( 'wp', 'bp_album_setup_globals', 2 );
 
 add_action( 'bp_setup_globals', 'bp_album_setup_globals', 2 );
 add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
@@ -103,7 +104,7 @@ function bp_album_add_admin_menu() {
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.local.php' );
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
 		
 	}
 }
@@ -123,7 +124,7 @@ function bp_album_add_network_menu() {
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.network.php' );
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'manage_options', 'bp-album-settings', 'bp_album_admin' );
+	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
 
 }
 add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
