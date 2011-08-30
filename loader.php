@@ -29,7 +29,7 @@ function bpa_init() {
 	do_action('bpa_init');
 	
 }
-add_action( 'bp_include', 'bpa_init' );
+add_action( 'bp_loaded', 'bpa_init' );
 
 /**
  * bp_album_install()
