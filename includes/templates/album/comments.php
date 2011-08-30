@@ -56,7 +56,7 @@
 
 <?php else : if(bp_is_my_profile() && bp_album_comments_enabled()){ ?>
 	<div id="message" class="info">
-		<p><?php echo sprintf(__( 'Comments are disabled for this picture. %sEdit picture%s to enable them.', 'bp-album' ),'<a href="'.bp_album_get_picture_edit_url().'">','</a>'); ?></p>
+		<p><?php echo sprintf(__( 'Comments are disabled for this picture. %sEdit the picture%s to enable them.', 'bp-album' ),'<a href="'.bp_album_get_picture_edit_url().'">','</a>'); ?></p>
 	</div>
 
 <?php } endif; ?>

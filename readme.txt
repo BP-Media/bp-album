@@ -1,6 +1,6 @@
 === BuddyPress Album ===
 Contributors: francescolaffi, foxly, fanquake
-Tags: BuddyPress, BP, album, albums, picture, bp-media, pictures, photos, gallery, galleries, media, privacy, buddypress, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking, cms
+Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking,
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.1.8.11
@@ -8,7 +8,7 @@ Stable tag: 0.1.8.11
 Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
 
 == Description ==
-This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app! The current BETA version also supports audio files, embedded videos from YouTube, Revver, Vimeo, and dozens of other sites, as well as embedded images from Flickr, Imgur, and many others.
+This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app! The current BETA version will also support audio files, embedded videos, embedded images, and much, much more.
 
 = IMPORTANT =
 We only use wordpress.org to distribute the current STABLE version of the plugin. We do not support, answer questions, or accept bug reports through wordpress.org.
@@ -27,11 +27,9 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 
 = About This Release =
 
-* "Full compatibility with BuddyPress 1.5"
+* "Compatibility with BuddyPress 1.5"
 * "Fixed the bug that was restricting file upload size"
 * "Added de_DE (German) and fr_FR (French) translations"
-
-This is an early release version of the plugin. You should test it extensively before using it on a production site. It provided on an “as is” basis without any warranty. We are not liable for any damage or losses.
 
 = Resources =
 For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
@@ -49,20 +47,19 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * fr_FR (French) by Chouf1 / bp-fr.net
 
 
-* Please submit new/updated translations via our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
+* Please submit new or updated translations through our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
 
 == Installation ==
 
-1. Upload `bp-album` to the `/wp-content/plugins/` directory or use automatic installation from wp plugin panel
-2. Activate the plugin through the 'Plugins' menu in WordPress
-
+1. Upload `bp-album` to the `/wp-content/plugins/` directory or use the automatic installation in the WordPress plugin panel.
+2. Activate the plugin through the WordPress 'Plugins' menu
 
 
 == Changelog ==
 
 = 0.1.8.11 =
-* "Full compatibility with BuddyPress 1.5"
+* "Compatibility with BuddyPress 1.5"
 * "Fixed the bug that was restricting file upload size"
 * "Added de_DE (German) and fr_FR (French) translations"
 
@@ -142,4 +139,3 @@ admin menu added,  es_ES, ru_RU
 
 = 0.1.3=
 bug fixes,css fixes, tr_TR,de_DE translations
-
