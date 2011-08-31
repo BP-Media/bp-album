@@ -43,7 +43,7 @@ add_filter( 'bp_album_get_picture_desc', 'convert_smilies' );
 add_filter( 'bp_album_get_picture_desc', 'convert_chars' );
 add_filter( 'bp_album_get_picture_desc', 'make_clickable' );
 add_filter( 'bp_album_get_picture_desc', 'bp_album_make_nofollow_filter' );
-
+add_filter( 'bp_album_get_picture_desc', 'wpautop' );
 
 add_filter( 'bp_album_get_picture_desc_truncate', 'wp_filter_kses', 1 );
 add_filter( 'bp_album_get_picture_desc_truncate', 'force_balance_tags' );
