@@ -62,6 +62,8 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * "Compatibility with BuddyPress 1.5"
 * "Fixed the bug that was restricting file upload size"
 * "Added de_DE (German) and fr_FR (French) translations"
+* "Fixed a bug when users could not be deleted when the activity stream was turned off"
+* "Removed a filter that was adding <p></p> tags to descriptions"
 
 = 0.1.8.10 =
 * "Ability to upload files with extensions other than .jpg, .png, and .gif"

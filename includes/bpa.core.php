@@ -561,7 +561,11 @@ function bp_album_delete_by_user_id($user_id,$remove_files = true){
 		}
 	}
 	   
+	if (function_exists('bp_activity_delete')) {
+	
 	bp_activity_delete(array('component' => $bp->album->id,'user_id' => $user_id));
+	
+	}
 	
 	return BP_Album_Picture::delete_by_user_id($user_id);
 }
