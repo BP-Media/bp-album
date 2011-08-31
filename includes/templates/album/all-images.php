@@ -13,7 +13,7 @@
 	$args['priv_override']=false;	// Do *not* change this
 	$args['groupby']=false;	// Do *not* change this
 
-	$args['per_page']=3; // Default is 24, changed to 3 for debugging.
+	$args['per_page']=24;
 	$args['ordersort']='DESC';
 	$args['orderkey']='id';	// You can also use 'random' to shuffle images, but this will slow down your site
 	$images_per_row = 5;
