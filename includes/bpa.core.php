@@ -104,7 +104,7 @@ function bp_album_add_admin_menu() {
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.local.php' );
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
+	add_menu_page(__( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
 		
 	}
 }
@@ -124,7 +124,7 @@ function bp_album_add_network_menu() {
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.network.php' );
 
-	add_submenu_page( 'bp-general-settings', __( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
+	add_menu_page(__( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
 
 }
 add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
