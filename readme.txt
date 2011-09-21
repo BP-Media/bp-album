@@ -30,6 +30,8 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 * "Compatibility with BuddyPress 1.5"
 * "Fixed the bug that was restricting file upload size"
 * "Added de_DE (German) and fr_FR (French) translations"
+* "Fixed a bug when users could not be deleted when the activity stream was turned off"
+* "Fixed global media page causing user media items to render incorrectly when added to BuddyPress template header"
 
 = Resources =
 For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
@@ -64,6 +66,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * "Added de_DE (German) and fr_FR (French) translations"
 * "Fixed a bug when users could not be deleted when the activity stream was turned off"
 * "Removed a filter that was adding <p></p> tags to descriptions"
+* "Fixed global media page causing user media items to render incorrectly when added to BuddyPress template header"
 
 = 0.1.8.10 =
 * "Ability to upload files with extensions other than .jpg, .png, and .gif"
