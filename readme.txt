@@ -5,7 +5,7 @@ Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.1.8.11
 
-Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls.
+Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
 == Description ==
 This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app! The current BETA version will also support audio files, embedded videos, embedded images, and much, much more.
