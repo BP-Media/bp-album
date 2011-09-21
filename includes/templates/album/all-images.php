@@ -57,4 +57,10 @@
 
 	 endif;
 
+	 // This db call resets the pictures template after generating the all images block. If it is removed,
+	 // and the all-images block is used on a page that contains a user image or gallery, the content
+	 // after the all-images block will not render correctly.
+	 
+	 bp_album_query_pictures();
+
 ?>

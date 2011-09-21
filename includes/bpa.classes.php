@@ -203,10 +203,11 @@ class BP_Album_Picture {
 	public static function query_pictures($args = '',$count=false,$adjacent=false) {
 	    
 		global $bp, $wpdb;
-		
+
 		$defaults = bp_album_default_query_args();
 		
 		$r = apply_filters('bp_album_query_args',wp_parse_args( $args, $defaults ));
+
 		extract( $r , EXTR_SKIP);
 		
 		$where = "1 = 1";
@@ -365,12 +366,20 @@ function bp_album_default_query_args(){
 	$args['groupby']=false;
 	
 	if($bp->album->single_slug == $bp->current_action){
-		$args['id'] = ( isset($bp->action_variables[0]) && (string)(int) $bp->action_variables[0] === (string) $bp->action_variables[0] ) ? (int) $bp->action_variables[0] : false ;
+
+		if( isset($bp->action_variables[0]) ){
+			$args['id'] = (int)$bp->action_variables[0];
+		}
+		else {
+			$args['id'] = false;
+		}
+			
 		$args['per_page']=1;
 	}
 	if($bp->album->pictures_slug == $bp->current_action){
 		$args['page'] = ( isset($bp->action_variables[0]) && (string)(int) $bp->action_variables[0] === (string) $bp->action_variables[0] ) ? (int) $bp->action_variables[0] : 1 ;
 	}
+
 	return $args;
 }
 
