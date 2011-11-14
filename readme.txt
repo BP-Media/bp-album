@@ -43,10 +43,10 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * es_ES (Spanish)   by Jose M. Villar & Selu Vega
 * ja_JA (Japanese)  by chestnut_jp
 * pl_PL (Polish)    by Jacek Wu
-* ru_RU (Russian) by ig0r74 / weblr.ru
+* ru_RU (Russian) by [ig0r74](weblr.ru)
 * zh_CN (Chinese)   by Calvin Hsu
 * de_DE (German) by Olaf Baumann
-* fr_FR (French) by Chouf1 / bp-fr.net
+* fr_FR (French) by [Chouf1](bp-fr.net)
 
 
 * Please submit new or updated translations through our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
