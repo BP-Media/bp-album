@@ -178,6 +178,8 @@ function bp_album_setup_nav() {
 		) );
 	}
 
+	$bp->displayed_user->id = null;
+
 	bp_core_new_subnav_item( array(
 		'name' => __( 'Upload picture', 'bp-album' ),
 		'slug' => $bp->album->upload_slug,
