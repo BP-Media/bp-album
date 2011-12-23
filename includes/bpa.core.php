@@ -153,6 +153,8 @@ function bp_album_setup_nav() {
 		'default_subnav_slug' => $bp->album->pictures_slug,
 		'show_for_displayed_user' => true
 	) );
+   
+  $bp->displayed_user->id = null;
 
 	$album_link = ($bp->displayed_user->id ? $bp->displayed_user->domain : $bp->loggedin_user->domain) . $bp->album->slug . '/';
 	$album_link_title = ($bp->displayed_user->id) ? bp_word_or_name( __( "My pictures", 'bp-album' ), __( "%s's pictures", 'bp-album' ) ,false,false) : __( "My pictures", 'bp-album' );
@@ -178,9 +180,7 @@ function bp_album_setup_nav() {
 		) );
 	}
 
-	$bp->displayed_user->id = null;
-
-	bp_core_new_subnav_item( array(
+   bp_core_new_subnav_item( array(
 		'name' => __( 'Upload picture', 'bp-album' ),
 		'slug' => $bp->album->upload_slug,
 		'parent_slug' => $bp->album->slug,
