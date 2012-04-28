@@ -57,19 +57,19 @@ function bp_album_setup_globals() {
 	$bp->album->delete_slug = 'delete';
 	$bp->album->edit_slug = 'edit';
 
-        $bp->album->bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
-        $bp->album->bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );	
-        $bp->album->bp_album_max_priv0_pictures = get_site_option( 'bp_album_max_priv0_pictures' );
-        $bp->album->bp_album_max_priv2_pictures = get_site_option( 'bp_album_max_priv2_pictures' );
-        $bp->album->bp_album_max_priv4_pictures = get_site_option( 'bp_album_max_priv4_pictures' );
-        $bp->album->bp_album_max_priv6_pictures = get_site_option( 'bp_album_max_priv6_pictures' );
-        $bp->album->bp_album_keep_original = get_site_option( 'bp_album_keep_original' );
-        $bp->album->bp_album_require_description = get_site_option( 'bp_album_require_description' );
-        $bp->album->bp_album_enable_comments = get_site_option( 'bp_album_enable_comments' );
-        $bp->album->bp_album_enable_wire = get_site_option( 'bp_album_enable_wire' );
-        $bp->album->bp_album_middle_size = get_site_option( 'bp_album_middle_size' );
-        $bp->album->bp_album_thumb_size = get_site_option( 'bp_album_thumb_size' );
-        $bp->album->bp_album_per_page = get_site_option( 'bp_album_per_page' );
+	$bp->album->bp_album_max_pictures = get_site_option( 'bp_album_max_pictures' );
+                  $bp->album->bp_album_max_upload_size = get_site_option( 'bp_album_max_upload_size' );	
+                  $bp->album->bp_album_max_priv0_pictures = get_site_option( 'bp_album_max_priv0_pictures' );
+                  $bp->album->bp_album_max_priv2_pictures = get_site_option( 'bp_album_max_priv2_pictures' );
+                  $bp->album->bp_album_max_priv4_pictures = get_site_option( 'bp_album_max_priv4_pictures' );
+                  $bp->album->bp_album_max_priv6_pictures = get_site_option( 'bp_album_max_priv6_pictures' );
+                  $bp->album->bp_album_keep_original = get_site_option( 'bp_album_keep_original' );
+                  $bp->album->bp_album_require_description = get_site_option( 'bp_album_require_description' );
+                  $bp->album->bp_album_enable_comments = get_site_option( 'bp_album_enable_comments' );
+                  $bp->album->bp_album_enable_wire = get_site_option( 'bp_album_enable_wire' );
+                  $bp->album->bp_album_middle_size = get_site_option( 'bp_album_middle_size' );
+                  $bp->album->bp_album_thumb_size = get_site_option( 'bp_album_thumb_size' );
+                  $bp->album->bp_album_per_page = get_site_option( 'bp_album_per_page' );
 	$bp->album->bp_album_url_remap = get_site_option( 'bp_album_url_remap' );
 	$bp->album->bp_album_base_url = get_site_option( 'bp_album_base_url' );
 
@@ -95,10 +95,8 @@ function bp_album_add_admin_menu() {
 	if( is_multisite()  ){
 		return;
 	}
-	
-	else 
-	    {
-		if ( !is_super_admin() ){
+	else{
+		    if ( !is_super_admin() ){
 		    return false;
 	    }
 
@@ -119,7 +117,7 @@ add_action( 'admin_menu', 'bp_album_add_admin_menu' );
 function bp_album_add_network_menu() {
     
 	if ( !is_super_admin() ){
-		    return false;
+		return false;
 	    }
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.network.php' );
@@ -200,9 +198,10 @@ add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
  * @since 0.1.8.0
  */
 function bp_album_single_subnav_filter($link,$user_nav_item){
+    
 	global $bp,$pictures_template;
 	
-	if(isset($pictures_template->pictures[0]->id))
+	if(isset( $pictures_template->pictures[0]->id ))
 		$link = str_replace  ( '/'. $bp->album->single_slug .'/' , '/'. $bp->album->single_slug .'/'.$pictures_template->pictures[0]->id .'/',$link );
 		
 	return $link;
