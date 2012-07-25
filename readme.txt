@@ -2,7 +2,7 @@
 Contributors: francescolaffi, foxly, fanquake
 Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking,
 Requires at least: 3.2
-Tested up to: 3.4
+Tested up to: 3.4.1
 Stable tag: 0.1.8.11
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.

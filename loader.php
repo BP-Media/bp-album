@@ -4,9 +4,9 @@ Plugin Name: BuddyPress Album
 Plugin URI: http://code.google.com/p/buddypress-media/
 Description: Photo Albums for BuddyPress. Includes Posts to Wire, Member Comments, and Gallery Privacy Controls. Works with the current BuddyPress theme and includes Easy To Skin Templates.
 Version: 0.1.8.11
-Revision Date: April 28, 2012
+Revision Date: July 25, 2012
 Requires at least: 3.2
-Tested up to: WP 3.4, BP 1.6, PHP 5.3.6
+Tested up to: WP 3.4.1, BP 1.6, PHP 5.4.4
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
 Author: The BP-Media Team
 Author URI: http://code.google.com/p/buddypress-media/people/list
@@ -14,9 +14,9 @@ Network: True
 */
 
 /**
- * Attaches BuddyPress Album to Buddypress.
+ * Attaches Bp-Album to Buddypress.
  *
- * This function is REQUIRED to prevent WordPress from white-screening if BuddyPress Album is activated on a
+ * This function is REQUIRED to prevent WordPress from white-screening if Bp-Album is activated on a
  * system that does not have an active copy of BuddyPress.
  *
  * @version 0.1.8.11
@@ -25,16 +25,7 @@ Network: True
 function bpa_init() {
 	
 	require( dirname( __FILE__ ) . '/includes/bpa.core.php' );
-	
-	// These classes are REQUIRED for the version checker and debug functions to operate
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.debug.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.debug.diff.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.network.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.system.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.xml.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.utils.unit.test.php' );
-	require ( dirname( __FILE__ ) . '/includes/utils/class.version.check.php' );
-	
+		
 	do_action('bpa_init');
 	
 }
@@ -141,8 +132,10 @@ function bp_album_check_installed() {
 
 	if ( !current_user_can('install_plugins') )
 		return;
-	
-	$lib_versions = new BPM_version();
+	require ( dirname( __FILE__ ) . '/includes/utils/class.version.check.php' );
+
+	$lib_versions = new BPA_version();
+
 	if (!$lib_versions->allOK() ) { 
 		add_action('admin_notices', 'bp_album_compatibility_notices' );
 		return;
@@ -161,11 +154,12 @@ add_action( 'admin_menu', 'bp_album_check_installed' );
  */
 function bp_album_compatibility_notices() {
     
-	$lib_versions = new BPM_version();
+	$lib_versions = new BPA_version();
 	
 	if (!$lib_versions->allOK() ){
 		
-		$message .= 'Your sever does not have the minumum requirements to run Bp-Album. Please check that you have the correct Buddypress and WordPress versions.';
+		$message .= 'Your sever does not meet the minumum requirements to run Bp-Album, meaning it may not function correctly. Please check that you have the required Buddypress and WordPress versions, as well
+                                    as up to date versions of PHP, MYSQL and the GDLib installed.';
 		
 		echo '<div class="error fade"><p>'.$message.'</p></div>';
 	}

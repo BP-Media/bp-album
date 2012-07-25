@@ -1,13 +1,13 @@
 <?php
 
 /**
- * BP-MEDIA VERSIONS CLASS
+ * BP-ALBUM VERSIONS CLASS
  * Checks that all plugins, API's, and services on the host system are the minimum
- * versions needed for BP-Media to run properly
+ * versions needed for BP-Album to run properly
  *
  * @version 0.1.9
  * @since 0.1.9
- * @package BP-Media
+ * @package BP-Album
  * @subpackage Util
  * @license GPL v2.0
  * @link http://code.google.com/p/buddypress-media/
@@ -15,7 +15,7 @@
  * ========================================================================================================
  */
 
-class BPM_version {
+class BPA_version {
 
 	var $min_php_ver = "5.2.0";	    // Minimum PHP Version required to run BP-Album
 	var $min_sql_ver = "5.0.15";	    // Minimum SQL Version required to run BP-Album
@@ -519,7 +519,7 @@ class BPM_version {
 
 
 	/**
-	 * Checks that PHP is the minimum version needed for BP-Media to run properly
+	 * Checks that PHP is the minimum version needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -540,7 +540,7 @@ class BPM_version {
 
 
 	/**
-	 * Checks that MySQL is the minimum version needed for BP-Media to run properly
+	 * Checks that MySQL is the minimum version needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -561,7 +561,7 @@ class BPM_version {
 
 
 	/**
-	 * Checks that WordPress is the minimum version needed for BP-Media to run properly
+	 * Checks that WordPress is the minimum version needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -582,7 +582,7 @@ class BPM_version {
 
 
 	/**
-	 * Checks that BuddyPress is the minimum version needed for BP-Media to run properly
+	 * Checks that BuddyPress is the minimum version needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -603,7 +603,7 @@ class BPM_version {
 
 
 	/**
-	 * Checks that GD is the minimum version needed for BP-Media to run properly
+	 * Checks that GD is the minimum version needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -625,7 +625,7 @@ class BPM_version {
 
 	/**
 	 * Checks that all plugins, API's, and services on the host system are the minimum
-	 * versions needed for BP-Media to run properly
+	 * versions needed for BP-Album to run properly
 	 *
 	 * @version 0.1.9
 	 * @since 0.1.9
@@ -648,6 +648,6 @@ class BPM_version {
 
 	}
 
-} // End of class BPM_version
+} // End of class BPA_version
 
 ?>
