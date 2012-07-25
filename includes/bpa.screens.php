@@ -106,7 +106,7 @@ function bp_album_screen_edit_content() {
 	<label><?php _e('Picture activity and comments','bp-album') ?></label>
 			<label><input type="radio" name="enable_comments" value="1" checked="checked" /><?php _e('Enable','bp-album') ?></label>
 			<label><input type="radio" name="enable_comments" value="0" /><?php _e('Disable','bp-album') ?></label>
-			<?php _e('If picture already has comments this will delete them','bp-album') ?>
+			<?php _e('If the picture already has comments this will delete them','bp-album') ?>
     </p>
     <?php endif; ?>
     <input type="submit" name="submit" id="submit" value="<?php _e( 'Save', 'bp-album' ) ?>"/>
@@ -429,7 +429,7 @@ function bp_album_action_upload() {
 			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
 
 				    if($id)
-					    $feedback_message[] = __('Picture uploaded. Now you can edit the pictures details.', 'bp-album');
+					    $feedback_message[] = __("Your picture was successfully uploaded. You can now edit it's details.", 'bp-album');
 				    else {
 					    $error_flag = true;
 					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
@@ -504,12 +504,12 @@ function bp_album_action_edit() {
 		
 		if(empty($_POST['title'])){
 			$error_flag = true;
-			$feedback_message[] = __( 'Picture Title can not be blank.', 'bp-album' );
+			$feedback_message[] = __( 'Picture title cannot be blank.', 'bp-album' );
 		}
 
 		if( $bp->album->bp_album_require_description && empty($_POST['description'])){
 			$error_flag = true;
-			$feedback_message[] = __( 'Picture Description can not be blank.', 'bp-album' );
+			$feedback_message[] = __( 'Picture description cannot be blank.', 'bp-album' );
 		}
 		
 		if( !isset($_POST['privacy']) ){
@@ -544,16 +544,16 @@ function bp_album_action_edit() {
 				$error_flag = true;
 				switch ($priv_lvl){
 					case 0 :
-						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 2 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to community members.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 4 :
-						$feedback_message[] = __( 'You reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for pictures visible to friends.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 					case 6 :
-						$feedback_message[] = __( 'You reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
+						$feedback_message[] = __( 'You have reached the limit for private pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
 						break;
 				}
 			}
@@ -564,9 +564,9 @@ function bp_album_action_edit() {
 				$error_flag = true;
 				$feedback_message[] = __( 'Comments option is not correct.', 'bp-album' );
 			}
-		else
+		else{
 			$_POST['enable_comments']==0;
-
+                                    }
 		if( !$error_flag ){
 
 			// WordPress adds an escape character "\" to some special values in INPUT FIELDS (test's becomes test\'s), so we have to strip
@@ -615,7 +615,7 @@ function bp_album_action_delete() {
 		else{
 			
 			if ( !bp_is_my_profile() && !current_user_can(level_10) ) {
-				bp_core_add_message( __( 'You don\'t have permission to delete this picture', 'bp-album' ), 'error' );
+				bp_core_add_message( __( "You don't have permission to delete this picture", 'bp-album' ), 'error' );
 			}
 			elseif (bp_album_delete_picture($pictures_template->pictures[0]->id)){
 				bp_core_add_message( __( 'Picture deleted.', 'bp-album' ), 'success' );

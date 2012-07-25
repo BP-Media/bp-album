@@ -43,7 +43,7 @@
 					<?php else : ?>
 					
 				<div id="message" class="info">
-					<p><?php echo bp_word_or_name( __('No pics here, show something to the community!', 'bp-album' ), __( "Either %s hasn't uploaded any picture yet or they have restricted access", 'bp-album' )  ,false,false) ?></p>
+					<p><?php echo bp_word_or_name( __("You don't have any photos yet. Why not upload some!", 'bp-album' ), __( "Either %s hasn't uploaded any pictures yet or they have restricted access", 'bp-album' )  ,false,false) ?></p>
 				</div>
 				
 				<?php endif; ?>
