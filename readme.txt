@@ -1,5 +1,5 @@
 === BuddyPress Album ===
-Contributors: francescolaffi, foxly, fanquake
+Contributors: foxly, francescolaffi, fanquake, 2inov8, modemlooper
 Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking,
 Requires at least: 3.2
 Tested up to: 3.4.1
