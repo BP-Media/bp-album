@@ -1,9 +1,9 @@
 === BuddyPress Album ===
 Contributors: foxly, francescolaffi, fanquake, 2inov8, modemlooper
-Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, twitter, facebook, mingle, social, community, networks, networking,
+Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, social, community, networks, networking,
 Requires at least: 3.2
 Tested up to: 3.4.1
-Stable tag: 0.1.8.11
+Stable tag: 0.1.8.12
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
@@ -27,11 +27,9 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 
 = About This Release =
 
-* "Compatibility with BuddyPress 1.5"
-* "Fixed the bug that was restricting file upload size"
-* "Added de_DE (German) and fr_FR (French) translations"
-* "Fixed a bug when users could not be deleted when the activity stream was turned off"
-* "Fixed global media page causing user media items to render incorrectly when added to BuddyPress template header"
+* Updated the plugins internal version checker
+* Updated strings in the admin menu and user screens for better clarity
+* Added action hooks to allow integration with other plugins
 
 = Resources =
 For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
@@ -60,17 +58,22 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 == Changelog ==
 
+= 0.1.8.12 =
+* Updated the plugins internal version checker
+* Updated strings in the admin menu and user screens for better clarity
+* Added action hooks to allow integration with other plugins
+
 = 0.1.8.11 =
-* "Compatibility with BuddyPress 1.5"
-* "Fixed the bug that was restricting file upload size"
-* "Added de_DE (German) and fr_FR (French) translations"
-* "Fixed a bug when users could not be deleted when the activity stream was turned off"
-* "Removed a filter that was adding <p></p> tags to descriptions"
-* "Fixed global media page causing user media items to render incorrectly when added to BuddyPress template header"
+* Compatibility with BuddyPress 1.5
+* Fixed the bug that was restricting file upload size
+* Added de_DE (German) and fr_FR (French) translations
+* Fixed a bug when users could not be deleted when the activity stream was turned off
+* Removed a filter that was adding <p></p> tags to descriptions
+* Fixed global media page causing user media items to render incorrectly when added to BuddyPress template header
 
 = 0.1.8.10 =
-* "Ability to upload files with extensions other than .jpg, .png, and .gif"
-* "Missing translation text domains on file upload error messages"
+* Ability to upload files with extensions other than .jpg, .png, and .gif
+* Missing translation text domains on file upload error messages
 
 = 0.1.8.9 =
 * "Please upload only JPG, GIF or PNG photos" error when user uploads a file with an upper-case extension (.JPG vs .jpg) fixed. This was defect was caused by changes made in BuddyPress 1.2.8 [Tracker Entry](https://www.pivotaltracker.com/story/show/11097197)
@@ -80,7 +83,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 = 0.1.8.8 =
 * "Please upload only JPG, GIF or PNG photos" error fixed. This was defect was caused by changes made in BuddyPress 1.2.8
-* "No BP-Album+ menu visible inside the BuddyPress admin interface" error fixed. This defect was caused by changes made in WordPress 3.1
+* "No BP-Album menu visible inside the BuddyPress admin interface" error fixed. This defect was caused by changes made in WordPress 3.1
 
 = 0.1.8.7 =
 * "All BP-Album activity stream posts dropped when admin deletes a user" [Tracker Entry](http://code.google.com/p/buddypress-media/issues/detail?id=60)
@@ -99,10 +102,10 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * "Display all uploaded images in any template file"
 
 = 0.1.8 =
-* Added URL re-mapping functionality to fix 'Incorrect Image File URL Problem'
+* Added URL re-mapping functionality to fix "Incorrect Image File URL Problem"
 
 = 0.1.7 =
-* Fix the loader so it don't give error when updating/deactivating bp or when it is not installed.
+* Fixed the loader so it doesn't give an error when updating/deactivating BuddyPress or when it is not installed.
 * es_ES updated; fi_FI,he_IL added.
 
 = 0.1.6 =
@@ -120,7 +123,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 = 0.1.3 =
 * Buddybar menu link fixed
 * Broken image link fixed
-* Now tested with success on FF,Webkit,IE7,IE8, IE6 display well but without cool effects
+* Now tested with success on FF, Webkit, IE7, and IE8. IE6 displays well but without cool effects.
 * fr_FR updated; tr_TR,de_DE added
 
 = 0.1.2 =
@@ -133,14 +136,3 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 
 = 0.1 =
 * Early release of the plugin
-
-== Upgrade Notice ==
-
-= 0.1.5 =
-* this will resolve several errors
-
-= 0.1.4 =
-admin menu added,  es_ES, ru_RU
-
-= 0.1.3=
-bug fixes,css fixes, tr_TR,de_DE translations

@@ -16,7 +16,7 @@
 
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
 define ( 'BP_ALBUM_DB_VERSION', '0.2' );
-define ( 'BP_ALBUM_VERSION', '0.1.8.11' );
+define ( 'BP_ALBUM_VERSION', '0.1.8.12' );
 
 load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
 
