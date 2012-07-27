@@ -77,15 +77,15 @@ class BP_Album_Template {
 		    
 		));
 						
-		$this->pag_links = paginate_links( array(
-			'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
-			'format' => '%#%',
-			'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
-			'current' => (int) $this->pag_page,
-			'prev_text' => '&larr;',
-			'next_text' => '&rarr;',
-			'mid_size' => 1
-		));
+		//$this->pag_links = paginate_links( array(
+			//'base' => $bp->displayed_user->domain . $bp->album->slug .'/'. $bp->album->pictures_slug .'/%_%',
+			//'format' => '%#%',
+			//'total' => ceil( (int) $this->total_picture_count / (int) $this->pag_per_page ),
+			//'current' => (int) $this->pag_page,
+			//'prev_text' => '&larr;',
+			//'next_text' => '&rarr;',
+			//'mid_size' => 1
+		//));
 		
 		if ($this->picture_count)
 			$this->picture = $this->pictures[0];

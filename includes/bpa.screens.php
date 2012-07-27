@@ -429,7 +429,7 @@ function bp_album_action_upload() {
 			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
 
 				    if($id)
-					    $feedback_message[] = __("Your picture was successfully uploaded. You can now edit it's details.", 'bp-album');
+					    $feedback_message[] = __("Your picture was successfully uploaded. You can now edit its details.", 'bp-album');
 				    else {
 					    $error_flag = true;
 					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
