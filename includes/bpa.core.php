@@ -38,7 +38,8 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
  *  @since 0.1.8.0
  */
 function bp_album_install(){
-	global $bp,$wpdb;
+
+	global $bp, $wpdb;
 
 	if ( !empty($wpdb->charset) )
 		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
@@ -128,6 +129,7 @@ register_activation_hook( __FILE__, 'bp_album_install' );
  *  @since 0.1.8.0
  */
 function bp_album_check_installed() {
+    
 	global $wpdb, $bp;
 
 	if ( !current_user_can('install_plugins') )
@@ -292,7 +294,7 @@ add_action( 'network_admin_menu', 'bp_album_add_network_menu' );
  */
 function bp_album_setup_nav() {
     
-	global $bp,$pictures_template;
+	global $bp, $pictures_template;
 
 	$nav_item_name = apply_filters( 'bp_album_nav_item_name', __( 'Album', 'bp-album' ) );
 
@@ -350,9 +352,9 @@ add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
  * @version 0.1.8.11
  * @since 0.1.8.0
  */
-function bp_album_single_subnav_filter($link,$user_nav_item){
+function bp_album_single_subnav_filter($link, $user_nav_item){
     
-	global $bp,$pictures_template;
+	global $bp, $pictures_template;
 	
 	if(isset( $pictures_template->pictures[0]->id ))
 		$link = str_replace  ( '/'. $bp->album->single_slug .'/' , '/'. $bp->album->single_slug .'/'.$pictures_template->pictures[0]->id .'/',$link );
@@ -478,7 +480,7 @@ function bp_album_privacy_level_permitted(){
  */
 function bp_album_limits_info(){
     
-	global $bp,$pictures_template;
+	global $bp, $pictures_template;
 	
 	$owner_id = isset($pictures_template) ? $pictures_template->picture->owner_id : $bp->loggedin_user->id;
 	
