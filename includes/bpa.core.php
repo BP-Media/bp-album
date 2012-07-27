@@ -132,7 +132,6 @@ function bp_album_check_installed() {
 
 	if ( !current_user_can('install_plugins') )
 		return;
-	//require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
 
 	$lib_versions = new BPA_version();
 
@@ -154,15 +153,10 @@ add_action( 'admin_menu', 'bp_album_check_installed' );
  */
 function bp_album_compatibility_notices() {
 
-	$lib_versions = new BPA_version();
-
-	if (!$lib_versions->allOK() ){
-
-		$message .= 'Your sever does not meet the minumum requirements to run Bp-Album, meaning it may not function correctly. Please check that you have the required Buddypress and WordPress versions, as well
-                                    as up to date versions of PHP, MYSQL and the GDLib installed.';
+		$message = 'Your sever does not meet the minumum requirements to run Bp-Album, this means the plugin may not function correctly. Please check that you have the required Wordpress and BuddyPress versions, as well
+                                    as up to date versions of PHP, MYSQL and the GDLib.';
 
 		echo '<div class="error fade"><p>'.$message.'</p></div>';
-	}
 }
 
 /**

@@ -17,7 +17,7 @@
 
 class BPA_version {
 
-	var $min_php_ver = "5.2.0";	    // Minimum PHP Version required to run BP-Album
+	var $min_php_ver = "5.6.0";	    // Minimum PHP Version required to run BP-Album
 	var $min_sql_ver = "5.0.15";	    // Minimum SQL Version required to run BP-Album
 	var $min_wp_ver = "3.2";	    // Minimum WordPress Version required to run BP-Album
 	var $min_bp_ver = "1.5";	    // Minimum BuddyPress Version required to run BP-Album
