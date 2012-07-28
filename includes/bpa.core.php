@@ -18,6 +18,23 @@ define ( 'BP_ALBUM_IS_INSTALLED', 1 );
 define ( 'BP_ALBUM_DB_VERSION', '0.2' );
 define ( 'BP_ALBUM_VERSION', '0.1.8.12' );
 
+// Compatible System Detection
+require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
+
+                $lib_versions = new BPA_version();
+
+	if (!$lib_versions->allOK() ) {
+
+                                     if ( is_admin() ) { // Only display this message in the admin area
+
+		$message = 'Your sever does not meet the minumum requirements to run Bp-Album, this means the plugin may not function correctly. Please check that you have the required Wordpress and BuddyPress versions, as well
+                                    as up to date versions of PHP, MYSQL and the GDLib.';
+
+		echo '<div class="error fade"><p>'.$message.'</p></div>';
+                                    }
+        }
+        else{
+
 load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
 
 require ( dirname( __FILE__ ) . '/bpa.classes.php' );
@@ -25,11 +42,27 @@ require ( dirname( __FILE__ ) . '/bpa.screens.php' );
 require ( dirname( __FILE__ ) . '/bpa.cssjs.php' );
 require ( dirname( __FILE__ ) . '/bpa.template.tags.php' );
 require ( dirname( __FILE__ ) . '/bpa.filters.php' );
-require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
 
 require_once( ABSPATH . '/wp-admin/includes/image.php' );
 require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
+/**
+ * bp_album_check_installed()
+ *
+ *  @version 0.1.8.11
+ *  @since 0.1.8.0
+ */
+function bp_album_check_installed() {
+
+	global $wpdb, $bp;
+
+	if ( !current_user_can('install_plugins') )
+		return;
+
+	if ( get_site_option( 'bp-album-db-version' ) < BP_ALBUM_DB_VERSION )
+		bp_album_install();
+}
+add_action( 'admin_menu', 'bp_album_check_installed' );
 
 /**
  * bp_album_install()
@@ -121,69 +154,6 @@ function bp_album_install(){
 
 }
 register_activation_hook( __FILE__, 'bp_album_install' );
-
-/**
- * bp_album_check_installed()
- *
- *  @version 0.1.8.11
- *  @since 0.1.8.0
- */
-function bp_album_check_installed() {
-    
-	global $wpdb, $bp;
-
-	if ( !current_user_can('install_plugins') )
-		return;
-
-	$lib_versions = new BPA_version();
-
-	if (!$lib_versions->allOK() ) {
-		add_action('admin_notices', 'bp_album_compatibility_notices' );
-		return;
-	}
-
-	if ( get_site_option( 'bp-album-db-version' ) < BP_ALBUM_DB_VERSION )
-		bp_album_install();
-}
-add_action( 'admin_menu', 'bp_album_check_installed' );
-
-/**
- * bp_album_compatibility_notices()
- *
- *  @version 0.1.8.11
- *  @since 0.1.8.0
- */
-function bp_album_compatibility_notices() {
-
-		$message = 'Your sever does not meet the minumum requirements to run Bp-Album, this means the plugin may not function correctly. Please check that you have the required Wordpress and BuddyPress versions, as well
-                                    as up to date versions of PHP, MYSQL and the GDLib.';
-
-		echo '<div class="error fade"><p>'.$message.'</p></div>';
-}
-
-/**
- * bp_album_activate()
- *
- *  @version 0.1.8.11
- *  @since 0.1.8.0
- */
-function bp_album_activate() {
-	bp_album_check_installed();
-
-	do_action( 'bp_album_activate' );
-}
-register_activation_hook( __FILE__, 'bp_album_activate' );
-
-/**
- * bp_album_deactivate()
- *
- *  @version 0.1.8.11
- *  @since 0.1.8.0
- */
-function bp_album_deactivate() {
-	do_action( 'bp_album_deactivate' );
-}
-register_deactivation_hook( __FILE__, 'bp_album_deactivate' );
 
 /**
  * bp_album_setup_globals()
@@ -345,6 +315,8 @@ function bp_album_setup_nav() {
 
 }
 add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
+
+ } // Lib OK
 
 /**
  * bp_album_single_subnav_filter()
