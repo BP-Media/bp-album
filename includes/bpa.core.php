@@ -14,11 +14,29 @@
  * ========================================================================================================
  */
 
+// Constant to check if our plugin is installed
 define ( 'BP_ALBUM_IS_INSTALLED', 1 );
-define ( 'BP_ALBUM_DB_VERSION', '0.2' );
-define ( 'BP_ALBUM_VERSION', '0.1.8.12' );
 
-// Compatible System Detection
+// Constant for the plugin DB version
+define ( 'BP_ALBUM_DB_VERSION', '0.2' );
+
+// Internal version number (Google Code repository commit number)
+define ( 'BP_ALBUM_VERSION', '2370' );
+
+// Version of plugin shown on admin screen. This lets us show text like "0.1.9-RC1"
+define ( 'BP_ALBUM_DISPLAY_VERSION', '0.1.8.12' );
+
+//////////////////////////////////////////////////////////////////////////////////
+/**
+ * Compatible System Detection
+ *
+ * This function checks that the user has the correct versions of PHP, MySQL, GD,
+ * WordPress, and BuddyPress ...and will not load or run any of the plugin files
+ * unless they meet the minimum requirements.
+ *
+ */
+
+// This class is REQUIRED for the version checker to operate
 require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
 
                 $lib_versions = new BPA_version();
@@ -35,16 +53,19 @@ require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
         }
         else{
 
-load_textdomain( 'bp-album', dirname( __FILE__ ) . '/languages/bp-album-' . get_locale() . '.mo' );
+            // Load translation files
+            load_textdomain('bp-album', dirname(__FILE__) . '/languages/bp-album-' . get_locale() . '.mo');
 
-require ( dirname( __FILE__ ) . '/bpa.classes.php' );
-require ( dirname( __FILE__ ) . '/bpa.screens.php' );
-require ( dirname( __FILE__ ) . '/bpa.cssjs.php' );
-require ( dirname( __FILE__ ) . '/bpa.template.tags.php' );
-require ( dirname( __FILE__ ) . '/bpa.filters.php' );
+            // Load core classes and components
+            require ( dirname(__FILE__) . '/bpa.classes.php' );
+            require ( dirname(__FILE__) . '/bpa.screens.php' );
+            require ( dirname(__FILE__) . '/bpa.cssjs.php' );
+            require ( dirname(__FILE__) . '/bpa.template.tags.php' );
+            require ( dirname(__FILE__) . '/bpa.filters.php' );
 
-require_once( ABSPATH . '/wp-admin/includes/image.php' );
-require_once( ABSPATH . '/wp-admin/includes/file.php' );
+            // These are REQUIRED for the plugin to operate
+            require_once( ABSPATH . '/wp-admin/includes/image.php' );
+            require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
 /**
  * bp_album_check_installed()
@@ -54,13 +75,13 @@ require_once( ABSPATH . '/wp-admin/includes/file.php' );
  */
 function bp_album_check_installed() {
 
-	global $wpdb, $bp;
+//	global $wpdb, $bp;
 
-	if ( !current_user_can('install_plugins') )
-		return;
+	if ( current_user_can('install_plugins') ) {
 
 	if ( get_site_option( 'bp-album-db-version' ) < BP_ALBUM_DB_VERSION )
 		bp_album_install();
+        }
 }
 add_action( 'admin_menu', 'bp_album_check_installed' );
 
@@ -70,7 +91,7 @@ add_action( 'admin_menu', 'bp_album_check_installed' );
  *  @version 0.1.8.11
  *  @since 0.1.8.0
  */
-function bp_album_install(){
+function bp_album_install() {
 
 	global $bp, $wpdb;
 
@@ -217,7 +238,7 @@ add_action( 'admin_menu', 'bp_album_setup_globals', 2 );
  */
 function bp_album_add_admin_menu() {
 
-	if( is_multisite()  ){
+	if( is_multisite() ){
 		return;
 	}
 	else{

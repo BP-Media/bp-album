@@ -84,7 +84,7 @@ function bp_album_admin() {
 
 	<div class="wrap">
 	    
-		<h2><?php _e('BP Album - ', 'bp-album' ) ?> <?php echo BP_ALBUM_VERSION ?><?php _e(' - [Network Mode]', 'bp-album' ) ?></h2>
+		<h2><?php _e('BP Album - ', 'bp-album' ) ?> <?php echo BP_ALBUM_DISPLAY_VERSION ?><?php _e(' - [Network Mode]', 'bp-album' ) ?></h2>
 		<br />
 
 		<?php if ( isset($updated) ) : ?><?php echo "<div id='message' class='updated fade'><p>" . __('Settings Updated.', 'bp-album' ) . "</p></div>" ?><?php endif; ?>
