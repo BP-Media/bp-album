@@ -384,11 +384,12 @@ function bp_album_load_template_filter( $found_template, $templates ) {
 			$filtered_templates[] = STYLESHEETPATH . '/' . $template;
 		elseif ( file_exists( TEMPLATEPATH . '/' . $template ) )
 			$filtered_templates[] = TEMPLATEPATH . '/' . $template;
-		else
+		elseif ( file_exists( dirname( __FILE__ ) . '/templates/' . $template ) )
 			$filtered_templates[] = dirname( __FILE__ ) . '/templates/' . $template;
 	}
 
-	$found_template = $filtered_templates[0];
+	if( !empty( $filtered_templates ) )
+		$found_template = $filtered_templates[0];
 
 	return apply_filters( 'bp_album_load_template_filter', $found_template );
 }
