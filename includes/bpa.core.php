@@ -57,6 +57,7 @@ require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
             load_textdomain('bp-album', dirname(__FILE__) . '/languages/bp-album-' . get_locale() . '.mo');
 
             // Load core classes and components
+            // Have a feeling that some WP notices are occurring due to the fact that these are being loaded before the db installs on a new installation.
             require ( dirname(__FILE__) . '/bpa.classes.php' );
             require ( dirname(__FILE__) . '/bpa.screens.php' );
             require ( dirname(__FILE__) . '/bpa.cssjs.php' );
