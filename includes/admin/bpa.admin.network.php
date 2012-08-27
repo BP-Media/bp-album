@@ -1,23 +1,31 @@
 <?php
 
-/***
+/**
+ * BP-ALBUM ADMIN CLASS
  * This file is used to add site administration menus to the WordPress network admin backend.
+ *
+ * @since 0.1.8.0
+ * @package BP-Album
+ * @subpackage Admin
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/wiki/DOCS_BPM_db_top
+ *
+ * ========================================================================================================
  */
 
 /**
  * bp_album_admin()
  *
  * Checks for form submission, saves component settings and outputs admin screen HTML.
- * 
- * @version 0.1.8.11
+ *
  * @since 0.1.8.0
  */
 function bp_album_admin() {
-    
+
 	global $bp;
 
 	// If the form has been submitted and the admin referrer checks out, save the settings
-	if ( isset( $_POST['submit'] )  ) { 
+	if ( isset( $_POST['submit'] )  ) {
 
 		check_admin_referer('bpa-settings');
 
@@ -31,7 +39,7 @@ function bp_album_admin() {
 				$option_value = $_POST[$option_name]=='' ? false : intval($_POST[$option_name]);
 				update_site_option($option_name , $option_value);
 			}
-			
+
 			update_site_option( 'bp_album_max_upload_size', $_POST['bp_album_max_upload_size'] );
 			update_site_option( 'bp_album_keep_original', $_POST['bp_album_keep_original'] );
 			update_site_option( 'bp_album_require_description', $_POST['bp_album_require_description'] );
@@ -83,7 +91,7 @@ function bp_album_admin() {
 	?>
 
 	<div class="wrap">
-	    
+
 		<h2><?php _e('BP Album - ', 'bp-album' ) ?> <?php echo BP_ALBUM_DISPLAY_VERSION ?><?php _e(' - [Network Mode]', 'bp-album' ) ?></h2>
 		<br />
 
@@ -108,7 +116,7 @@ function bp_album_admin() {
 		</p>
 
 		<p>
-		<?php 
+		<?php
 			echo "<a href='http://code.google.com/p/buddypress-media/'>";
 			_e("Official Website", 'bp-album' );
 			echo "</a> - ";
@@ -145,13 +153,13 @@ function bp_album_admin() {
                     <h3><?php _e('Slug Name', 'bp-album' ) ?></h3>
 
 		    <p>
-		    <?php 
+		    <?php
 			_e("Bad slug names will disable the plugin. No Spaces. No Punctuation. No Special Characters. No Accents.", 'bp-album' );
 			echo " <br> ";
 			_e("{ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_- } ONLY.", 'bp-album' )
 		    ?>
 		    </p>
-		    
+
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Name of BP Album slug', 'bp-album' ) ?></label></th>
@@ -188,13 +196,13 @@ function bp_album_admin() {
 				</tr>
 
 			</table>
-		    
+
                     <h3><?php _e( 'Album Size Limits', 'bp-album' ) ?></h3>
 
                     <p>
 		    <?php _e( "<b>Accepted values:</b> EMPTY (no limit), NUMBER (value you set), 0 (disabled). The first option does not accept 0. The last option only accepts a number.", 'bp-album' ) ?>
 		    </p>
-		    
+
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Max total images allowed in a members album', 'bp-album' ) ?></label></th>
@@ -239,13 +247,13 @@ function bp_album_admin() {
 			<p>
 			<?php _e( "Uploaded images will be re-sized to the values you set here. Values are for both X and Y size in pixels. We <i>strongly</i> suggest you keep the original image files so BP-Media 0.1.9 can re-render your images during the upgrade process.", 'bp-album' ) ?>
 			</p>
-			
+
 			<table class="form-table">
 			    <tr valign="top">
 					<th scope="row"><label for="target_uri"><?php _e('Maximum file (mb) size that can be uploaded', 'bp-album' ) ?></label></th>
 					<td>
 						<input name="bp_album_max_upload_size" type="text" id="bp_album_max_upload_size" value="<?php echo esc_attr( $bp_album_max_upload_size ); ?>" size="10" />
-					</td> 
+					</td>
 				</tr>
 	              <tr>
 					<th scope="row"><label for="target_uri"><?php _e('Album Image Size', 'bp-album' ) ?></label></th>
