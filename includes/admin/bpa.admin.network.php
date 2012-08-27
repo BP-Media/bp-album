@@ -8,7 +8,7 @@
  * @package BP-Album
  * @subpackage Admin
  * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/wiki/DOCS_BPM_db_top
+ * @link http://code.google.com/p/buddypress-media/
  *
  * ========================================================================================================
  */

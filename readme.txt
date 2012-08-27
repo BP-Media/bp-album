@@ -32,7 +32,9 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 * Added action hooks to allow integration with other plugins
 
 = Resources =
-For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list), [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList), and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
+[Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList),
+and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 = Translations =
 
@@ -101,7 +103,7 @@ For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [
 * "Post all uploaded images to site activity stream, even if not submitted by users"
 * "Display all uploaded images in any template file"
 
-= 0.1.8 =
+= 0.1.8.0 =
 * Added URL re-mapping functionality to fix "Incorrect Image File URL Problem"
 
 = 0.1.7 =

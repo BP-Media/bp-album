@@ -1,37 +1,44 @@
-<?php 
+<?php
 
-/********************************************************************************
- * Screen Functions
- *
+/**
+ * BP-ALBUM SCREEN FUNCTIONS
  * Screen functions are the controllers of BuddyPress. They will execute when their
  * specific URL is caught. They will first save or manipulate data using business
  * functions, then pass on the user to a template file.
+ *
+ * @since 0.1.8.0
+ * @package BP-Album
+ * @subpackage Screens
+ * @license GPL v2.0
+ * @link http://code.google.com/p/buddypress-media/
+ *
+ * ========================================================================================================
  */
 
 /**
  * bp_album_screen_picture()
  *
  * Single picture
- * 
- * @version 0.1.8.11
+ *
+ * @version 0.1.8.12
  * @since 0.1.8.0
- */ 
+ */
 function bp_album_screen_single() {
 
-	global $bp,$pictures_template;
-	
+	global $bp, $pictures_template;
+
 	if ( $bp->current_component == $bp->album->slug && $bp->album->single_slug == $bp->current_action && $pictures_template->picture_count && isset($bp->action_variables[1]) && $bp->album->edit_slug == $bp->action_variables[1]  ) {
-	
+
 		do_action( 'bp_album_screen_edit' );
 
 		add_action( 'bp_template_title', 'bp_album_screen_edit_title' );
 		add_action( 'bp_template_content', 'bp_album_screen_edit_content' );
-	
+
 		bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
-		
+
 		return;
 	}
-	
+
 	do_action( 'bp_album_screen_single' );
 
 	bp_album_query_pictures();
@@ -41,9 +48,9 @@ function bp_album_screen_single() {
 /**
  * bp_album_screen_edit_title()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
- */ 
+ */
 function bp_album_screen_edit_title() {
 	_e( 'Edit Picture', 'bp-album' );
 }
@@ -51,12 +58,12 @@ function bp_album_screen_edit_title() {
 /**
  * bp_album_screen_edit_content()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
- */ 
+ */
 function bp_album_screen_edit_content() {
 
-	global $bp,$pictures_template;
+	global $bp, $pictures_template;
 
 	if (bp_album_has_pictures() ) :  bp_album_the_picture();
 	$limit_info = bp_album_limits_info();
@@ -112,7 +119,7 @@ function bp_album_screen_edit_content() {
     <input type="submit" name="submit" id="submit" value="<?php _e( 'Save', 'bp-album' ) ?>"/>
 
 		<?php
-		// This is very important, don't leave it out. 
+		// This is very important, don't leave it out.
 		wp_nonce_field( 'bp-album-edit' );
 		?>
 	</form>
@@ -125,8 +132,8 @@ function bp_album_screen_edit_content() {
  * bp_album_screen_pictures()
  *
  * An album page
- * 
- * @version 0.1.8.11
+ *
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_screen_pictures() {
@@ -141,12 +148,12 @@ function bp_album_screen_pictures() {
  * bp_album_screen_upload()
  *
  * Sets up and displays the screen output for the sub nav item "example/screen-two"
- * 
- * @version 0.1.8.11
+ *
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_screen_upload() {
-    
+
 	global $bp;
 
 	do_action( 'bp_album_screen_upload' );
@@ -159,7 +166,7 @@ function bp_album_screen_upload() {
 /**
  * bp_album_screen_upload_title()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_screen_upload_title() {
@@ -169,7 +176,7 @@ function bp_album_screen_upload_title() {
 /**
  * bp_album_screen_upload_content()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_screen_upload_content() {
@@ -221,7 +228,7 @@ function bp_album_screen_upload_content() {
     <input type="submit" name="submit" id="submit" value="<?php _e( 'Upload picture', 'bp-album' ) ?>"/>
 
 		<?php
-		// This is very important, don't leave it out. 
+		// This is very important, don't leave it out.
 		wp_nonce_field( 'bp-album-upload' );
 		?>
 	</form>
@@ -241,17 +248,17 @@ function bp_album_screen_upload_content() {
 /**
  * bp_album_action_upload()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_action_upload() {
-    
+
 	global $bp;
-	
+
 	if ( $bp->current_component == $bp->album->slug && $bp->album->upload_slug == $bp->current_action && isset( $_POST['submit'] )) {
-	
+
 		check_admin_referer('bp-album-upload');
-		
+
 		$error_flag = false;
 		$feedback_message = array();
 
@@ -284,12 +291,12 @@ function bp_album_action_upload() {
 
 			if( $pic_limit === null){
 				$error_flag = true;
-				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
-			}			
+				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );
+			}
 			elseif( $pic_limit !== false && ( $pic_limit === 0  || $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ) {
 
 				$error_flag = true;
-				
+
 				switch ($priv_lvl){
 					case 0 :
 						$feedback_message[] = __( 'You reached the limit for public pictures.', 'bp-album' ).' '.__( 'Please select another privacy option.', 'bp-album' );
@@ -306,7 +313,7 @@ function bp_album_action_upload() {
 				}
 			}
 		}
-		
+
 		$uploadErrors = array(
 			0 => __("There was no error, the file uploaded with success", 'bp-album'),
 			1 => __("Your image was bigger than the maximum allowed file size of: " . $bp->album->bp_album_max_upload_size . "MB"),
@@ -316,18 +323,18 @@ function bp_album_action_upload() {
 			6 => __("Missing a temporary folder", 'bp-album')
 		);
 		if ( isset($_FILES['file']) ){
-		
+
 			if ( $_FILES['file']['error'] ) {
 
 				$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'bp-album' ), $uploadErrors[$_FILES['file']['error']] );
 				$error_flag = true;
 
-			}		
+			}
 			elseif ( ($_FILES['file']['size'] / (1024 * 1024)) > $bp->album->bp_album_max_upload_size ) {
 
 				$feedback_message[] = sprintf(__( 'The picture you tried to upload was too big. Please upload a file less than ' . $bp->album->bp_album_max_upload_size . 'MB', 'bp-album'));
 				$error_flag = true;
-				
+
 			}
 			// Check the file has the correct extension type. Copied from bp_core_check_avatar_type() and modified with /i so that the
 			// regex patterns are case insensitive (otherwise .JPG .GIF and .PNG would trigger an error)
@@ -341,9 +348,9 @@ function bp_album_action_upload() {
 		else {
 			$feedback_message[] = sprintf( __( 'Your upload failed, please try again. Error was: %s', 'bp-album' ), $uploadErrors[4] );
 			$error_flag = true;
-		
+
 		}
-		
+
 		if(!$error_flag){
 
 			add_filter( 'upload_dir', 'bp_album_upload_dir', 10, 0 );
@@ -354,8 +361,8 @@ function bp_album_action_upload() {
 				$feedback_message[] = sprintf( __('Your upload failed, please try again. Error was: %s', 'bp-album' ), $pic_org['error'] );
 				$error_flag = true;
 			}
-		}		
-		if(!$error_flag){  
+		}
+		if(!$error_flag){
 
 			if( !is_multisite() ){
 
@@ -381,18 +388,18 @@ function bp_album_action_upload() {
 
 				$abs_path_to_files = ABSPATH;
 			}
-			
+
 			$pic_org_path = $pic_org['file'];
 			$pic_org_url = str_replace($abs_path_to_files,'/',$pic_org_path);
-			
+
 			$pic_org_size = getimagesize( $pic_org_path );
 			$pic_org_size = ($pic_org_size[0]>$pic_org_size[1])?$pic_org_size[0]:$pic_org_size[1];
-			
+
 			if($pic_org_size <= $bp->album->bp_album_middle_size){
 
 				$pic_mid_path = $pic_org_path;
 				$pic_mid_url = $pic_org_url;
-			} 
+			}
 			else {
 
 				$pic_mid = wp_create_thumbnail( $pic_org_path, $bp->album->bp_album_middle_size );
@@ -411,7 +418,7 @@ function bp_album_action_upload() {
 
 				$pic_thumb_path = $pic_org_path;
 				$pic_thumb_url = $pic_org_url;
-			} 
+			}
 			else {
 
 				$pic_thumb = image_resize( $pic_mid_path, $bp->album->bp_album_thumb_size, $bp->album->bp_album_thumb_size, true);
@@ -435,44 +442,44 @@ function bp_album_action_upload() {
 					    $feedback_message[] = __('There were problems saving the pictures details.', 'bp-album');
 			}
 		}
-		
+
 		if ($error_flag){
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'error');
-		} 
+		}
 		else {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'success' );
 			bp_core_redirect( $bp->loggedin_user->domain . $bp->current_component . '/'.$bp->album->single_slug.'/' . $id.'/'.$bp->album->edit_slug.'/');
 			die;
 		}
-		
+
 	}
-	
+
 }
 add_action('bp_actions','bp_album_action_upload',3);
 add_action('wp','bp_album_action_upload',3);
 
 /**
- * bp_album_upload_dir() 
+ * bp_album_upload_dir()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_upload_dir() {
-    
+
 	global $bp;
 
 	$user_id = $bp->loggedin_user->id;
-	
+
 	$dir = BP_ALBUM_UPLOAD_PATH;
 
 	$siteurl = trailingslashit( get_blog_option( 1, 'siteurl' ) );
 	$url = str_replace(ABSPATH,$siteurl,$dir);
-	
+
 	$bdir = $dir;
 	$burl = $url;
-	
+
 	$subdir = '/' . $user_id;
-	
+
 	$dir .= $subdir;
 	$url .= $subdir;
 
@@ -486,22 +493,22 @@ function bp_album_upload_dir() {
 /**
  * bp_album_action_edit()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_action_edit() {
-    
-	global $bp,$pictures_template;
-	
+
+	global $bp, $pictures_template;
+
 	if ( $bp->current_component == $bp->album->slug && $bp->album->single_slug == $bp->current_action && $pictures_template->picture_count && isset($bp->action_variables[1]) && $bp->album->edit_slug == $bp->action_variables[1] &&  isset( $_POST['submit'] )) {
-	
+
 		check_admin_referer('bp-album-edit');
-		
+
 		$error_flag = false;
 		$feedback_message = array();
-		
+
 		$id = $pictures_template->pictures[0]->id;
-		
+
 		if(empty($_POST['title'])){
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture title cannot be blank.', 'bp-album' );
@@ -511,10 +518,10 @@ function bp_album_action_edit() {
 			$error_flag = true;
 			$feedback_message[] = __( 'Picture description cannot be blank.', 'bp-album' );
 		}
-		
+
 		if( !isset($_POST['privacy']) ){
 			$error_flag = true;
-			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );	
+			$feedback_message[] = __( 'Please select a privacy option.', 'bp-album' );
 		}
 		else {
 			$priv_lvl = intval($_POST['privacy']);
@@ -538,7 +545,7 @@ function bp_album_action_edit() {
 				$pic_limit = is_super_admin() ? false : null;
 			if( $pic_limit === null){
 				$error_flag = true;
-				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );	
+				$feedback_message[] = __( 'Privacy option is not correct.', 'bp-album' );
 			}
 			elseif( $pic_limit !== false && $priv_lvl !== $pictures_template->pictures[0]->privacy && ( $pic_limit === 0|| $pic_limit <= bp_album_get_picture_count(array('privacy'=>$priv_lvl)) ) ){
 				$error_flag = true;
@@ -581,15 +588,15 @@ function bp_album_action_edit() {
 		}
 		if ($error_flag){
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'error');
-		} 
+		}
 		else {
 			bp_core_add_message( implode('&nbsp;', $feedback_message ),'success' );
 			bp_core_redirect( $bp->displayed_user->domain . $bp->album->slug . '/'.$bp->album->single_slug.'/' . $id.'/');
 			die;
 		}
-		
+
 	}
-	
+
 }
 add_action('bp_actions','bp_album_action_edit',3);
 add_action('wp','bp_album_action_edit',3);
@@ -597,23 +604,23 @@ add_action('wp','bp_album_action_edit',3);
 /**
  * bp_album_action_delete()
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_action_delete() {
 
-	global $bp,$pictures_template;
-	
+	global $bp, $pictures_template;
+
 	if ( $bp->current_component == $bp->album->slug && $bp->album->single_slug == $bp->current_action && $pictures_template->picture_count && isset($bp->action_variables[1]) && $bp->album->delete_slug == $bp->action_variables[1] ) {
 		check_admin_referer('bp-album-delete-pic');
-		
-				
+
+
 		if(!$pictures_template->picture_count){
 			bp_core_add_message( __( 'This url is not valid.', 'bp-album' ), 'error' );
 			return;
 		}
 		else{
-			
+
 			if ( !bp_is_my_profile() && !current_user_can(level_10) ) {
 				bp_core_add_message( __( "You don't have permission to delete this picture", 'bp-album' ), 'error' );
 			}
@@ -635,10 +642,10 @@ add_action('wp','bp_album_action_delete',3);
 
 /**
  * bp_album_screen_all_images()
- * 
+ *
  * Displays sitewide featured content block
  *
- * @version 0.1.8.11
+ * @version 0.1.8.12
  * @since 0.1.8.0
  */
 function bp_album_screen_all_images() {
