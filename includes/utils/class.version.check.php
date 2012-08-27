@@ -5,8 +5,7 @@
  * Checks that all plugins, API's, and services on the host system are the minimum
  * versions needed for BP-Album to run properly
  *
- * @version 0.1.9
- * @since 0.1.9
+ * @since 0.1.8.12
  * @package BP-Album
  * @subpackage Util
  * @license GPL v2.0
@@ -32,8 +31,7 @@ class BPA_version {
 	 * function does not have the problematic "3.1" < "3.1.0" behavior that
 	 * PHP's version of the function displays.
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @param string $ver1 | reference string
 	 * @param string $ver2 | comparison string
 	 * @param string $op | comparison operator: ">=", "<=", ">", "<", "=", "!="
@@ -63,7 +61,7 @@ class BPA_version {
 		$versions = array( "ver1"=>$ver1, "ver2"=>$ver2 );
 
 		foreach($versions as $key => $val){
-		    
+
 
 			// Make absolutely sure PHP treats the input data as a string
 			$val = (string)$val;
@@ -89,7 +87,7 @@ class BPA_version {
 			$versions[$key] = $val;
 
 
-		} 
+		}
 		unset($key, $val);
 
 
@@ -134,7 +132,7 @@ class BPA_version {
 			// Greater Than or Equal To ">="
 			//========================================================
 			case ">=" : {
-				
+
 				foreach ($v1 as $key => $val_1) {
 
 					$val_2 = $v2[$key];
@@ -165,9 +163,9 @@ class BPA_version {
 					$result = true;
 				}
 				elseif($gt_found && $lt_found){
-				    
+
 				    if ($v1 > $v2){
-					
+
 				    return true;
 				    }
 				    else{
@@ -219,9 +217,9 @@ class BPA_version {
 					$result = true;
 				}
 				elseif($gt_found && $lt_found){
-				    
+
 				    if ($v2 > $v1){
-					
+
 				    return true;
 				    }
 				    else{
@@ -273,9 +271,9 @@ class BPA_version {
 					$result = true;
 				}
 				elseif($gt_found && $lt_found){
-				 
+
 				    if ($v1 < $v2){
-					
+
 				    return false;
 				    }
 				    else{
@@ -328,9 +326,9 @@ class BPA_version {
 					$result = true;
 				}
 				elseif($gt_found && $lt_found){
-				    
+
 				    if ($v2 > $v1){
-					
+
 				    return true;
 				    }
 				    else{
@@ -401,27 +399,25 @@ class BPA_version {
 	/**
 	 * Get which version of PHP is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | PHP Version
 	 */
 
-	public function getPHPVersion()
-	{
+	public function getPHPVersion() {
+
 		return PHP_VERSION;
-	}	
-	
-	
+	}
+
+
 	/**
 	 * Get which version of WordPress is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | WordPress Version
 	 */
 
-	public function getWPVersion()
-	{
+	public function getWPVersion() {
+
 		global $wp_version;
 		return $wp_version;
 	}
@@ -430,13 +426,12 @@ class BPA_version {
 	/**
 	 * Get which version of BuddyPress is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | BuddyPress Version
 	 */
 
-	public function getBPVersion()
-	{
+	public function getBPVersion() {
+
 		return BP_VERSION;
 	}
 
@@ -444,13 +439,12 @@ class BPA_version {
 	/**
 	 * Get which version of MySQL is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | MySQL Version
 	 */
 
-	public function getSQLVersion()
-	{
+	public function getSQLVersion() {
+
 		global $wpdb;
 		return $wpdb->db_version();
 	}
@@ -459,13 +453,12 @@ class BPA_version {
 	/**
 	 * Get which version of Apache is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | Apache Version
 	 */
 
-	public function getApacheVersion()
-	{
+	public function getApacheVersion() {
+
 		return apache_get_version();
 	}
 
@@ -473,13 +466,11 @@ class BPA_version {
 	/**
 	 * Get which version of GD is installed
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return string | GD version, or 0 if not installed.
 	 */
 
-	public function getGDVersion()
-	{
+	public function getGDVersion() {
 
 		// Handle GD not being installed or loaded
 		if(!extension_loaded('gd')) {
@@ -521,8 +512,7 @@ class BPA_version {
 	/**
 	 * Checks that PHP is the minimum version needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
@@ -542,8 +532,7 @@ class BPA_version {
 	/**
 	 * Checks that MySQL is the minimum version needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
@@ -563,8 +552,7 @@ class BPA_version {
 	/**
 	 * Checks that WordPress is the minimum version needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
@@ -584,8 +572,7 @@ class BPA_version {
 	/**
 	 * Checks that BuddyPress is the minimum version needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
@@ -605,8 +592,7 @@ class BPA_version {
 	/**
 	 * Checks that GD is the minimum version needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
@@ -627,8 +613,7 @@ class BPA_version {
 	 * Checks that all plugins, API's, and services on the host system are the minimum
 	 * versions needed for BP-Album to run properly
 	 *
-	 * @version 0.1.9
-	 * @since 0.1.9
+	 * @since 0.1.8.12
 	 * @return bool | False on failure. True on success.
 	 */
 
