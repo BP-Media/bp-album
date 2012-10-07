@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('buddypress'); ?>
 
 	<div id="content">
 		<div class="padder">
@@ -14,7 +14,6 @@
 					</ul>
 				</div>
 			</div>
-
 
 			<div id="item-body">
 
@@ -44,15 +43,15 @@
 	                <?php bp_album_picture_delete_link();  ?></p>
 
 				<?php bp_album_load_subtemplate( apply_filters( 'bp_album_template_screen_comments', 'album/comments' ) ); ?>
+			
 				</div>
-
 					<?php else : ?>
 
 				<div id="message" class="info">
 					<p><?php echo bp_word_or_name( __( "This url is not valid.", 'bp-album' ), __( "Either this url is not valid or picture has restricted access.", 'bp-album' ),false,false ) ?></p>
 				</div>
 
-					<?php endif; ?>
+				<?php endif; ?>
 
 			</div><!-- #item-body -->
 
@@ -61,4 +60,4 @@
 
 	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 
-<?php get_footer(); ?>
+<?php get_footer('buddypress'); ?>

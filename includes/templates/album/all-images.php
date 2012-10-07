@@ -37,7 +37,7 @@
 		    while ( bp_album_has_pictures() ) : bp_album_the_picture(); ?>
 
 			<td>
-				<a href="<?php bp_album_picture_url() ?>" class="media-image"><img src='<?php bp_album_picture_thumb_url() ?>' /></a>
+				<a href="<?php bp_album_picture_url(); ?>" class="media-image"><img src='<?php bp_album_picture_thumb_url(); ?>' /></a>
 			</td>
 		    <?php
 
@@ -60,7 +60,7 @@
 	 // This db call resets the pictures template after generating the all images block. If it is removed,
 	 // and the all-images block is used on a page that contains a user image or gallery, the content
 	 // after the all-images block will not render correctly.
-	 
+
 	 bp_album_query_pictures();
 
 ?>

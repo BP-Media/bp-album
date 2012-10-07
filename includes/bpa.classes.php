@@ -62,26 +62,28 @@ class BP_Album_Picture {
 	 * @since 0.1.8.0
 	 */
 	function populate($id) {
-		global $wpdb, $bp;
+	global $wpdb, $bp;
 
-		$sql = $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE id = %d", $id );
-		$picture = $wpdb->get_row( $sql );
+	$sql = $wpdb->prepare("SELECT * FROM {$bp->album->table_name} WHERE id = %d", $id);
+	$picture = $wpdb->get_row($sql);
 
-		if ( $picture ) {
-			$this->owner_type = $picture->owner_type;
-			$this->owner_id = $picture->owner_id;
-			$this->id = $picture->id;
-	        $this->date_uploaded = $picture->date_uploaded;
-	        $this->title = $picture->title;
-	        $this->description = $picture->description;
-	        $this->privacy = $picture->privacy;
-	        $this->pic_org_path = $picture->pic_org_path;
-	        $this->pic_org_url = $picture->pic_org_url;
-	        $this->pic_mid_path = $picture->pic_mid_path;
-	        $this->pic_mid_url = $picture->pic_mid_url;
-	        $this->pic_thumb_path = $picture->pic_thumb_path;
-	        $this->pic_thumb_url = $picture->pic_thumb_url;
-		}
+	if ($picture) {
+
+	    $this->owner_type = $picture->owner_type;
+	    $this->owner_id = $picture->owner_id;
+	    $this->id = $picture->id;
+	    $this->date_uploaded = $picture->date_uploaded;
+	    $this->title = $picture->title;
+	    $this->description = $picture->description;
+	    $this->privacy = $picture->privacy;
+	    $this->pic_org_path = $picture->pic_org_path;
+	    $this->pic_org_url = $picture->pic_org_url;
+	    $this->pic_mid_path = $picture->pic_mid_path;
+	    $this->pic_mid_url = $picture->pic_mid_url;
+	    $this->pic_thumb_path = $picture->pic_thumb_path;
+	    $this->pic_thumb_url = $picture->pic_thumb_url;
+
+	    }
 	}
 
 	/**
@@ -109,7 +111,7 @@ class BP_Album_Picture {
 		$this->title = esc_attr( strip_tags($this->title) );
 		$this->description = wp_filter_kses($this->description);
 
-        if ( $this->id ) {
+		if ( $this->id ) {
 			$sql = $wpdb->prepare(
 				"UPDATE {$bp->album->table_name} SET
 					owner_type = %s,
@@ -200,6 +202,12 @@ class BP_Album_Picture {
 		return $wpdb->query( $wpdb->prepare( "DELETE FROM {$bp->album->table_name} WHERE id = %d", $this->id ) );
 	}
 
+	/**
+	 * query_pictures()
+	 *
+	 * @version 0.1.8.12
+	 * @since 0.1.8.0
+	 */
 	public static function query_pictures($args = '',$count=false,$adjacent=false) {
 
 		global $bp, $wpdb;
@@ -349,7 +357,7 @@ class BP_Album_Picture {
 	 * @version 0.1.8.12
 	 * @since 0.1.8.0
 	 */
-function bp_album_default_query_args(){
+	function bp_album_default_query_args(){
 
 	global $bp;
 	$args = array();

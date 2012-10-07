@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('buddypress'); ?>
 
 	<div id="content">
 		<div class="padder">
@@ -10,7 +10,7 @@
 			<div id="item-nav">
 				<div class="item-list-tabs no-ajax" id="object-nav">
 					<ul>
-						<?php bp_get_displayed_user_nav() ?>
+						<?php bp_get_displayed_user_nav(); ?>
 					</ul>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 
 				<div class="item-list-tabs no-ajax" id="subnav">
 					<ul>
-						<?php bp_get_options_nav() ?>
+						<?php bp_get_options_nav(); ?>
 					</ul>
 				</div>
 
@@ -55,4 +55,4 @@
 
 	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 
-<?php get_footer(); ?>
+<?php get_footer('buddypress'); ?>
