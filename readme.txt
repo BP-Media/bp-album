@@ -1,5 +1,5 @@
 === BuddyPress Album ===
-Contributors: foxly, fanquake, anancy, francescolaffi, modemlooper
+Contributors: foxly, fanquake, anancy, francescolaffi
 Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, social, community, networks, networking,
 Requires at least: 3.5
 Tested up to: 3.5
@@ -49,7 +49,7 @@ and [GIT Code Repository](https://github.com/BP-Media/), please visit our [Offic
 * zh_CN (Chinese)   by Calvin Hsu
 * de_DE (German) by Olaf Baumann
 * fr_FR (French) by [Chouf1](bp-fr.net)
-
+* hu_HU (Hungarian) by Baka Attila Tamás
 
 * Please submit new or updated translations through our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
