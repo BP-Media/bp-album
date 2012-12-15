@@ -24,7 +24,7 @@ define ( 'BP_ALBUM_DB_VERSION', '0.2' );
 define ( 'BP_ALBUM_VERSION', '2370' );
 
 // Version of plugin shown on admin screen. This lets us show text like "0.1.9-RC1"
-define ( 'BP_ALBUM_DISPLAY_VERSION', '0.1.8.12' );
+define ( 'BP_ALBUM_DISPLAY_VERSION', '0.1.8.14' );
 
 //////////////////////////////////////////////////////////////////////////////////
 /**
@@ -299,8 +299,6 @@ function bp_album_setup_nav() {
 		'default_subnav_slug' => $bp->album->pictures_slug,
 		'show_for_displayed_user' => true
 	) );
-
-  $bp->displayed_user->id = null;
 
 	$album_link = ($bp->displayed_user->id ? $bp->displayed_user->domain : $bp->loggedin_user->domain) . $bp->album->slug . '/';
 	$album_link_title = ($bp->displayed_user->id) ? bp_word_or_name( __( "My pictures", 'bp-album' ), __( "%s's pictures", 'bp-album' ) ,false,false) : __( "My pictures", 'bp-album' );
@@ -951,7 +949,7 @@ function bp_album_rebuild_activity() {
 	}
 
 	// Fetch all "public" images from the database
-	$sql =  $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE privacy = 0") ;
+	$sql =  $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE privacy = 0", null) ;
 	$results = $wpdb->get_results( $sql );
 
 	// Handle users that decide to run the function on sites with no uploaded content.
@@ -967,7 +965,7 @@ function bp_album_rebuild_activity() {
 
 		// Check if the item *already* has an activity stream post
 
-		$sql = $wpdb->prepare( "SELECT id FROM {$bp->activity->table_name} WHERE component = '{$bp->album->id}' AND item_id = {$pic_data->id}");
+		$sql = $wpdb->prepare( "SELECT id FROM {$bp->activity->table_name} WHERE component = '{$bp->album->id}' AND item_id = {$pic_data->id}", null);
 		$has_post = $wpdb->get_var( $sql );
 
 		// Create activity stream post
@@ -1016,7 +1014,7 @@ function bp_album_rebuild_activity() {
 	// sites with *zero* activity stream posts, because we added (potentially thousands of) them in the previous step.
 	// ================================================================================================================================
 
-	$sql = $wpdb->prepare( "SELECT date_recorded FROM {$bp->activity->table_name} ORDER BY date_recorded ASC LIMIT 1");
+	$sql = $wpdb->prepare( "SELECT date_recorded FROM {$bp->activity->table_name} ORDER BY date_recorded ASC LIMIT 1", null);
 	$oldest_post_date = $wpdb->get_var( $sql );
 
 	$full = explode(' ', $oldest_post_date);
@@ -1037,14 +1035,14 @@ function bp_album_rebuild_activity() {
 	// Set each of our marked activity stream items to a random date between the first activity stream post date and the current date
 	// ================================================================================================================================
 
-	$sql = $wpdb->prepare( "SELECT id FROM {$bp->activity->table_name} WHERE component = '{$bp->album->id}' AND secondary_item_id = 999");
+	$sql = $wpdb->prepare( "SELECT id FROM {$bp->activity->table_name} WHERE component = '{$bp->album->id}' AND secondary_item_id = 999", null);
 	$results = $wpdb->get_results( $sql );
 
 	foreach($results as $post){
 
 		$new_date = gmdate( "Y-m-d H:i:s", rand($oldest_unix_date, $current_date) );
 
-		$sql = $wpdb->prepare( "UPDATE {$bp->activity->table_name} SET date_recorded = '{$new_date}' WHERE id = {$post->id}");
+		$sql = $wpdb->prepare( "UPDATE {$bp->activity->table_name} SET date_recorded = '{$new_date}' WHERE id = {$post->id}", null);
 		$wpdb->query( $sql );
 	}
 	unset($results); unset($post);

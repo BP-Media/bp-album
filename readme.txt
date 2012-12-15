@@ -3,7 +3,7 @@ Contributors: foxly, fanquake, anancy, francescolaffi
 Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, social, community, networks, networking,
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 0.1.8.12
+Stable tag: 0.1.8.14
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
@@ -27,6 +27,7 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 
 = About This Release =
 
+* Fixes "Incorrect items displayed in user album view" defect
 * Fixes "Warning: Missing argument 2 for wpdb::prepare()" in WP 3.5
 * Fixes "Fatal error: Call to undefined function wp_create_thumbnail()" in WP 3.5 
 * Updated the plugins internal version checker
@@ -61,6 +62,12 @@ and [GIT Code Repository](https://github.com/BP-Media/), please visit our [Offic
 
 
 == Changelog ==
+
+= 0.1.8.14 =
+* Fixes even more problems caused by changes in the WordPress core
+
+= 0.1.8.13 =
+* Fixes corrupted file caused by SVN failure in WP plugin repo
 
 = 0.1.8.12 =
 * Compatibility with BuddyPress 1.6
