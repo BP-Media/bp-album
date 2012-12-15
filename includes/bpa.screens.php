@@ -402,7 +402,8 @@ function bp_album_action_upload() {
 			}
 			else {
 
-				$pic_mid = wp_create_thumbnail( $pic_org_path, $bp->album->bp_album_middle_size );
+				$cls = new BPA_image();
+				$pic_mid = $cls->create_thumbnail( $pic_org_path, $bp->album->bp_album_middle_size );
 				$pic_mid_path = str_replace( '//', '/', $pic_mid );
 				$pic_mid_url = str_replace($abs_path_to_files,'/',$pic_mid_path);
 

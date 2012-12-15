@@ -315,7 +315,7 @@ class BP_Album_Picture {
 				}
 			}
 
-			$sql = $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE $where $order $limits") ;
+			$sql = $wpdb->prepare( "SELECT * FROM {$bp->album->table_name} WHERE $where $order $limits", null) ;
 			$result = $wpdb->get_results( $sql );
 
 		}
@@ -327,7 +327,7 @@ class BP_Album_Picture {
 				$group='GROUP BY privacy';
 			}
 
-			$sql =  $wpdb->prepare( "SELECT DISTINCT $select COUNT(id) AS count FROM {$bp->album->table_name} WHERE $where $group") ;
+			$sql =  $wpdb->prepare( "SELECT DISTINCT $select COUNT(id) AS count FROM {$bp->album->table_name} WHERE $where $group", null) ;
 			if ($group)
 				$result = $wpdb->get_results( $sql );
 			else

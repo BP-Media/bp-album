@@ -63,6 +63,7 @@ require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
             require ( dirname(__FILE__) . '/bpa.cssjs.php' );
             require ( dirname(__FILE__) . '/bpa.template.tags.php' );
             require ( dirname(__FILE__) . '/bpa.filters.php' );
+            require ( dirname(__FILE__) . '/class.image.php' );	    
 
             // These are REQUIRED for the plugin to operate
             require_once( ABSPATH . '/wp-admin/includes/image.php' );
