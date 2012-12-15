@@ -95,7 +95,7 @@ add_action( 'admin_menu', 'bp_album_check_installed' );
  */
 function bp_album_install() {
 
-	global $bp, $wpdb;
+	global $wpdb;
 
 	if ( !empty($wpdb->charset) )
 		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
@@ -347,7 +347,7 @@ add_action( 'bp_setup_nav', 'bp_album_setup_nav' );
  * @version 0.1.8.12
  * @since 0.1.8.0
  */
-function bp_album_single_subnav_filter($link, $user_nav_item){
+function bp_album_single_subnav_filter($link){
 
 	global $bp, $pictures_template;
 
@@ -381,6 +381,8 @@ function bp_album_load_template_filter( $found_template, $templates ) {
 	if ( $bp->current_component != $bp->album->slug )
 		return $found_template;
 
+	$filtered_templates = array();
+	
 	foreach ( (array) $templates as $template ) {
 		if ( file_exists( STYLESHEETPATH . '/' . $template ) )
 			$filtered_templates[] = STYLESHEETPATH . '/' . $template;
@@ -586,8 +588,6 @@ function bp_album_get_prev_picture($args = ''){
  */
 function bp_album_add_picture($owner_type, $owner_id, $title, $description, $priv_lvl, $date_uploaded, $pic_org_url, $pic_org_path, $pic_mid_url, $pic_mid_path, $pic_thumb_url, $pic_thumb_path){
 
-    global $bp;
-
 	$pic = new BP_Album_Picture();
 
 	$pic->owner_type = $owner_type;
@@ -621,8 +621,7 @@ function bp_album_add_picture($owner_type, $owner_id, $title, $description, $pri
  */
 function bp_album_edit_picture($id, $title, $description, $priv_lvl, $enable_comments){
 
-	global $bp;
-
+    
 	$pic = new BP_Album_Picture($id);
 
 	if(!empty($pic->id)){
@@ -667,7 +666,7 @@ function bp_album_edit_picture($id, $title, $description, $priv_lvl, $enable_com
  */
 function bp_album_delete_picture($id=false){
 
-	global $bp;
+
 	if(!$id) return false;
 
 	$pic = new BP_Album_Picture($id);
@@ -1060,8 +1059,7 @@ function bp_album_rebuild_activity() {
  */
 function bp_album_undo_rebuild_activity() {
 
-	global $bp, $wpdb;
-
+	global $bp;
 
 	// Handle users that try to run the function when the activity stream is disabled
 	if ( !function_exists( 'bp_activity_delete' ) || !$bp->album->bp_album_enable_wire) {

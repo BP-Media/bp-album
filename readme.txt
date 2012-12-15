@@ -1,14 +1,14 @@
 === BuddyPress Album ===
-Contributors: foxly, francescolaffi, fanquake, 2inov8, modemlooper
+Contributors: foxly, fanquake, anancy, francescolaffi, modemlooper
 Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, social, community, networks, networking,
-Requires at least: 3.2
-Tested up to: 3.4.1
+Requires at least: 3.5
+Tested up to: 3.5
 Stable tag: 0.1.8.12
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
 == Description ==
-This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app! The current BETA version will also support audio files, embedded videos, embedded images, and much, much more.
+This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app.
 
 = IMPORTANT =
 We only use wordpress.org to distribute the current STABLE version of the plugin. We do not support, answer questions, or accept bug reports through wordpress.org.
@@ -27,14 +27,16 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 
 = About This Release =
 
+* Fixes "Warning: Missing argument 2 for wpdb::prepare()" in WP 3.5
+* Fixes "Fatal error: Call to undefined function wp_create_thumbnail()" in WP 3.5 
 * Updated the plugins internal version checker
 * Updated strings in the admin menu and user screens for better clarity
 * Added action hooks to allow integration with other plugins
 
 = Resources =
-For the [Latest News](http://code.google.com/p/buddypress-media/updates/list), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
+For the [Latest News](https://github.com/BP-Media/bp-media/commits/master), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
 [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList),
-and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+and [GIT Code Repository](https://github.com/BP-Media/), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 = Translations =
 
@@ -61,6 +63,9 @@ and [SVN Code Repository](http://code.google.com/p/buddypress-media/source/list)
 == Changelog ==
 
 = 0.1.8.12 =
+* Compatibility with BuddyPress 1.6
+* Fixes "Warning: Missing argument 2 for wpdb::prepare()" in WP 3.5
+* Fixes "Fatal error: Call to undefined function wp_create_thumbnail()" in WP 3.5 
 * Updated the plugins internal version checker
 * Updated strings in the admin menu and user screens for better clarity
 * Added action hooks to allow integration with other plugins

@@ -63,7 +63,7 @@ function bp_album_screen_edit_title() {
  */
 function bp_album_screen_edit_content() {
 
-	global $bp, $pictures_template;
+	global $bp;
 
 	if (bp_album_has_pictures() ) :  bp_album_the_picture();
 	$limit_info = bp_album_limits_info();
@@ -153,8 +153,6 @@ function bp_album_screen_pictures() {
  * @since 0.1.8.0
  */
 function bp_album_screen_upload() {
-
-	global $bp;
 
 	do_action( 'bp_album_screen_upload' );
 
@@ -282,8 +280,7 @@ function bp_album_action_upload() {
                             case "8": $pic_limit = $bp->album->bp_album_max_priv8_pictures; break;
                             case "9": $pic_limit = $bp->album->bp_album_max_priv9_pictures; break;
                             default: $pic_limit = null;
-                        }
-			$test = bp_album_get_picture_count(array('privacy'=>$priv_lvl));
+                        }	
 
 			if($priv_lvl == 10 ) {
 				$pic_limit = is_super_admin() ? false : null;
@@ -432,7 +429,6 @@ function bp_album_action_upload() {
 			$date_uploaded =  gmdate( "Y-m-d H:i:s" );
 			$title = $_FILES['file']['name'];
 			$description = ' ';
-			$privacy = $priv_lvl;
 
 			$id=bp_album_add_picture($owner_type,$owner_id,$title,$description,$priv_lvl,$date_uploaded,$pic_org_url,$pic_org_path,$pic_mid_url,$pic_mid_path,$pic_thumb_url,$pic_thumb_path);
 
@@ -650,8 +646,6 @@ add_action('wp','bp_album_action_delete',3);
  * @since 0.1.8.0
  */
 function bp_album_screen_all_images() {
-
-        global $bp;
 
         bp_album_query_pictures();
 	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ), false );
