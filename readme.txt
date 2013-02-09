@@ -35,7 +35,7 @@ We accept bug reports through [Github Issues](https://github.com/BP-Media/bp-alb
 * Added action hooks to allow integration with other plugins
 
 = Resources =
-For the [Latest News](https://github.com/BP-Media/bp-media/commits/master), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
+For the [Latest News](https://github.com/BP-Media/bp-album/commits/master), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
 [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList),
 and [GIT Code Repository](https://github.com/BP-Media/bp-album), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
@@ -51,6 +51,7 @@ and [GIT Code Repository](https://github.com/BP-Media/bp-album), please visit ou
 * de_DE (German) by Olaf Baumann
 * fr_FR (French) by [Chouf1](bp-fr.net)
 * hu_HU (Hungarian) by Baka Attila Tamás
+* fa_IR (Persian) by mahdiaramani
 
 * Please submit new or updated translations through our [Support Forum](http://buddypress.org/community/groups/bp-album/forum/)
 
