@@ -8,7 +8,7 @@
  * @package BP-Album
  * @subpackage CSS/JS
  * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
+ * @link https://github.com/BP-Media/bp-album
  *
  * ========================================================================================================
  */
@@ -20,7 +20,7 @@
  * This function will enqueue the components Javascript file, so that you can make
  * use of any Javascript you bundle with your component within your interface screens.
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_add_js() {
@@ -35,7 +35,7 @@ function bp_album_add_js() {
 /**
  * bp_album_add_css()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_add_css() {

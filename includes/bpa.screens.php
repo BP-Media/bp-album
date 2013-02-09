@@ -10,7 +10,7 @@
  * @package BP-Album
  * @subpackage Screens
  * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
+ * @link https://github.com/BP-Media/bp-album
  *
  * ========================================================================================================
  */
@@ -20,7 +20,7 @@
  *
  * Single picture
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_single() {
@@ -48,7 +48,7 @@ function bp_album_screen_single() {
 /**
  * bp_album_screen_edit_title()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_edit_title() {
@@ -58,7 +58,7 @@ function bp_album_screen_edit_title() {
 /**
  * bp_album_screen_edit_content()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_edit_content() {
@@ -133,7 +133,7 @@ function bp_album_screen_edit_content() {
  *
  * An album page
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_pictures() {
@@ -149,7 +149,7 @@ function bp_album_screen_pictures() {
  *
  * Sets up and displays the screen output for the sub nav item "example/screen-two"
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_upload() {
@@ -164,7 +164,7 @@ function bp_album_screen_upload() {
 /**
  * bp_album_screen_upload_title()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_upload_title() {
@@ -174,7 +174,7 @@ function bp_album_screen_upload_title() {
 /**
  * bp_album_screen_upload_content()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_upload_content() {
@@ -246,7 +246,7 @@ function bp_album_screen_upload_content() {
 /**
  * bp_album_action_upload()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_action_upload() {
@@ -458,7 +458,7 @@ add_action('wp','bp_album_action_upload',3);
 /**
  * bp_album_upload_dir()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_upload_dir() {
@@ -490,7 +490,7 @@ function bp_album_upload_dir() {
 /**
  * bp_album_action_edit()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_action_edit() {
@@ -601,7 +601,7 @@ add_action('wp','bp_album_action_edit',3);
 /**
  * bp_album_action_delete()
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_action_delete() {
@@ -642,7 +642,7 @@ add_action('wp','bp_album_action_delete',3);
  *
  * Displays sitewide featured content block
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_screen_all_images() {

@@ -4,7 +4,7 @@
  * BP-ALBUM IMAGE TRANSCODER CLASS
  * Transcodes various image formats to JPG format at a specified size
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.12
  * @package BP-Album
  * @subpackage Image Transcoder
@@ -24,7 +24,7 @@ class BPA_image {
 	* does not have the functionality to save in a file of the same format, the
 	* thumbnail will be created as a jpeg.
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param mixed $file Filename of the original image, Or attachment id.
@@ -47,7 +47,7 @@ class BPA_image {
 	* If either width or height are empty, no constraint is applied on
 	* that dimension.
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param int $current_width Current width of the image.
@@ -108,7 +108,7 @@ class BPA_image {
 	* specified width and height. If $crop is true, the largest matching central
 	* portion of the image will be cropped out and resized to the required size.
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param int $orig_w Original width.
@@ -172,7 +172,7 @@ class BPA_image {
        /**
 	* Create new GD image resource with transparency support
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param int $width Image width
@@ -195,7 +195,7 @@ class BPA_image {
        /**
 	* Load an image from a string, if PHP supports it.
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param string $file Filename of the image to load.
@@ -232,7 +232,7 @@ class BPA_image {
 	* image type. If the file going in is PNG, then the resized image is going to
 	* be PNG. The only supported image types are PNG, GIF, and JPEG.
 	*
-	* @version 0.1.8.12
+	* @version 0.1.8.14
 	* @since 0.1.8.12
 	*
 	* @param string $file Image file path.

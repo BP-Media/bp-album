@@ -1,7 +1,5 @@
-
 /* THE DEFAULT TEMPLATE -> FEATURED CONTENT */
 /* ######################################################################### */
-
 
 .bpa-content-wrap#default  {
     width:840px;
@@ -10,7 +8,6 @@
     display:block;
 }
 
-
 .bpa-content-wrap#default table.bpa-content-sitewide {
     padding:5px;
     background: #F3F3FF;
@@ -18,17 +15,15 @@
     display:block;
 }
 
-.bpa-content-wrap#default table.bpa-content-sitewide { /*tr.alt*/
+.bpa-content-wrap#default table.bpa-content-sitewide {
     background: #F3F3FF;
 }
-
 
 .bpa-content-wrap#default table.bpa-content-sitewide .media-image a {
     background-color: #333;
     vertical-align:middle;
 
 }
-
 
 .bpa-content-wrap#default table.bpa-content-sitewide .media-image img {
     background-color: #333;
@@ -37,8 +32,6 @@
     vertical-align:middle;
     border: solid 1px #666;
 }
-
-
 
 /* Gallery */
 .picture-thumb-box {

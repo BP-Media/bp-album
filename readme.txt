@@ -1,6 +1,6 @@
 === BuddyPress Album ===
 Contributors: foxly, fanquake, anancy, francescolaffi
-Tags: BuddyPress, BP-Album, BuddyPress Media, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, forums, microblogging, social, community, networks, networking,
+Tags: BuddyPress, BP-Album, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, social, community, networks, networking,
 Requires at least: 3.5
 Tested up to: 3.5
 Stable tag: 0.1.8.14
@@ -23,7 +23,7 @@ For a real-time view of our development schedule, please see our [Pivotal Tracke
 We handle all user support through our buddypress.org [Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
 
 = Bug Reports =
-We accept bug reports through our [Google Code Bug Tracker](http://code.google.com/p/buddypress-media/issues/list). Bug reports posted on wordpress.org will be ignored.
+We accept bug reports through [Github Issues](https://github.com/BP-Media/bp-album/issues). Bug reports posted on wordpress.org will be ignored.
 
 = About This Release =
 
@@ -37,7 +37,7 @@ We accept bug reports through our [Google Code Bug Tracker](http://code.google.c
 = Resources =
 For the [Latest News](https://github.com/BP-Media/bp-media/commits/master), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
 [Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList),
-and [GIT Code Repository](https://github.com/BP-Media/), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+and [GIT Code Repository](https://github.com/BP-Media/bp-album), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
 
 = Translations =
 

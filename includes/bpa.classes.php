@@ -4,12 +4,12 @@
  * BP-ALBUM DATABASE CLASS
  * Handles database functionality for the plugin
  *
- * @version 0.1.8.12
+ * @version 0.1.8.14
  * @since 0.1.8.0
  * @package BP-Album
  * @subpackage Database
  * @license GPL v2.0
- * @link http://code.google.com/p/buddypress-media/
+ * @link https://github.com/BP-Media/bp-album
  *
  * ========================================================================================================
  */
@@ -37,7 +37,7 @@ class BP_Album_Picture {
 	 * It will either create a new empty object if no ID is set, or fill the object
 	 * with a row from the table if an ID is provided.
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	function BP_Album_Picture( $id = null ) {
@@ -58,7 +58,7 @@ class BP_Album_Picture {
 	 * This method will populate the object with a row from the database, based on the
 	 * ID passed to the constructor.
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	function populate($id) {
@@ -92,7 +92,7 @@ class BP_Album_Picture {
 	 * This method will save an object to the database. It will dynamically switch between
 	 * INSERT and UPDATE depending on whether or not the object already exists in the database.
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	function save() {
@@ -193,7 +193,7 @@ class BP_Album_Picture {
 	 *
 	 * This method will delete the corresponding row for an object from the database.
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	function delete() {
@@ -205,7 +205,7 @@ class BP_Album_Picture {
 	/**
 	 * query_pictures()
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	public static function query_pictures($args = '',$count=false,$adjacent=false) {
@@ -354,7 +354,7 @@ class BP_Album_Picture {
 	/**
 	 * bp_album_default_query_args()
 	 *
-	 * @version 0.1.8.12
+	 * @version 0.1.8.14
 	 * @since 0.1.8.0
 	 */
 	function bp_album_default_query_args(){
