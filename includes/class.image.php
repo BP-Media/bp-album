@@ -244,7 +244,7 @@ class BPA_image {
 	* @param int $jpeg_quality Optional, default is 90. Image quality percentage.
 	* @return mixed WP_Error on failure. String with new destination path.
 	*/
-	public function image_resize( $file, $max_w, $max_h, $crop = false, $suffix = null, $dest_path = null, $jpeg_quality = 90 ) {
+	public function image_resize( $file, $max_w, $max_h, $crop = false, $suffix = null, $dest_path = null, $jpeg_quality = 100 ) {
 
 		$image = self::load_image( $file );
 		if ( !is_resource( $image ) )
@@ -270,6 +270,25 @@ class BPA_image {
 
 		// we don't need the original in memory anymore
 		imagedestroy( $image );
+
+		//read image data
+		$exif = exif_read_data( $file );
+		
+		//rotate images to display oreintation
+		if( !empty( $exif['Orientation'] ) ) {
+		    switch( $exif['Orientation'] ) {
+		        case 8:
+		            $newimage = imagerotate( $newimage,90,0 );
+		            break;
+		        case 3:
+		            $newimage = imagerotate( $newimage,180,0 );
+		            break;
+		        case 6:
+		            $newimage = imagerotate( $newimage,-90,0 );
+		            break;
+		    }
+		}
+
 
 		// $suffix will be appended to the destination filename, just before the extension
 		if ( !$suffix )
