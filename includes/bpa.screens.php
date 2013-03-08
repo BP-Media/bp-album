@@ -646,9 +646,11 @@ add_action('wp','bp_album_action_delete',3);
  * @since 0.1.8.0
  */
 function bp_album_screen_all_images() {
+	// register our theme directory to the template stack
+	bp_register_template_stack( 'bp_album_get_template_directory', 14 );
 
         bp_album_query_pictures();
-	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ), false );
+	bp_album_load_subtemplate( apply_filters( 'bp_album_screen_all_images', 'album/all-images' ) );
 }
 add_action('bp_album_all_images','bp_album_screen_all_images',3);
 

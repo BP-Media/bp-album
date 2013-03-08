@@ -430,28 +430,20 @@ add_filter( 'bp_located_template', 'bp_album_load_template_filter', 10, 2 );
 /**
  * bp_album_load_subtemplate()
  *
- * This function is used in the older templates.
- *
- * This function will probably be deprecated in the future.
- * Do not use!
- * 
- * Use bp_get_template_part() instead.
- *
  * @version 0.1.8.14
  * @since 0.1.8.0
  */
 function bp_album_load_subtemplate( $template_name ) {
+	$templates = array();
+	
+	// support our newer template names
+	if ( strpos( $template_name, 'album' ) == 0 ) {
+		$templates[] = 'members/single/' . $template_name . '.php';
+	}
 
-	if ( file_exists(STYLESHEETPATH . '/' . $template_name . '.php')) {
-		$located = STYLESHEETPATH . '/' . $template_name . '.php';
-	}
-	else if ( file_exists(TEMPLATEPATH . '/' . $template_name . '.php') ) {
-		$located = TEMPLATEPATH . '/' . $template_name . '.php';
-	}
-	else{
-		$located = dirname( __FILE__ ) . '/templates/' . $template_name . '.php';
-	}
-	include ($located);
+	$templates[] = $template_name . '.php';
+
+	bp_locate_template( $templates, true );
 }
 
 /**
