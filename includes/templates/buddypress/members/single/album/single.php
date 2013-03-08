@@ -18,7 +18,7 @@
 					                <?php bp_album_picture_delete_link(); ?>
 					        </p>
 
-						<?php bp_get_template_part( apply_filters( 'bp_album_template_screen_comments', 'album/comments' ) ); ?>
+						<?php bp_get_template_part( apply_filters( 'bp_album_template_screen_comments', 'members/single/album/comments' ) ); ?>
 
 					</div>
 
