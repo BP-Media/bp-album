@@ -361,16 +361,16 @@ function bp_album_single_subnav_filter($link){
 /**
  * bp_album_load_template_filter()
  *
- * You can define a custom load template filter for your component. This will allow
- * you to store and load template files from your plugin directory.
+ * This function sets up BP Album to use custom templates.
  *
- * This will also allow users to override these templates in their active theme and
- * replace the ones that are stored in the plugin directory.
+ * If a template does not exist in the current theme, BP Album will use
+ * its own bundled templates.
  *
- * If you're not interested in using template files, then you don't need this function.
- *
- * This will become clearer in the function bp_album_screen_one() when you want to load
- * a template file.
+ * We're doing two things here:
+ *  1) Support the older template format for themes that are using them
+ *     for backwards-compatibility
+ *  2) Route older template names to use our new template locations and
+ *     format.
  *
  * @version 0.1.8.14
  * @since 0.1.8.0
@@ -382,19 +382,46 @@ function bp_album_load_template_filter( $found_template, $templates ) {
 	if ( $bp->current_component != $bp->album->slug )
 		return $found_template;
 
-	$filtered_templates = array();
-	
-	foreach ( (array) $templates as $template ) {
-		if ( file_exists( STYLESHEETPATH . '/' . $template ) )
-			$filtered_templates[] = STYLESHEETPATH . '/' . $template;
-		elseif ( file_exists( TEMPLATEPATH . '/' . $template ) )
-			$filtered_templates[] = TEMPLATEPATH . '/' . $template;
-		elseif ( file_exists( dirname( __FILE__ ) . '/templates/' . $template ) )
-			$filtered_templates[] = dirname( __FILE__ ) . '/templates/' . $template;
-	}
+	// $found_template is not empty when the older template files are found in the
+	// parent and child theme
+	//
+	//  /wp-content/themes/YOUR-THEME/album/pictures.php
+	//  /wp-content/themes/YOUR-THEME/album/single.php	
+	//
+	// The older template files utilize a full template ( get_header() + 
+	// get_footer() ), which sucks for themes and theme compat.
+	//
+	// When the older template files are not found, we use our new template method,
+	// which will act more like a template part.
+	if ( empty( $found_template ) ) {	
+		// register our theme directory to the template stack
+		bp_register_template_stack( 'bp_album_get_template_directory', 14 );
 
-	if( !empty( $filtered_templates ) )
-		$found_template = $filtered_templates[0];
+		// locate_template() will attempt to find the plugins.php template in the
+		// child and parent theme and return the located template when found
+		//
+		// plugins.php is the preferred template to use, since all we'd need to do is
+		// inject our content into BP
+		//
+		// note: this is only really relevant for bp-default themes as theme compat
+		// will kick in on its own when this template isn't found
+		$found_template = locate_template( 'members/single/plugins.php', false, false );
+
+		// get template from $templates array and strip the php extension
+		$template = str_replace( '.php', '', $templates[0] );
+
+		// new template parts reside under /members/single/ to avoid conflicts
+		//
+		// stuff template name under the $bp->album object so we can reference it in
+		// our create_function() below
+		$bp->album->template = 'members/single/' . $template;
+
+		// add our hook to inject content into BP
+		add_action( 'bp_template_content', create_function( '', '
+			global $bp;
+			bp_get_template_part( $bp->album->template );
+		' ) );
+	}
 
 	return apply_filters( 'bp_album_load_template_filter', $found_template );
 }
@@ -402,6 +429,13 @@ add_filter( 'bp_located_template', 'bp_album_load_template_filter', 10, 2 );
 
 /**
  * bp_album_load_subtemplate()
+ *
+ * This function is used in the older templates.
+ *
+ * This function will probably be deprecated in the future.
+ * Do not use!
+ * 
+ * Use bp_get_template_part() instead.
  *
  * @version 0.1.8.14
  * @since 0.1.8.0
@@ -418,6 +452,18 @@ function bp_album_load_subtemplate( $template_name ) {
 		$located = dirname( __FILE__ ) . '/templates/' . $template_name . '.php';
 	}
 	include ($located);
+}
+
+/**
+ * bp_album_get_template_directory()
+ *
+ * Returns the BP Album template directory.
+ *
+ * @version 0.1.x
+ * @version 0.1.x
+ */
+function bp_album_get_template_directory() {
+	return dirname( __FILE__ ) . '/templates';
 }
 
 /**
