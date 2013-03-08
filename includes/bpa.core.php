@@ -58,6 +58,11 @@ require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
 
             // Load core classes and components
             // Have a feeling that some WP notices are occurring due to the fact that these are being loaded before the db installs on a new installation.
+
+            // Backpat functions for < BP 1.7
+            if ( ! class_exists( 'BP_Theme_Compat' ) )
+		require ( dirname(__FILE__) . '/bpa.backpat.php' );
+
             require ( dirname(__FILE__) . '/bpa.classes.php' );
             require ( dirname(__FILE__) . '/bpa.screens.php' );
             require ( dirname(__FILE__) . '/bpa.cssjs.php' );
