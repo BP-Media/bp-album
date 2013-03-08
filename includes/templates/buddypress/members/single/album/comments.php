@@ -1,6 +1,6 @@
 <?php if ( bp_album_picture_has_activity() && bp_album_comments_enabled() ) : ?>
 
-		<ul id="activity-stream" class="activity-list item-list">
+	<ul id="activity-stream" class="activity-list item-list">
 
 	<?php while ( bp_activities() ) : bp_the_activity(); ?>
 
@@ -8,7 +8,8 @@
 
 			<div class="activity-content">
 				<div class="activity-meta">
-            <?php do_action( 'bp_media_before_activity_meta' ); ?>
+        				<?php do_action( 'bp_media_before_activity_meta' ); ?>
+
 					<?php if ( is_user_logged_in() && bp_activity_can_comment() ) : ?>
 						<a href="<?php bp_activity_comment_link(); ?>" class="acomment-reply" id="acomment-comment-<?php bp_activity_id(); ?>"><?php _e( 'Reply', 'buddypress' ) ?> (<span><?php bp_activity_comment_count(); ?></span>)</a>
 					<?php endif; ?>
@@ -20,7 +21,8 @@
 							<a href="<?php bp_activity_unfavorite_link(); ?>" class="unfav" title="<?php _e( 'Remove Favorite', 'buddypress' ) ?>"><?php _e( 'Remove Favorite', 'buddypress' ) ?></a>
 						<?php endif; ?>
 					<?php endif;?>
-               <?php do_action( 'bp_media_after_activity_meta' ); ?>
+
+			               <?php do_action( 'bp_media_after_activity_meta' ); ?>
 				</div>
 			</div>
 
@@ -54,7 +56,7 @@
 
 	<?php endwhile; ?>
 
-		</ul>
+	</ul>
 
 <?php else : if(bp_is_my_profile() && bp_album_comments_enabled()){ ?>
 	<div id="message" class="info">
