@@ -716,6 +716,8 @@ function bp_album_delete_picture($id=false){
 		@unlink($pic->pic_mid_path);
 		@unlink($pic->pic_thumb_path);
 
+		do_action('bp_album_delete_picture', $pic);
+
 		bp_album_delete_activity( $pic->id );
 
 		return $pic->delete();
@@ -748,6 +750,8 @@ function bp_album_delete_by_user_id($user_id, $remove_files = true){
 			@unlink($pic->pic_org_path);
 			@unlink($pic->pic_mid_path);
 			@unlink($pic->pic_thumb_path);
+
+			do_action('bp_album_delete_picture', $pic);
 
 		}
 	}
