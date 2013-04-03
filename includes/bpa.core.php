@@ -54,7 +54,7 @@ require ( dirname( __FILE__ ) . '/utils/class.version.check.php' );
         else{
 
             // Load translation files
-            load_textdomain('bp-album', dirname(__FILE__) . '/languages/bp-album-' . get_locale() . '.mo');
+            load_plugin_textdomain('bp-album', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
 
             // Load core classes and components
             // Have a feeling that some WP notices are occurring due to the fact that these are being loaded before the db installs on a new installation.
