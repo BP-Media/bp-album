@@ -50,7 +50,7 @@ function bp_locate_template( $template_names, $load = false, $require_once = tru
 		$template_name  = ltrim( $template_name, '/' );
 
 		// Loop through template stack
-		foreach ( (array) $template_locations as $template_location ) {
+		foreach ( $template_locations as $template_location ) {
 
 			// Continue if $template_location is empty
 			if ( empty( $template_location ) )
@@ -65,7 +65,7 @@ function bp_locate_template( $template_names, $load = false, $require_once = tru
 	}
 
 	// Maybe load the template if one was located
-	if ( ( true == $load ) && !empty( $located ) )
+	if ( $load && !empty( $located ) )
 		load_template( $located, $require_once );
 
 	return $located;
@@ -169,5 +169,6 @@ endif;
 add_filter( 'bp_get_template_stack', 'bp_add_template_stack_locations' );
 
 // Register template stacks
+/** @noinspection PhpRedundantOptionalArgumentInspection */
 bp_register_template_stack( 'get_stylesheet_directory', 10 );
 bp_register_template_stack( 'get_template_directory',   12 );

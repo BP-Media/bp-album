@@ -25,9 +25,13 @@ Text Domain: bp-album
  */
 function bpa_init() {
 
-	require( dirname( __FILE__ ) . '/includes/bpa.core.php' );
+	require_once  dirname( __FILE__ ) . '/includes/bpa.core.php';
 
 }
 add_action( 'bp_loaded', 'bpa_init' );
 
-?>
+function bpa_album_activate() {
+  require_once  dirname( __FILE__ ) . '/includes/bpa.core.php';
+  bp_album_install();
+}
+register_activation_hook( __FILE__, 'bpa_album_activate' );
