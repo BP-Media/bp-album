@@ -2,22 +2,16 @@
 Contributors: foxly, fanquake, anancy, modemlooper, francescolaffi
 Tags: BuddyPress, BP-Album, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, social, community, networks, networking,
 Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 0.1.8.14
+Tested up to: 6.0.3
+Stable tag: 0.1.9
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
 == Description ==
-This plugin adds full photo album capabilities to BuddyPress, mimicking Facebook's photo app.
+This plugin adds full photo album capabilities to BuddyPress.
 
 = IMPORTANT =
 We only use wordpress.org to distribute the current STABLE version of the plugin. We do not support, answer questions, or accept bug reports through wordpress.org.
-
-= Latest Version =
-For the latest beta version, which is often 6 MONTHS ahead of the version posted on wordpress.org, please visit our [Google Code](http://code.google.com/p/buddypress-media/) project page.
-
-= Development Schedule =
-For a real-time view of our development schedule, please see our [Pivotal Tracker](http://bit.ly/f5zPJ9).
 
 = User Support =
 We handle all user support through our buddypress.org [Support Forum](http://buddypress.org/community/groups/bp-album/forum/). Support requests posted on wordpress.org will not be answered.
@@ -27,17 +21,7 @@ We accept bug reports through [Github Issues](https://github.com/BP-Media/bp-alb
 
 = About This Release =
 
-* Fixes "Incorrect items displayed in user album view" defect
-* Fixes "Warning: Missing argument 2 for wpdb::prepare()" in WP 3.5
-* Fixes "Fatal error: Call to undefined function wp_create_thumbnail()" in WP 3.5 
-* Updated the plugins internal version checker
-* Updated strings in the admin menu and user screens for better clarity
-* Added action hooks to allow integration with other plugins
-
-= Resources =
-For the [Latest News](https://github.com/BP-Media/bp-album/commits/master), [Developer Resources](http://code.google.com/p/buddypress-media/w/list),
-[Project Schedule](http://bit.ly/f5zPJ9), [Development Roadmap](http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList),
-and [GIT Code Repository](https://github.com/BP-Media/bp-album), please visit our [Official Plugin Website](http://code.google.com/p/buddypress-media/)
+* Bug fixes to update compatibility with WordPress core.
 
 = Translations =
 

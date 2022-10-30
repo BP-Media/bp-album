@@ -99,49 +99,12 @@ function bp_album_admin() {
 
 		<p>
 		<?php
-			echo "<a href='http://bit.ly/f5zPJ9'>";
-			_e("Project Calendar", 'bp-album' );
-			echo "</a> - ";
-			_e("View our development schedule in real-time using Pivotal Tracker.", 'bp-album' )
-		?>
-		</p>
-
-		<p>
-		<?php
 			echo "<a href='http://buddypress.org/community/groups/bp-album/forum/'>";
 			_e("Support Forum", 'bp-album' );
 			echo "</a> - ";
 			_e("Need help with the plugin? There are <i>hundreds of other users</i> that can answer your questions on our BuddyPress support forum.", 'bp-album' )
 		?>
 		</p>
-
-		<p>
-		<?php
-			echo "<a href='http://code.google.com/p/buddypress-media/'>";
-			_e("Official Website", 'bp-album' );
-			echo "</a> - ";
-			_e("Our base of operations on the internet and the <i>only</i> source of info that's been checked by our dev team.", 'bp-album' )
-		?>
-		</p>
-
-		<p>
-		<?php
-			echo "<a href='http://code.google.com/p/buddypress-media/wiki/BuddyPressMediaFeaturesList'>";
-			_e("Features List", 'bp-album' );
-			echo "</a> - ";
-			_e("See what features we're adding to upcoming versions of the plugin.", 'bp-album' )
-		?>
-		</p>
-
-		<p>
-		<?php
-			echo "<a href='http://code.google.com/p/buddypress-media/updates/list'>";
-			_e("Activity Feed", 'bp-album' );
-			echo "</a> - ";
-			_e("Up-to-the-second bug reports and code updates via Google Code.", 'bp-album' )
-		?>
-		</p>
-
 
 		<p>
 		    <br>

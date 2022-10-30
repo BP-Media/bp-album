@@ -24,7 +24,7 @@ define ( 'BP_ALBUM_DB_VERSION', '0.2' );
 define ( 'BP_ALBUM_VERSION', '2370' );
 
 // Version of plugin shown on admin screen. This lets us show text like "0.1.9-RC1"
-define ( 'BP_ALBUM_DISPLAY_VERSION', '0.1.8.14' );
+define ( 'BP_ALBUM_DISPLAY_VERSION', '0.1.9' );
 
 //////////////////////////////////////////////////////////////////////////////////
 /**
@@ -253,7 +253,7 @@ function bp_album_add_admin_menu() {
 
 	require ( dirname( __FILE__ ) . '/admin/bpa.admin.local.php' );
 
-	add_menu_page(__( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin' );
+	add_menu_page(__( 'BP Album', 'bp-album' ), __( 'BP Album', 'bp-album' ), 'administrator', 'bp-album-settings', 'bp_album_admin', 'dashicons-format-image' );
 
 	}
 }
