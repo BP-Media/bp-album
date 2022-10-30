@@ -1,2 +1,7 @@
+/.idea/
+/.run/
+*~
+**/hidden-test-treeshake/
 
 .DS_Store
+/vendor/

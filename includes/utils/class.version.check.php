@@ -43,7 +43,7 @@ class BPA_version {
 
 		$valid_ops = array(">=", "<=", ">", "<", "=", "!=");
 
-		if( array_search($op, $valid_ops) === false ){
+		if( ! in_array( $op, $valid_ops ) ){
 
 			$error = array(
 					'numeric'=>1,
@@ -64,7 +64,7 @@ class BPA_version {
 
 
 			// Make absolutely sure PHP treats the input data as a string
-			$val = (string)$val;
+			$val = $val;
 
 			// Make sure nobody tries to slip in a rouge Omega symbol
 			$val = str_replace("Ω", "", $val);
@@ -400,7 +400,7 @@ class BPA_version {
 	 * Get which version of PHP is installed
 	 *
 	 * @since 0.1.8.12
-	 * @return string | PHP Version
+	 * @return string  PHP Version
 	 */
 
 	public function getPHPVersion() {
@@ -413,7 +413,7 @@ class BPA_version {
 	 * Get which version of WordPress is installed
 	 *
 	 * @since 0.1.8.12
-	 * @return string | WordPress Version
+	 * @return string  WordPress Version
 	 */
 
 	public function getWPVersion() {
@@ -440,7 +440,7 @@ class BPA_version {
 	 * Get which version of MySQL is installed
 	 *
 	 * @since 0.1.8.12
-	 * @return string | MySQL Version
+	 * @return string MySQL Version
 	 */
 
 	public function getSQLVersion() {
@@ -454,7 +454,7 @@ class BPA_version {
 	 * Get which version of Apache is installed
 	 *
 	 * @since 0.1.8.12
-	 * @return string | Apache Version
+	 * @return string Apache Version
 	 */
 
 	public function getApacheVersion() {
@@ -467,7 +467,7 @@ class BPA_version {
 	 * Get which version of GD is installed
 	 *
 	 * @since 0.1.8.12
-	 * @return string | GD version, or 0 if not installed.
+	 * @return string GD version, or 0 if not installed.
 	 */
 
 	public function getGDVersion() {
@@ -518,7 +518,7 @@ class BPA_version {
 
 	public function phpOK() {
 
-		if( self::checkVersion( self::getPHPVersion(), $this->min_php_ver, '>=') == true )
+		if( self::checkVersion( self::getPHPVersion(), $this->min_php_ver, '>=' ) )
 		{
 			return true;
 		}
@@ -538,7 +538,7 @@ class BPA_version {
 
 	public function sqlOK() {
 
-		if( self::checkVersion( self::getSQLVersion(), $this->min_sql_ver, '>=') == true )
+		if( self::checkVersion( self::getSQLVersion(), $this->min_sql_ver, '>=' ) )
 		{
 			return true;
 		}
@@ -558,7 +558,7 @@ class BPA_version {
 
 	public function wpOK() {
 
-		if( self::checkVersion( self::getWPVersion(), $this->min_wp_ver, '>=') == true )
+		if( self::checkVersion( self::getWPVersion(), $this->min_wp_ver, '>=' ) )
 		{
 			return true;
 		}
@@ -578,7 +578,7 @@ class BPA_version {
 
 	public function bpOK() {
 
-		if( self::checkVersion( self::getBPVersion(), $this->min_bp_ver, '>=') == true )
+		if( self::checkVersion( self::getBPVersion(), $this->min_bp_ver, '>=' ) )
 		{
 			return true;
 		}
@@ -598,7 +598,7 @@ class BPA_version {
 
 	public function gdOK() {
 
-		if( self::checkVersion( self::getGDVersion(), $this->min_gd_ver, '>=') == true )
+		if( self::checkVersion( self::getGDVersion(), $this->min_gd_ver, '>=' ) )
 		{
 			return true;
 		}
@@ -619,11 +619,11 @@ class BPA_version {
 
 	public function allOK() {
 
-		if( (self::phpOK() == true)
-		&&  (self::sqlOK() == true)
-		&&  (self::wpOK() == true)
-		&&  (self::bpOK() == true)
-		&&  (self::gdOK() == true))
+		if( self::phpOK()
+        && self::sqlOK()
+        && self::wpOK()
+        && self::bpOK()
+        && self::gdOK() )
 		{
 			return true;
 		}
@@ -634,5 +634,3 @@ class BPA_version {
 	}
 
 } // End of class BPA_version
-
-?>

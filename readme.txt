@@ -2,8 +2,9 @@
 Contributors: foxly, fanquake, anancy, modemlooper, francescolaffi
 Tags: BuddyPress, BP-Album, album, albums, picture, pictures, photos, gallery, galleries, media, privacy, social networking, activity, profiles, messaging, friends, groups, social, community, networks, networking,
 Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 0.1.8.14
+Tested up to: 6.1
+Stable tag: 0.1.9
+Requires PHP: 5.6
 
 Photo Albums for BuddyPress. Includes Posts to Activity Stream, Member Comments, and Gallery Privacy Controls.
 
@@ -63,6 +64,10 @@ and [GIT Code Repository](https://github.com/BP-Media/bp-album), please visit ou
 
 
 == Changelog ==
+
+= 0.1.9 =
+* Fixes problems caused by deprecations in the WordPress core, wpdb, and image handling.
+* Tested with BuddyPress 10.4 and WordPress 6.1.
 
 = 0.1.8.14 =
 * Fixes even more problems caused by changes in the WordPress core

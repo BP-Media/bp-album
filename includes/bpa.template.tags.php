@@ -226,9 +226,7 @@ function bp_album_picture_title_truncate($length = 11) {
 			$r = substr($r, 0, $length);
 		}
 
-		$result = _wp_specialchars($r) . '&#8230;';
-
-		return $result;
+    return _wp_specialchars($r) . '&#8230;';
 
 	}
 
@@ -368,13 +366,11 @@ function bp_album_picture_original_url() {
 
 		global $bp, $pictures_template;
 
-		if($bp->album->bp_album_url_remap == true){
+		if( $bp->album->bp_album_url_remap ){
 
 		    $filename = substr( $pictures_template->picture->pic_org_url, strrpos($pictures_template->picture->pic_org_url, '/') + 1 );
 		    $owner_id = $pictures_template->picture->owner_id;
-		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
-
-		    return $result;
+      return $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
 		}
 		else {
 		    return apply_filters( 'bp_album_get_picture_original_url', bp_get_root_domain().$pictures_template->picture->pic_org_url );
@@ -395,13 +391,11 @@ function bp_album_picture_middle_url() {
 
 		global $bp, $pictures_template;
 
-		if($bp->album->bp_album_url_remap == true){
+		if( $bp->album->bp_album_url_remap ){
 
 		    $filename = substr( $pictures_template->picture->pic_mid_url, strrpos($pictures_template->picture->pic_mid_url, '/') + 1 );
 		    $owner_id = $pictures_template->picture->owner_id;
-		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
-
-		    return $result;
+      return $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
 		}
 		else {
 		    return apply_filters( 'bp_album_get_picture_middle_url', bp_get_root_domain().$pictures_template->picture->pic_mid_url );
@@ -421,13 +415,11 @@ function bp_album_picture_thumb_url() {
 
 		global $bp, $pictures_template;
 
-		if($bp->album->bp_album_url_remap == true){
+		if( $bp->album->bp_album_url_remap ){
 
 		    $filename = substr( $pictures_template->picture->pic_thumb_url, strrpos($pictures_template->picture->pic_thumb_url, '/') + 1 );
 		    $owner_id = $pictures_template->picture->owner_id;
-		    $result = $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
-
-		    return $result;
+      return $bp->album->bp_album_base_url . '/' . $owner_id . '/' . $filename;
 		}
 		else {
 		    return apply_filters( 'bp_album_get_picture_thumb_url', bp_get_root_domain().$pictures_template->picture->pic_thumb_url );
@@ -730,5 +722,3 @@ function bp_album_comments_enabled() {
         return $bp->album->bp_album_enable_comments;
 
 }
-
-?>
