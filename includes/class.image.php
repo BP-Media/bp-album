@@ -33,10 +33,8 @@ class BPA_image {
 	*/
     
 	public function create_thumbnail( $file, $max_side) {
-	    
-		$thumbpath = self::image_resize( $file, $max_side, $max_side );
-		
-		return $thumbpath;
+
+    return self::image_resize( $file, $max_side, $max_side );
 		
 	}
 
@@ -177,7 +175,7 @@ class BPA_image {
 	*
 	* @param int $width Image width
 	* @param int $height Image height
-	* @return image resource
+	* @return  resource|GdImage|false image resource
 	*/
 	public function imagecreatetruecolor($width, $height) {
 	    
@@ -199,7 +197,7 @@ class BPA_image {
 	* @since 0.1.8.12
 	*
 	* @param string $file Filename of the image to load.
-	* @return resource The resulting image resource on success, Error string on failure.
+	* @return string|resource The resulting image resource on success, Error string on failure.
 	*/
 	
 	public function load_image( $file ) {
@@ -272,7 +270,7 @@ class BPA_image {
 		imagedestroy( $image );
 
 		//read image data
-		$exif = exif_read_data( $file );
+		$exif = @exif_read_data( $file );
 		
 		//rotate images to display oreintation
 		if( !empty( $exif['Orientation'] ) ) {
@@ -328,5 +326,3 @@ class BPA_image {
     
     
 }
-
-?>

@@ -47,5 +47,3 @@ function bp_album_add_css() {
 }
 
 add_action( 'wp_head', 'bp_album_add_css' );
-
-?>

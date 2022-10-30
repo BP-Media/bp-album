@@ -48,6 +48,10 @@ We accept bug reports through [Github Issues](https://github.com/BP-Media/bp-alb
 
 == Changelog ==
 
+= 0.1.9 =
+* Fixes problems caused by deprecations in the WordPress core, wpdb, and image handling.
+* Tested with BuddyPress 10.4 and WordPress 6.1.
+
 = 0.1.8.14 =
 * Fixes even more problems caused by changes in the WordPress core
 

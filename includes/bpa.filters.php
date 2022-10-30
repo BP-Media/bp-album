@@ -64,5 +64,3 @@ add_filter( 'bp_album_get_picture_desc_truncate', 'convert_smilies' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'convert_chars' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'make_clickable' );
 add_filter( 'bp_album_get_picture_desc_truncate', 'bp_album_make_nofollow_filter' );
-
-?>

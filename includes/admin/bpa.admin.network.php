@@ -139,22 +139,22 @@ function bp_album_admin() {
                                 <tr>
 					<th scope="row"><?php _e('Force members to enter a description for each image', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_require_description" type="text" id="bp_album_require_description"<?php if ($bp_album_require_description == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_require_description" type="text" id="bp_album_require_description"<?php if ($bp_album_require_description == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_require_description" type="text" id="bp_album_require_description"<?php if ( $bp_album_require_description ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_require_description" type="text" id="bp_album_require_description"<?php if ( ! $bp_album_require_description ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><?php _e('Allow site members to post comments on album images', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_enable_comments" type="text" id="bp_album_enable_comments"<?php if ($bp_album_enable_comments == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_enable_comments" type="text" id="bp_album_enable_comments"<?php if ($bp_album_enable_comments == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_enable_comments" type="text" id="bp_album_enable_comments"<?php if ( $bp_album_enable_comments ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_enable_comments" type="text" id="bp_album_enable_comments"<?php if ( ! $bp_album_enable_comments ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
                                 <tr>
 					<th scope="row"><?php _e('Post image thumbnails to members activity stream', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_enable_wire" type="text" id="bp_album_enable_wire"<?php if ($bp_album_enable_wire == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_enable_wire" type="text" id="bp_album_enable_wire"<?php if ($bp_album_enable_wire == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_enable_wire" type="text" id="bp_album_enable_wire"<?php if ( $bp_album_enable_wire ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_enable_wire" type="text" id="bp_album_enable_wire"<?php if ( ! $bp_album_enable_wire ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
 
@@ -233,8 +233,8 @@ function bp_album_admin() {
                                 <tr>
 					<th scope="row"><?php _e('Keep original image files', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ( $bp_album_keep_original == true ) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ($bp_album_keep_original == false) : ?> checked="checked"<?php endif; ?> id="bp-disable-account-deletion" value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ( $bp_album_keep_original ) : ?> checked="checked"<?php endif; ?>id="bp-disable-account-deletion" value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_keep_original" type="text" id="bp_album_keep_original"<?php if ( ! $bp_album_keep_original ) : ?> checked="checked"<?php endif; ?>id="bp-disable-account-deletion" value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
 
@@ -255,8 +255,8 @@ function bp_album_admin() {
                                 <tr>
 					<th scope="row"><?php _e('Use image URL re-mapping', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_url_remap" type="text" id="bp_album_url_remap"<?php if ($bp_album_url_remap == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_url_remap" type="text" id="bp_album_url_remap"<?php if ($bp_album_url_remap == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_url_remap" type="text" id="bp_album_url_remap"<?php if ( $bp_album_url_remap ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_url_remap" type="text" id="bp_album_url_remap"<?php if ( ! $bp_album_url_remap ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -279,8 +279,8 @@ function bp_album_admin() {
                                 <tr>
 					<th scope="row"><?php _e('Rebuild posts', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ($bp_album_rebuild_activity == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ($bp_album_rebuild_activity == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ( $bp_album_rebuild_activity ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_rebuild_activity" type="text" id="bp_album_rebuild_activity"<?php if ( ! $bp_album_rebuild_activity ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
 			</table>
@@ -289,8 +289,8 @@ function bp_album_admin() {
                                 <tr>
 					<th scope="row"><?php _e('UNDO rebuild posts', 'bp-album' ) ?></th>
 					<td>
-						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ($bp_album_undo_rebuild_activity == true ) : ?> checked="checked"<?php endif; ?>  value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
-						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ($bp_album_undo_rebuild_activity == false) : ?> checked="checked"<?php endif; ?>  value="0" /> <?php _e( 'No', 'bp-album' ) ?>
+						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ( $bp_album_undo_rebuild_activity ) : ?> checked="checked"<?php endif; ?>value="1" /> <?php _e( 'Yes', 'bp-album' ) ?> &nbsp;
+						<input type="radio" name="bp_album_undo_rebuild_activity" type="text" id="bp_album_undo_rebuild_activity"<?php if ( ! $bp_album_undo_rebuild_activity ) : ?> checked="checked"<?php endif; ?>value="0" /> <?php _e( 'No', 'bp-album' ) ?>
 					</td>
 				</tr>
 			</table>
